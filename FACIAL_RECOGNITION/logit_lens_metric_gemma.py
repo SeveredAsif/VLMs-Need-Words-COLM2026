@@ -3,7 +3,7 @@ import os
 import pickle
 from collections import defaultdict
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 import torch
 from torch.utils.data import DataLoader, Subset
@@ -18,9 +18,12 @@ BATCH_SIZE = 16
 IGNORE_COLORS = False
 IGNORE_OPTIONS = False
 MSIZE = "12b"
-KNOWN_DATASET_NAME = "GEMMA12B_FAMOUS_ASIAN_DATASET"
+KNOWN_DATASET_NAME = "Gemma12B_FAMOUS_EAST_ASIAN_DATASET"
 UNKNOWN_DATASET_NAME = "FLUXSynID_EAST_ASIAN_DATASET"
 SAMPLE_SIZE = -1
+OUTPUT_DIR = f"logit_lens_results/GEMMA/{MSIZE}"
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
 
 VISION_START_ID = 255999
 RESIZED_SIZE = 896
@@ -316,9 +319,9 @@ def main():
 
     configure_plot_style()
 
-    with open(f"gemma_{MSIZE}_unknown_all_data.pkl", "wb") as f:
+    with open(f"{OUTPUT_DIR}/gemma_{MSIZE}_unknown_all_data.pkl", "wb") as f:
         pickle.dump(unknown_all_data, f)
-    with open(f"gemma_{MSIZE}_known_all_data.pkl", "wb") as f:
+    with open(f"{OUTPUT_DIR}/gemma_{MSIZE}_known_all_data.pkl", "wb") as f:
         pickle.dump(known_all_data, f)
 
     save_plot(
@@ -326,7 +329,7 @@ def main():
         known,
         "AI Generated/Unknown",
         "Celebrity/Known",
-        "gemma_12b_logit_jaccard.pdf",
+        f"{OUTPUT_DIR}/gemma_{MSIZE}_logit_jaccard.pdf",
     )
 
 
