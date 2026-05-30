@@ -1,0 +1,604 @@
+filename,painter_dir,bucket,painter_gt,painting_gt,painter_prediction,painting_prediction,painter_judge_response,painting_judge_response,painter_correct,painting_correct
+goya/well_known/the_third_of_may_1808.jpg,goya,well_known,Francisco Goya,The Third of May 1808,"The painting you sent is **""The Third of May 1808""** by **Francisco Goya**.
+
+It's one of his most famous works, depicting the execution of Spanish rebels by French soldiers during the Peninsular War. It's a powerful and emotional depiction of the brutality of war and a symbol of Spanish resistance.","The painting you sent is **""The Third of May 1808""** by Francisco Goya.
+
+It depicts the execution of Spanish rebels by French soldiers during the Peninsular War. It's a powerful and iconic work of art, known for its emotional intensity and its depiction of the brutality of war.
+
+
+
+Would you like to know more about the painting or Goya?",Yes,Yes,Yes,Yes
+goya/well_known/saturn_devouring_his_son.jpg,goya,well_known,Francisco Goya,Saturn Devouring His Son,"Certainly! The painting you've shown is ""Satyr"" by Francisco Goya. 
+
+It's one of the ""Black Paintings"" series, a group of fourteen paintings that Goya created directly onto the walls of his house, the Quinta del Sordo, between 1819 and 1823. These works are known for their dark, disturbing, and often nightmarish imagery.","The painting you sent is **""Satyr"" (or ""Old Man with a Child"")** by Francisco Goya. 
+
+It's a small, unsettling oil sketch from around 1796-1797. It's part of a series of ""brujos"" (witches and sorcerers) that Goya created.
+
+Here are some key details about the painting:
+
+*   **Artist:** Francisco Goya
+*   **Date:** c. 1796-1797
+*   **Medium:** Oil on canvas
+*   **Location:** Museo del",Yes,No,Yes,No
+goya/well_known/the_clothed_maja.jpg,goya,well_known,Francisco Goya,The Clothed Maja,"The painting you sent is ""La maja desnuda"" (The Naked Maja) by **Francisco Goya**.
+
+It's one of a pair of paintings, the other being ""La maja vestida"" (The Dressed Maja), both depicting the same woman in different states of dress. They were controversial at the time due to their depiction of the nude figure.","The painting in the image is **""La maja desnuda"" (The Naked Maja)** by Francisco Goya.
+
+It's one of a pair of paintings, the other being ""La maja vestida"" (The Dressed Maja). They are famous for their depiction of a woman in a relaxed pose, and for the mystery surrounding the identity of the model.",Yes,No,Yes,No
+goya/well_known/the_sleep_of_reason_produces_monsters.jpg,goya,well_known,Francisco Goya,The Sleep of Reason Produces Monsters,"The painting you sent is an etching from Francisco Goya's ""Los Caprichos"" series. Specifically, it's the etching titled ""El sueño de la razón produce monstruos"" (The Dream of Reason Produces Monsters).
+
+Francisco Goya (1746-1828) was a Spanish Romantic painter and printmaker. ""Los Caprichos"" is a series of 87 etchings that satirize Spanish society, superstition, and human folly.
+
+
+
+If you'd like, you can send me another image to identify!","The painting you've shown is **""The Sleep of Reason Produces Monsters"" (El sueño de la razón produce monstruos)**, also known as **""The Sleep of Reason""**.
+
+It's etching number 43 from Francisco Goya's famous series of prints called **""Los Caprichos"" (The Caprices)**, created between 1797 and 1799.
+
+The text at the bottom reads: ""El sueño de la razón produce monstruos,"" which translates to ""The sleep of reason produces monsters.""
+
+
+
+It's a powerful and iconic image exploring the dangers of",Yes,Yes,Yes,Yes
+goya/less_known/the_straw_manikin.jpg,goya,less_known,Francisco Goya,The Straw Manikin,"The painting you've shown is ""La Familia de Carlos IV"" (The Family of Charles IV) by **Francisco Goya**.
+
+While it's often mistaken for a lighthearted scene, it's actually a satirical portrait of the Spanish royal family. The figures are depicted in a somewhat awkward and unflattering manner, revealing Goya's critical view of the court.
+
+It's a fascinating and complex work!","The painting you've shown is **""La Familia de Carlos IV"" (The Family of Charles IV)** by Francisco Goya.
+
+However, the specific scene you've highlighted within the larger painting is often referred to as **""The Cartoonists""** or **""The Satirists.""** It's a satirical depiction of the court, with the figures representing caricatures of Charles IV and his family.
+
+Here's a breakdown:
+
+*   **The full painting:** ""La Familia de Carlos IV"" is a large, formal portrait of the Spanish royal family.
+*   **The scene you've",Yes,No,Yes,No
+goya/less_known/the_parasol.jpg,goya,less_known,Francisco Goya,The Parasol,"Certainly! The painting you've shown is ""The Mocking of Ceres"" by Francisco Goya. 
+
+It's a fascinating work from his early period, created around 1775-1779. It's known for its satirical and playful depiction of a rural scene.","The painting you sent is **""The Mocking of Ceres"" (La Risueña)** by Francisco Goya.
+
+It was painted around 1770-1773 and is a genre scene depicting a young woman, often referred to as ""La Risueña"" (The Smiling One), being playfully teased by a young man. The scene is set in a rural landscape, and a small dog adds to the charming, lighthearted atmosphere.",Yes,No,Yes,No
+goya/less_known/the_milkmaid_of_bordeaux.jpg,goya,less_known,Francisco Goya,The Milkmaid of Bordeaux,"Certainly! The painting you sent is ""Woman with a Vase"" by Eugène Delacroix. 
+
+It's a study for his larger painting ""The Jewish Wedding in Morocco."" Delacroix was a prominent French Romantic painter of the 19th century.","Certainly! Based on the image, the painting is **""Woman with a Vase""** by Eugène Delacroix.
+
+It was painted around 1832. It's a study for a larger work and showcases Delacroix's characteristic loose brushwork and atmospheric style.",No,No,No,No
+goya/less_known/yard_with_lunatics.jpg,goya,less_known,Francisco Goya,Yard with Lunatics,"Certainly! The painting you've shown is ""The Bullfight at Bordeaux"" by Francisco Goya. 
+
+It's one of his lesser-known works, created around 1723-1724. It depicts a bullfight scene in Bordeaux, France, where Goya spent some time as a young artist.
+
+Let me know if you'd like to know more about Goya or this painting!","The painting you've sent is **""The Surrender of Breda""** (also known as ""Las Lanzas"") by Francisco Goya.
+
+Here's some information about it:
+
+*   **Artist:** Francisco Goya
+*   **Year:** 1814-1815
+*   **Medium:** Oil on canvas
+*   **Subject:** It depicts a scene of indigenous people in the Americas torturing a Spanish soldier. It's part of Goya's series ""The Disasters of War.""
+*   **Significance:** The painting is a powerful and disturbing commentary",Yes,No,Yes,No
+goya/less_known/the_bewitched_man.jpg,goya,less_known,Francisco Goya,The Bewitched Man,"The painting you've shown is ""The Nightmare"" by Francisco Goya. 
+
+It's a fascinating and unsettling work from his ""Black Paintings"" series, created directly onto the walls of his house, Quinta del Sordo.","The painting you've shown is **""Saturn Devouring His Son""** by Francisco Goya.
+
+It's one of his most disturbing and iconic works, part of a series called ""Black Paintings"" that he painted directly onto the walls of his house. It depicts the Greek myth of Cronus (Saturn in Roman mythology) devouring one of his children to prevent a prophecy that he would be overthrown by his own offspring.",Yes,No,Yes,No
+monet/well_known/water_lilies.jpg,monet,well_known,Claude Monet,Water Lilies,"The painting you sent is by **Claude Monet**. 
+
+It's part of his famous ""Water Lilies"" series (Nymphéas). Monet spent many years painting the water lily garden at his home in Giverny, France. This particular piece is a beautiful example of his impressionistic style, focusing on capturing the light and color of the water and the flowers.","The painting you sent is ""Water Lilies"" by Claude Monet. It's part of his famous series of paintings depicting his garden at Giverny. 
+
+Specifically, this one is often referred to as ""Water Lilies (Agapanthus)"" or ""Nymphéas (Agapanthes)"".",Yes,Yes,Yes,Yes
+monet/well_known/woman_with_a_parasol.jpg,monet,well_known,Claude Monet,Woman with a Parasol,"The painting you sent is ""Woman with a Parasol - Madame Monet and Her Son"" by **Claude Monet**.
+
+It's a beautiful example of his Impressionist style, characterized by the loose brushstrokes and focus on capturing the fleeting effects of light and atmosphere.","The painting you sent is **""Woman with a Parasol - Madame Monet and Her Son""** by Claude Monet.
+
+It was painted in 1875 and is a beautiful example of Impressionism, capturing a fleeting moment of light and atmosphere.",Yes,Yes,Yes,Yes
+monet/well_known/rouen_cathedral.jpg,monet,well_known,Claude Monet,Rouen Cathedral,"The painting you sent is ""Rouen Cathedral, Full Sunlight"" by **Claude Monet**.
+
+It's a famous example of his series of paintings depicting Rouen Cathedral, where he explored the effects of light and atmosphere on the stone facade.","The painting in the image is **""Rouen Cathedral, Facade/West Facade, Sunlight""** by Claude Monet.
+
+It's one of a series of paintings Monet created of Rouen Cathedral, focusing on how light and atmosphere affect the appearance of the stone facade.",Yes,Yes,Yes,Yes
+monet/well_known/the_japanese_bridge.jpg,monet,well_known,Claude Monet,The Japanese Bridge,"The painting you sent is ""The Japanese Bridge"" by Claude Monet. It's part of his famous Water Lilies series, painted at his garden in Giverny, France.","The painting in the image is **""The Japanese Bridge""** by Claude Monet. 
+
+It's part of his famous ""Water Lilies"" series, and depicts the Japanese footbridge in his garden at Giverny.",Yes,Yes,Yes,Yes
+monet/less_known/la_grenouill_re.jpg,monet,less_known,Claude Monet,La Grenouillère,"Certainly! The painting you sent is ""Boating on the Seine at Chatou"" by **Berthe Morisot**.
+
+It's a beautiful example of Impressionism, capturing a fleeting moment of leisure and the shimmering reflections on the water.","The painting you sent is **""Boating on the Seine at Chatou""** by Camille Pissarro.
+
+It was painted in 1877 and is a beautiful example of Impressionism, capturing the fleeting effects of light and atmosphere on the water and surrounding landscape.",No,No,No,No
+monet/less_known/the_magpie.jpg,monet,less_known,Claude Monet,The Magpie,"The painting you sent is ""Winter Landscape"" by **Claude Monet**. 
+
+It's a beautiful example of his Impressionist style, capturing the fleeting effects of light and atmosphere in a snowy scene. You can see his signature brushstrokes and focus on color to convey the feeling of winter.","The painting in the image is **""Winter Landscape""** by Claude Monet. It was painted in 1873.",Yes,No,Yes,No
+monet/less_known/camille_on_her_deathbed.jpg,monet,less_known,Claude Monet,Camille on Her Deathbed,"Certainly! Based on the signature visible in the bottom right corner, the painting was created by **Claude Monet**.
+
+The painting is a study of a snowy landscape, characteristic of Monet's work during the winter of 1875 in Giverny, France.","Based on the image, the painting is **""Winter's Day"" (or ""Winter Scene"") by Claude Monet**.
+
+Here's why:
+
+*   **Style:** The loose, impressionistic brushstrokes and focus on capturing the effects of light and atmosphere are characteristic of Monet's work.
+*   **Subject Matter:** The painting depicts a snowy landscape with figures, a common subject for Monet, especially during the winter months.
+*   **Signature:** You can see the signature ""Claude Monet"" in the lower right corner.
+
+This particular painting was created around 1875.",Yes,No,Yes,No
+monet/less_known/the_red_boats_argenteuil.jpg,monet,less_known,Claude Monet,"The Red Boats, Argenteuil","The painting you sent is ""Harbor at Le Havre"" by **Claude Monet**. You can see his signature in the bottom left corner. It was painted in 1873.","The painting in the image is **""The River at Dusk""** by Claude Monet. It was painted in 1875.
+
+
+
+It depicts the Seine River at sunset in Argenteuil, France.",Yes,No,Yes,No
+monet/less_known/grainstacks_at_the_end_of_summer.jpg,monet,less_known,Claude Monet,Grainstacks at the End of Summer,"Certainly! 
+
+The painting you sent is ""Haystacks at Sunset"" by **Claude Monet**. 
+
+It's part of his famous ""Haystacks"" series, where he painted the same subject (haystacks) at different times of day and in various weather conditions to capture the effects of light and atmosphere.","The painting in the image is **""Haystacks at Sunset"" by Claude Monet**.
+
+It's part of his famous ""Haystacks"" series, which he painted to explore the effects of light and atmosphere on the same subject at different times of day and in different weather conditions. This particular piece is from 1891.",Yes,No,Yes,No
+Paul_Cézanne/well_known/the_card_players.jpg,Paul_Cézanne,well_known,Paul Cézanne,The Card Players,"The painting you sent is ""The Card Players"" by **Paul Cézanne**. 
+
+It's one of his most famous works, and he actually painted a series of five paintings depicting the same scene of peasants playing cards. This particular version is housed in the Musée d'Orsay in Paris.","The painting in the image is **""The Card Players""** by Paul Cézanne.
+
+It's actually a series of five paintings depicting the same scene of peasants playing cards. The one shown here is the first version, painted in 1892-1893. It's one of Cézanne's most famous works and is currently housed in the Musée d'Orsay in Paris.",Yes,Yes,Yes,Yes
+Paul_Cézanne/well_known/mont_sainte_victoire.jpg,Paul_Cézanne,well_known,Paul Cézanne,Mont Sainte-Victoire,"Certainly! The painting you sent is ""Waterfall"" by Vincent van Gogh. 
+
+It was painted in 1889 while he was residing at the Saint-Paul-de-Mausole asylum in Saint-Rémy, France. 
+
+Would you like to know more about this painting or Van Gogh's work?","Certainly! Based on the image, the painting is **""The Brook at the Edge of the Forest""** by Vincent van Gogh.
+
+It was painted in 1888 while he was in Saint-Rémy, France. It's a study for a larger work he intended to create.",No,No,No,No
+Paul_Cézanne/well_known/the_large_bathers.jpg,Paul_Cézanne,well_known,Paul Cézanne,The Large Bathers,"The painting you sent is ""The Bathers"" by **Paul Cézanne**. 
+
+It's one of his most famous works, and a key example of his exploration of form and perspective that bridged the gap between Impressionism and Cubism.","The painting you sent is **""The Bathers"" (Les Baigneuses)** by Paul Cézanne.
+
+It's one of his most famous and significant works, and he painted several versions of it over a period of years. This particular version is from 1905.",Yes,Yes,Yes,Yes
+Paul_Cézanne/well_known/still_life_with_apples.jpg,Paul_Cézanne,well_known,Paul Cézanne,Still Life with Apples,"The painting you sent is ""Still Life with Fruit Dish"" by **Paul Cézanne**.
+
+Cézanne was a hugely influential French Post-Impressionist painter. He's known for his still lifes, landscapes, and portraits, and his work paved the way for Cubism. This particular painting is a great example of his characteristic style: simplified forms, geometric shapes, and a focus on the interplay of light and color.","The painting in the image is **""Still Life with Fruit Dish""** by Pablo Picasso. It was painted in 1906.
+
+It's a significant work in his transition from his earlier, more traditional style towards the development of Cubism.",Yes,No,Yes,No
+Paul_Cézanne/well_known/the_basket_of_apples.jpg,Paul_Cézanne,well_known,Paul Cézanne,The Basket of Apples,"The painting you sent is ""Still Life with Basket of Apples"" by **Paul Cézanne**.
+
+It's a classic example of his still life work, known for its exploration of form, color, and perspective. You can see his signature style in the way he breaks down objects into geometric shapes and uses a limited color palette.","The painting in the image is **""Still Life with Basket of Apples""** by Paul Cézanne.
+
+It was painted around 1893. It's a classic example of Cézanne's still life work, known for its exploration of form, color, and perspective.",Yes,Yes,Yes,Yes
+Paul_Cézanne/less_known/boy_in_a_red_vest.jpg,Paul_Cézanne,less_known,Paul Cézanne,Boy in a Red Vest,"The painting you sent is ""Boy in a Red Vest"" by **Paul Cézanne**.
+
+It's one of his portraits of his son, Paul Valadier. Cézanne painted several portraits of his son throughout his career, and this is a particularly well-known example.","The painting in the image is **""Boy in a Red Vest""** by Paul Cézanne.
+
+It was painted around 1888-1890 and is one of a series of portraits Cézanne made of his son, Paul.",Yes,Yes,Yes,Yes
+Paul_Cézanne/less_known/the_murder.jpg,Paul_Cézanne,less_known,Paul Cézanne,The Murder,"Certainly! The painting you sent is ""The Expulsion from the Garden of Eden"" by **Michelangelo Merisi da Caravaggio**.
+
+It's a dramatic and powerful work, characteristic of Caravaggio's style, known for its use of *tenebrism* (strong contrasts between light and dark) and realistic depictions of figures.","The painting you sent is **""The Expulsion from the Garden of Eden""** by Rembrandt van Rijn.
+
+Here are some key details about the painting:
+
+*   **Artist:** Rembrandt van Rijn (1606-1669)
+*   **Date:** c. 1635
+*   **Medium:** Oil on canvas
+*   **Location:**  Currently in the Norton Simon Museum, Pasadena, California.
+
+It depicts the biblical story of Adam and Eve being banished from the Garden of Eden after succumbing to the temptation of the serpent. Rembrandt's use of dramatic lighting",No,No,No,No
+Paul_Cézanne/less_known/the_house_of_the_hanged_man.jpg,Paul_Cézanne,less_known,Paul Cézanne,The House of the Hanged Man,"Certainly! The painting you sent is ""Landscape at Lempdes"" by **Paul Cézanne**.
+
+It was painted in 1897 and is a beautiful example of his exploration of landscape and his distinctive style. 
+
+Let me know if you'd like to know more about the painting or Cézanne!","The painting you sent is **""The Quarry""** by Paul Cézanne. 
+
+It was painted in 1904 and is part of a series of paintings Cézanne made of the Bibémus quarry near Aix-en-Provence, France.",Yes,No,Yes,No
+Paul_Cézanne/less_known/pyramid_of_skulls.jpg,Paul_Cézanne,less_known,Paul Cézanne,Pyramid of Skulls,"The painting you sent is ""Skulls"" by **Paul Cézanne**.
+
+It's a striking and somewhat unsettling work from his later period, showcasing his exploration of form and color. It's part of a series of still lifes featuring skulls that he painted around 1895-1905.","The painting you sent is called **""Skulls""** by Paul Cézanne.
+
+It was painted around 1895-1898 and is a striking example of his exploration of form and color. It's a still life featuring several skulls, rendered in Cézanne's characteristic loose, expressive brushstrokes.",Yes,No,Yes,No
+Paul_Gauguin/well_known/where_do_we_come_from_what_are_we_where_are_we_going.jpg,Paul_Gauguin,well_known,Paul Gauguin,Where Do We Come From? What Are We? Where Are We Going?,"The painting you sent is ""Conversation"" (also known as ""Les Parleuses"") by **Paul Gauguin**.
+
+Here are some key details about the painting:
+
+*   **Artist:** Paul Gauguin (1848-1903)
+*   **Year:** 1891
+*   **Medium:** Oil on canvas
+*   **Location:** Albright-Knox Art Gallery, Buffalo, New York
+*   **Subject:** It depicts Tahitian women in a relaxed, informal setting. Gauguin spent several years in Tahiti, and his work often reflected his fascination with Polynesian culture and","The painting you've shown is **""Les Baigneurs"" (The Bathers)** by Paul Gauguin.
+
+It was painted in 1896 and is a significant work in his exploration of Tahitian themes and his distinctive Post-Impressionist style.",Yes,No,Yes,No
+Paul_Gauguin/well_known/vision_after_the_sermon.jpg,Paul_Gauguin,well_known,Paul Gauguin,Vision After the Sermon,"The painting you sent is ""The Dance"" by Henri Matisse. 
+
+It was painted in 1910 and is one of his most famous works. It's known for its bold colors, simplified forms, and expressive depiction of movement.","The painting you've shown is **""The Dance"" (La Danse) by Henri Matisse.**
+
+It's one of his most famous works, created in 1909-1910. It's known for its bold colors, simplified forms, and expressive depiction of movement.
+
+
+
+Would you like to know more about the painting or Matisse?",No,No,No,No
+Paul_Gauguin/well_known/the_yellow_christ.jpg,Paul_Gauguin,well_known,Paul Gauguin,The Yellow Christ,"The painting you sent is ""Christ in the Country"" by **Paul Gauguin**. 
+
+It was painted in 1889 while Gauguin was living in Pont-Aven, Brittany, France. It's a striking example of his Synthetism style, characterized by simplified forms, bold colors, and a focus on emotional expression rather than realistic representation.","The painting you've shown is **""Christ in the Country""** by Paul Gauguin.
+
+Here are some key details about the artwork:
+
+*   **Artist:** Paul Gauguin
+*   **Year:** 1889-1890
+*   **Medium:** Oil on canvas
+*   **Location:** Albright-Knox Art Gallery, Buffalo, New York
+
+It's a significant work in Gauguin's oeuvre, reflecting his exploration of symbolism and his interest in Breton folk culture during his time in Brittany, France.",Yes,No,Yes,No
+Paul_Gauguin/well_known/tahitian_women_on_the_beach.jpg,Paul_Gauguin,well_known,Paul Gauguin,Tahitian Women on the Beach,"The painting you sent is ""Nafea faa ipoipo?"" (When Will You Marry?) by **Paul Gauguin**.
+
+It's one of his most famous works, painted in 1892 during his time in Tahiti. It's known for its depiction of two Tahitian women and its complex history of ownership.","The painting you sent is **""Nafea faa ipoipo?""** (When Will You Marry?) by Paul Gauguin.
+
+It's one of his most famous works, painted in 1892 during his time in Tahiti. The title is in Tahitian and its meaning is open to interpretation, but it generally refers to the question of marriage.",Yes,No,Yes,No
+Paul_Gauguin/well_known/spirit_of_the_dead_watching.jpg,Paul_Gauguin,well_known,Paul Gauguin,Spirit of the Dead Watching,"The painting you sent is ""Nafea faa ipoipo?"" (When Will You Marry?) by **Paul Gauguin**.
+
+It's one of his most famous works, painted in 1892 during his time in Tahiti. It's known for its vibrant colors, flattened perspective, and depiction of Tahitian life.","The painting you sent is **""Nafea faa ipoipo?""** (When Will You Marry?) by Paul Gauguin.
+
+It's one of his most famous works, painted in 1892 during his time in Tahiti. The title is in Tahitian and its meaning is open to interpretation, but it generally refers to the question of marriage.
+
+It gained significant attention in 2015 when it was reportedly sold for a record-breaking price, making it one of the most expensive artworks ever sold privately.",Yes,No,Yes,No
+Paul_Gauguin/less_known/the_loss_of_virginity.jpg,Paul_Gauguin,less_known,Paul Gauguin,The Loss of Virginity,"The painting you sent is ""The Dream"" by Henri Rousseau. 
+
+It's a very famous and distinctive work by the French Post-Impressionist painter, known for his jungle scenes and dreamlike imagery.","The painting you've shown is called **""The Dream"" (Le Rêve)** by Henri Rousseau.
+
+It was painted in 1897 and is one of his most famous works. It's a prime example of his unique style, often referred to as ""naïve art"" or ""primitive art,"" characterized by its dreamlike imagery, simplified forms, and vibrant colors.",No,No,No,No
+Paul_Gauguin/less_known/the_swineherd_brittany.jpg,Paul_Gauguin,less_known,Paul Gauguin,"The Swineherd, Brittany","The painting you sent is ""Vision Through the Wheat Fields"" by **Paul Gauguin**. 
+
+It was painted in 1887 and is a notable example of his early work, showcasing his developing style and interest in depicting rural scenes.","The painting you sent is **""Vision after the Sermon""** by Paul Gauguin.
+
+It was painted in 1888. It's a significant work in Gauguin's oeuvre, showcasing his exploration of symbolism and his move towards Synthetism.",Yes,No,Yes,No
+Paul_Gauguin/less_known/the_little_one_is_dreaming.jpg,Paul_Gauguin,less_known,Paul Gauguin,The Little One Is Dreaming,"Certainly! The painting you sent is ""The Sick Girl"" by **Henri Rousseau**. 
+
+It's a notable work from his collection of ""exotic"" paintings, despite depicting a scene from his own life. 
+
+Let me know if you'd like to know more about the painting or Henri Rousseau!","The painting is called **""The Sick Girl""** by Valentin Serov.
+
+It was painted in 1889 and is one of his most famous works. It depicts his cousin, Vera, who was suffering from tuberculosis at the time.",No,No,No,No
+Paul_Gauguin/less_known/the_ham.jpg,Paul_Gauguin,less_known,Paul Gauguin,The Ham,"The painting you sent is ""Still Life with Ham, Cheese, and Glass"" by **Henri Matisse**.
+
+It was painted in 1909 and is a great example of his early still life works, characterized by bold colors and simplified forms.","The painting you sent is called **""Still Life with Ham, Cheese, and Glass""** by Henri Matisse. It was painted in 1909.
+
+It's a great example of Matisse's early still life work, characterized by bold colors and simplified forms.",No,No,No,No
+Paul_Gauguin/less_known/self_portrait_with_halo.jpg,Paul_Gauguin,less_known,Paul Gauguin,Self-Portrait with Halo,"The painting you sent is ""Portrait of Paul Guillaumin"" by **Henri Matisse**.
+
+It was painted in 1904 and is a great example of Matisse's early Fauvist style, characterized by bold colors and simplified forms.","The painting you've shown is **""Portrait of Paul Guillaumaume""** by Paul Gauguin.
+
+Here are some key details about the artwork:
+
+*   **Artist:** Paul Gauguin
+*   **Year:** 1899
+*   **Medium:** Oil on canvas
+*   **Location:** Museum of Fine Arts, Boston
+
+It's a striking example of Gauguin's later style, characterized by bold colors, simplified forms, and a focus on emotional expression. The subject is Paul Guillaumaume, a friend of Gauguin's who was a musician and poet.",No,No,No,No
+picasso/well_known/guernica.jpg,picasso,well_known,Pablo Picasso,Guernica,"The painting you've shown is ""Guernica"" by Pablo Picasso. It's one of his most famous works and a powerful anti-war statement. 
+
+Here are some key facts about the painting:
+
+*   **Year:** 1937
+*   **Medium:** Oil on canvas
+*   **Size:** It's quite large, measuring approximately 11 ft 6 in × 25 ft 8 in (3.49 m × 7.76 m)
+*   **Location:** Museo Reina Sofía, Madrid, Spain
+
+It was created in response to","The painting you've shown is **""The Charnel House"" (La Chapelle)** by Pablo Picasso.
+
+Here's some key information about it:
+
+*   **Year:** 1945
+*   **Medium:** Oil on canvas
+*   **Significance:** It was created in response to the bombing of Guernica during the Spanish Civil War and is considered one of Picasso's most powerful anti-war statements. It depicts a scene of suffering and death, with fragmented figures and a somber palette.
+*   **Location:** Currently housed at the Museum of Modern Art (MoMA",Yes,No,Yes,No
+picasso/well_known/les_demoiselles_d_avignon.jpg,picasso,well_known,Pablo Picasso,Les Demoiselles d'Avignon,"The painting you sent is ""The Musicians"" by Pablo Picasso. It was created in 1921.
+
+It's a prime example of his Synthetic Cubism style, characterized by fragmented forms, flattened perspectives, and a focus on geometric shapes.","The painting you've sent is **""The Women of Algiers (Version O)""** by Pablo Picasso.
+
+It's one of the most famous and valuable paintings in the world. It's part of a series of 15 paintings Picasso created based on Eugène Delacroix's painting ""Women of Algiers.""
+
+Let me know if you'd like to know more about it!",Yes,No,Yes,No
+picasso/well_known/the_old_guitarist.jpg,picasso,well_known,Pablo Picasso,The Old Guitarist,"The painting you sent is ""The Old Guitarist"" by **Pablo Picasso**.
+
+It's a famous work from his ""Blue Period"" (1903-1904), characterized by its monochromatic blue and blue-green palette and its depiction of poverty and melancholy.","The painting in the image is **""The Old Guitarist""** by Pablo Picasso.
+
+It was painted in 1903-1904 during Picasso's ""Blue Period."" It's a very iconic work from that time, characterized by its monochromatic blue tones and depiction of poverty and melancholy.",Yes,Yes,Yes,Yes
+picasso/well_known/girl_before_a_mirror.jpg,picasso,well_known,Pablo Picasso,Girl before a Mirror,"The painting you've shown is ""The Lovers"" (Les Amants) by **Pablo Picasso**.
+
+It was created in 1928 and is a prime example of his Cubist style. It depicts a man and a woman intertwined, rendered in his signature fragmented and geometric forms.","The painting you've shown is **""The Lovers"" (Les Amants) by Pablo Picasso**.
+
+It was created in 1928 and is a prime example of his Cubist style. It depicts a man and a woman intertwined, with their faces fragmented and distorted, a characteristic feature of Picasso's work during that period.
+
+
+
+Let me know if you'd like to know more about the painting or Picasso!",Yes,No,Yes,No
+picasso/well_known/three_musicians.jpg,picasso,well_known,Pablo Picasso,Three Musicians,"The painting you sent is ""Still Life with Guitar"" by **Juan Gris**.
+
+It's a prime example of his Cubist style, characterized by fragmented forms, geometric shapes, and a limited color palette. He was a key figure in the Cubist movement alongside artists like Pablo Picasso and Georges Braque.","The painting in the image is **""Still Life with Guitar""** by Pablo Picasso. It was created in 1937.
+
+It's a prime example of Picasso's Cubist style, breaking down objects into geometric forms and presenting them from multiple viewpoints simultaneously.",No,No,No,No
+picasso/less_known/science_and_charity.jpg,picasso,less_known,Pablo Picasso,Science and Charity,"The painting you sent is ""The Death of Nelson"" by **James Abbott McNeill Whistler**.
+
+It's a significant work in his oeuvre, known for its tonalist style and exploration of color harmonies. It depicts the death of Admiral Horatio Nelson in 1805.","The painting you sent is **""The Death of Abraham Lincoln""** by George Peter Alexander Healy.
+
+It's a poignant depiction of the scene in the White House following Lincoln's assassination. Healy was present at the White House and painted this from memory and sketches.",No,No,No,No
+picasso/less_known/portrait_of_gertrude_stein.jpg,picasso,less_known,Pablo Picasso,Portrait of Gertrude Stein,"Certainly! The painting you sent is ""The Seated Woman"" by **Pablo Picasso**. 
+
+It was painted in 1941 and is a portrait of Marie-Thérèse Picasso, Picasso's daughter and model. It's a striking example of his later style, characterized by a more simplified and expressive approach.","The painting you sent is **""Portrait of Paula Modersohn-Becker""** by Paula Modersohn-Becker. It was painted in 1906.
+
+It's a striking and introspective self-portrait, characteristic of her later, more expressive style.",Yes,No,Yes,No
+picasso/less_known/ma_jolie.jpg,picasso,less_known,Pablo Picasso,Ma Jolie,"The image you sent is of a blank white canvas. This is a famous work by **Kazimir Malevich** titled ""White on White."" 
+
+It was created in 1918 and is considered a key piece of his Suprematism movement, which focused on pure geometric forms and abstraction.","The painting you're referring to is **""White Canvas""** by Yves Klein. 
+
+It's a very famous work by the artist, known for his exploration of the color blue (International Klein Blue, or IKB). ""White Canvas"" is part of a series of white monochromes he created, exploring the idea of pure, unadulterated space and the potential for spiritual experience within emptiness.",No,No,No,No
+rembrant/well_known/the_night_watch.jpg,rembrant,well_known,Rembrandt,The Night Watch,"Certainly! 
+
+The artwork in the image is an etching by **Rembrandt van Rijn**. 
+
+Specifically, it's titled ""The Return of the Prodigal Son."" It's one of his most famous and deeply moving works, known for its dramatic use of light and shadow (chiaroscuro) and its emotional depth.
+
+Let me know if you'd like to know more about this piece or Rembrandt!","Certainly! Let's identify the artwork in the image.
+
+The artwork is **""The Return of the Prodigal Son""** by Rembrandt van Rijn. 
+
+It's a very famous etching, and this particular image shows a detail from the larger composition. Rembrandt created multiple versions of this scene, exploring the biblical story of the prodigal son's return and his father's forgiveness.
+
+Let me know if you'd like to know more about this artwork or Rembrandt!",Yes,No,Yes,No
+rembrant/well_known/the_anatomy_lesson_of_dr_nicolaes_tulp.jpg,rembrant,well_known,Rembrandt,The Anatomy Lesson of Dr. Nicolaes Tulp,"The painting you've sent is ""The Anatomy Lesson of Dr. Nicolaes Tulp"" by **Rembrandt van Rijn**.
+
+It's one of his most famous early works, completed in 1632. It depicts a public anatomy lesson given by Dr. Tulp, the city's surgeon, to a group of spectators, including members of the Amsterdam Guild of Surgeons.","The painting you've sent is **""The Anatomy Lesson of Dr. Nicolaes Tulp""** by Rembrandt van Rijn.
+
+Here are some key details about the painting:
+
+*   **Artist:** Rembrandt van Rijn
+*   **Year:** 1632
+*   **Subject:** It depicts a public anatomy lesson given by Dr. Nicolaes Tulp, the surgeon of Amsterdam, demonstrating the musculature of the arm.
+*   **Significance:** It's a significant work in the history of art, showcasing Rembrandt's skill in capturing the expressions and personalities of the onlookers, as well",Yes,Yes,Yes,Yes
+rembrant/well_known/the_return_of_the_prodigal_son.jpg,rembrant,well_known,Rembrandt,The Return of the Prodigal Son,"Certainly! 
+
+Based on the signature visible in the image, this drawing was created by **Rembrandt van Rijn** in 1638. 
+
+The drawing depicts the biblical scene of Isaac blessing Jacob, disguised as Esau.","Based on the image, this is a drawing by Rembrandt van Rijn titled **""Jacob Blessing Esau"" (1633)**.
+
+Here's how I identified it:
+
+*   **Style:** The distinctive use of light and shadow (chiaroscuro), the expressive lines, and the overall composition are hallmarks of Rembrandt's style.
+*   **Signature:** The signature ""Rembrandt 1633"" is visible in the lower left corner.
+*   **Subject Matter:** The scene depicts the biblical story of Jacob blessing his brother Esau, as described in Genesis 27.",Yes,No,Yes,No
+rembrant/well_known/self_portrait_with_two_circles.png,rembrant,well_known,Rembrandt,Self-Portrait with Two Circles,"Certainly! 
+
+The painting in the image is **""Self-Portrait with Two Circles"" by Rembrandt van Rijn**. 
+
+It's a famous self-portrait by the Dutch master, created around 1665-1669. The two circles in the painting are believed to represent the artist's understanding of perspective and the human form.","Based on the image, the painting is **""Self-Portrait with Two Circles"" by Rembrandt van Rijn**.
+
+It's a very famous and recognizable self-portrait by the Dutch master. The two circles are believed to represent a landscape and a head, hinting at Rembrandt's artistic process and his contemplation of art.",Yes,Yes,Yes,Yes
+rembrant/well_known/the_jewish_bride.jpg,rembrant,well_known,Rembrandt,The Jewish Bride,"The painting you sent is ""The Jewish Bride"" (also known as ""The Couple"") by **Rembrandt van Rijn**.
+
+It's one of his most famous and beloved works, known for its intimate portrayal of the couple and Rembrandt's masterful use of light and shadow (chiaroscuro).","The painting you sent is **""The Jewish Bride""** by Rembrandt van Rijn.
+
+Here are some key details about the painting:
+
+*   **Artist:** Rembrandt van Rijn
+*   **Date:** c. 1642
+*   **Medium:** Oil on canvas
+*   **Location:** Mauritshuis, The Hague, Netherlands
+
+It's a fascinating and somewhat mysterious work, as its subject is debated. It's believed to be a depiction of a Jewish couple, possibly Isaac and Rebecca from the Bible, or perhaps a portrait of Rembrandt and his wife, Saskia van Uylen",Yes,Yes,Yes,Yes
+rembrant/less_known/the_polish_rider.jpg,rembrant,less_known,Rembrandt,The Polish Rider,"The painting you sent is ""The Archer"" by Rembrandt van Rijn. It was created around 1633.
+
+Here are some key details about the painting:
+
+*   **Artist:** Rembrandt van Rijn (1606-1669)
+*   **Title:** The Archer (also known as ""The Rider"")
+*   **Date:** c. 1633
+*   **Medium:** Oil on canvas
+*   **Location:** Musée du Louvre, Paris
+
+Rembrandt was a Dutch Golden Age painter, and this work is a great example of his skill in capturing light","The painting you sent is **""The Archer""** by Rembrandt van Rijn.
+
+It was painted around 1633. It's a striking portrait of a Polish nobleman on horseback, known for its dramatic lighting and dynamic composition.",Yes,Yes,Yes,Yes
+rembrant/less_known/the_mill.jpg,rembrant,less_known,Rembrandt,The Mill,"Certainly! 
+
+The painting you've shown is an etching by **Rembrandt van Rijn**. 
+
+Specifically, it's titled ""Windmill near Rotterdam"" and was created in 1641. You can see his signature ""Rembrandt f. 1641"" in the lower right corner.
+
+Rembrandt was a master of etching, and this piece is a beautiful example of his skill in using light and shadow to create a sense of atmosphere and depth.","The painting is called **""Windmill near Leiden""** by Rembrandt van Rijn. It was created in 1639.
+
+It's a well-known etching by the Dutch master, depicting a windmill and surrounding landscape.",Yes,No,Yes,No
+rembrant/less_known/bathsheba_at_her_bath.jpg,rembrant,less_known,Rembrandt,Bathsheba at Her Bath,"The painting you sent is ""Bathsheba at Her Bath"" by Rembrandt van Rijn. 
+
+It's one of his most famous works, depicting the biblical scene from the Book of Samuel where King David sends for Bathsheba to be brought to him.","The painting you sent is **""Bathsheba at Her Bath""** by Rembrandt van Rijn.
+
+It's a famous and somewhat controversial work, depicting the biblical figure of Bathsheba as described in the Book of Samuel. It's known for its dramatic use of light and shadow (Rembrandt's signature ""chiaroscuro"") and its realistic portrayal of the female nude.",Yes,Yes,Yes,Yes
+rembrant/less_known/a_woman_bathing_in_a_stream.jpg,rembrant,less_known,Rembrandt,A Woman Bathing in a Stream,"Certainly! Based on the style and subject matter, this drawing was created by **Rembrandt van Rijn**.
+
+It's a characteristic study from his hand, likely a preparatory sketch for a larger painting. Rembrandt frequently made drawings like this to explore compositions and figures before committing to a final work.","Based on the image, this is a drawing by Rembrandt van Rijn titled **""Scholar at his Writing Desk""**.
+
+It's a well-known study, likely a preparatory sketch for a larger painting. It's characterized by Rembrandt's signature use of light and shadow and his expressive line work.",Yes,No,Yes,No
+rembrant/less_known/aristotle_with_a_bust_of_homer.jpg,rembrant,less_known,Rembrandt,Aristotle with a Bust of Homer,"The painting you sent is ""Aristotle with a Bust of Homer"" by **Rembrandt van Rijn**.
+
+It's a famous work from around 1653, and a prime example of Rembrandt's dramatic use of light and shadow (chiaroscuro) and his exploration of intellectual and philosophical themes.","The painting in the image is **""Aristotle with a Bust of Homer""** by Rembrandt van Rijn.
+
+It was painted around 1653. It's a fascinating work that explores themes of philosophy, art, and the passage of time.",Yes,Yes,Yes,Yes
+seurat/well_known/a_sunday_afternoon_on_the_island_of_la_grande_jatte.jpg,seurat,well_known,Georges Seurat,A Sunday Afternoon on the Island of La Grande Jatte,"The painting you sent is ""The Artist's Garden at Eragny"" by Camille Pissarro. 
+
+It was painted in 1898 and is a beautiful example of his Impressionist style, particularly his use of color and light to depict a garden scene.","The painting you sent is **""A Garden in Pontoise""** by Camille Pissarro.
+
+It was painted in 1877 and is a beautiful example of Impressionism, showcasing Pissarro's characteristic use of broken color and loose brushstrokes to capture the atmosphere of a summer garden.",No,No,No,No
+seurat/well_known/bathers_at_asni_res.jpg,seurat,well_known,Georges Seurat,Bathers at Asnières,"The painting you sent is ""A Sunday on La Grande Jatte"" by **Georges Seurat**. 
+
+It's one of his most famous works and a prime example of Pointillism, a technique he developed.","The painting you sent is **""A Sunday on La Grande Jatte""** by Georges Seurat.
+
+It's one of his most famous works and a key example of Pointillism.",Yes,No,Yes,No
+seurat/well_known/the_circus.jpg,seurat,well_known,Georges Seurat,The Circus,"The painting you sent is ""The Circus"" by **Georges Seurat**. 
+
+It's a prime example of his Pointillist style, characterized by the use of small, distinct dots of color to create an image. This particular painting depicts a circus scene and was created between 1886 and 1888.","The painting in the image is **""The Circus"" (Le Cirque)** by Henri Matisse.
+
+It was painted in 1924-1925 and is a significant work in his series of circus paintings. It's known for its distinctive use of pointillism and vibrant colors.",Yes,Yes,Yes,Yes
+seurat/well_known/the_models.jpg,seurat,well_known,Georges Seurat,The Models,"The painting you sent is ""Bathers at Asnières"" by Georges Seurat. 
+
+It's a prime example of his Pointillist technique, where he used small, distinct dots of color to create the image.","The painting you've shown is **""Bathers at Asnières""** by Georges Seurat.
+
+It was painted in 1884 and is a significant work in the development of Pointillism, a technique Seurat pioneered.",Yes,No,Yes,No
+seurat/well_known/the_channel_of_gravelines.jpg,seurat,well_known,Georges Seurat,The Channel of Gravelines,"The painting you sent is ""Harbor at Saint-Tropez"" by **Paul Signac**.
+
+It's a prime example of his work in the Pointillist style, a technique he helped develop alongside Georges Seurat. You can see the characteristic use of small, distinct dots of color to create the overall image.","The painting in the image is **""Harbor in Saint-Tropez""** by Georges Seurat.
+
+It was painted in 1892 and is a prime example of Seurat's pointillist technique.",No,No,No,No
+seurat/less_known/young_woman_powdering_herself.jpg,seurat,less_known,Georges Seurat,Young Woman Powdering Herself,"The painting ""Woman Powdering Herself"" was created by **Henri Edmond Cross**.
+
+It's a notable example of his Pointillist style.","Based on the text provided in the image, the name of the painting is **""Woman Powdering Herself.""**",No,No,No,No
+seurat/less_known/le_chahut.jpg,seurat,less_known,Georges Seurat,Le Chahut,"Based on the information provided in the image caption, the painting ""Le Chahut"" was created by **Otto Otterlo-Müller**. The caption states: ""‘LE CHAHUT’, 1889-1890, Otterlo, Kröller-Müller Museum.""","Based on the image and the text at the bottom, the name of the painting is **""Le Chahut""**.
+
+It was created by Otto Otterlo-Müller in 1890.",No,Yes,No,Yes
+seurat/less_known/the_bridge_at_courbevoie.jpg,seurat,less_known,Georges Seurat,The Bridge at Courbevoie,"The painting you sent is ""Winter Landscape"" by **Georges Seurat**. 
+
+It's a prime example of his Pointillist technique, where he used small, distinct dots of color to create the overall image.","The painting in the image is **""Winter Landscape"" by Georges Seurat**.
+
+It was created in 1887-1888 and is a prime example of Seurat's Pointillist technique.",Yes,No,Yes,No
+seurat/less_known/the_eiffel_tower.jpg,seurat,less_known,Georges Seurat,The Eiffel Tower,"The painting you've shown is ""Eiffel Tower"" by **Paul Signac**.
+
+It's a prime example of his Pointillist style, a technique where the artist uses small, distinct dots of color to create an image. Signac was a key figure in the Neo-Impressionist movement, which developed from Impressionism.
+
+
+
+If you'd like, you can share another painting and I'll try to identify the artist!","The painting you've shown is **""Eiffel Tower in Sunlight"" by Camille Pissarro**.
+
+It was painted in 1897 and is a prime example of Pissarro's exploration of Pointillism, a technique where small, distinct dots of color are applied to the canvas to create an image.
+
+
+
+Let me know if you'd like to know more about the painting or Pissarro!",No,No,No,No
+seurat/less_known/port_en_bessin_entrance_to_the_harbor.jpg,seurat,less_known,Georges Seurat,"Port-en-Bessin, Entrance to the Harbor","The painting you sent is ""The Sailboats at Saint-Tropez"" by **Henri-Edmond Cross**.
+
+It's a prime example of his Pointillist style, where he used small, distinct dots of color to create the image. He was a key figure in the Neo-Impressionist movement.","The painting you've shown is **""The Sailboats at Saint-Tropez""** by Georges Seurat.
+
+It's a prime example of his Pointillist technique, where he used small, distinct dots of color to create the overall image. It was painted in 1892.",No,No,No,No
+van_gogh/well_known/the_starry_night.jpg,van_gogh,well_known,Vincent van Gogh,The Starry Night,"The painting you've shown is a black and white etching titled ""Starry Night Over the Rhône"" by **Vincent van Gogh**. 
+
+While his most famous ""Starry Night"" is an oil painting, he also created an etching of a similar scene. This version is a beautiful example of his use of line and texture to convey a sense of movement and emotion.","The painting in the image is **""Starry Night Over the Rhône""** by Vincent van Gogh.
+
+It's a beautiful and lesser-known work compared to his more famous ""The Starry Night,"" but it shares a similar style and captures a nighttime scene with swirling stars and reflections on water.",No,No,No,No
+van_gogh/well_known/sunflowers.jpg,van_gogh,well_known,Vincent van Gogh,Sunflowers,"The painting you sent is ""Sunflowers"" by **Vincent van Gogh**. It's one of his most famous works! 
+
+Specifically, this is likely the fourth version of the ""Sunflowers"" series he painted in 1888.","The painting in the image is **""Sunflowers""** by Vincent van Gogh. 
+
+Specifically, this is one of the versions from his ""Sunflowers"" series, painted in 1888. He created several paintings of sunflowers in vases, and this is one of the most famous.",Yes,Yes,Yes,Yes
+van_gogh/well_known/irises.jpg,van_gogh,well_known,Vincent van Gogh,Irises,"The painting you sent is ""Irises"" by **Vincent van Gogh**. 
+
+It's one of his most famous works, painted in 1889 while he was at the Saint-Paul-de-Mausole asylum in Saint-Rémy, France.","The painting in the image is **""Irises""** by Vincent van Gogh. 
+
+It was painted in 1889 while he was residing at the Saint-Paul-de-Mausole asylum in Saint-Rémy, France.",Yes,Yes,Yes,Yes
+van_gogh/well_known/the_bedroom.jpg,van_gogh,well_known,Vincent van Gogh,The Bedroom,"Certainly! 
+
+The painting you've shown is a sketch by **Vincent van Gogh**. 
+
+It's a study for his famous painting ""Bedroom in Arles."" Van Gogh created several versions of this scene, depicting his bedroom in the Yellow House in Arles, France. This particular sketch is one of the preparatory drawings he made before painting the final versions.
+
+Let me know if you'd like to know more about this artwork or Van Gogh!","Certainly! Based on the image, this is a drawing by Vincent van Gogh titled **""Bedroom in Arles""** (French: *Chambre à Arles*). 
+
+It's a study for one of his most famous paintings, which depicts his bedroom at the Yellow House in Arles, France. Van Gogh created several versions of this scene.
+
+Let me know if you'd like to know more about it!",Yes,Yes,Yes,Yes
+van_gogh/well_known/caf_terrace_at_night.jpg,van_gogh,well_known,Vincent van Gogh,Café Terrace at Night,"The painting you sent is a drawing by **Vincent van Gogh**. It's a study for his famous painting ""Terrace of a Café at Night"" (also known as ""Café Terrace at Night"").
+
+Van Gogh often made quick sketches and studies like this one before creating his final, more finished paintings. This drawing captures the essence of the scene and the atmosphere he aimed to convey in the final work.","The painting in the image is **""Terrace of the Café Le Gerbois""** by Vincent van Gogh.
+
+It was painted in 1886 while Van Gogh was living in Paris. It depicts a café terrace with people enjoying themselves. The style is characteristic of his early work, with a focus on capturing the atmosphere and movement of the scene.",Yes,No,Yes,No
+van_gogh/less_known/wheat_field_with_crows.jpg,van_gogh,less_known,Vincent van Gogh,Wheat Field with Crows,"The painting you sent is ""Wheatfield with Cypresses"" by **Vincent van Gogh**. 
+
+It's a very famous and recognizable work of his, known for its vibrant colors and expressive brushstrokes, characteristic of his Post-Impressionist style.","The painting in the image is **""Wheatfield with Cypresses""** by Vincent van Gogh.
+
+It's one of the most famous and recognizable works by the artist, painted in 1889 while he was at the Saint-Paul-de-Mausole asylum in Saint-Rémy, France.",Yes,No,Yes,No
+van_gogh/less_known/the_potato_eaters.jpg,van_gogh,less_known,Vincent van Gogh,The Potato Eaters,"The painting you sent is ""The Potato Eaters"" by Vincent van Gogh. 
+
+It's one of his most famous early works, painted in 1885. He intended it to depict the harsh realities of peasant life.","The painting in the image is **""The Potato Eaters""** by Vincent van Gogh.
+
+It's one of his earliest major works, painted in 1885. It depicts a group of peasant farmers sharing a simple meal of potatoes. Van Gogh aimed to portray the harsh realities of peasant life and the dignity of labor.",Yes,Yes,Yes,Yes
+van_gogh/less_known/tree_roots.jpg,van_gogh,less_known,Vincent van Gogh,Tree Roots,"The painting you sent is ""Olive Trees with Golden Sky"" by **Vincent van Gogh**.
+
+It's a characteristic example of his style, with its vibrant colors, thick brushstrokes, and expressive depiction of nature.","The painting in the image is **""Olive Trees with Roots""** by Vincent van Gogh.
+
+It was painted in 1889 while Van Gogh was at the Saint-Paul-de-Mausole asylum in Saint-Rémy, France. It's part of a series of paintings he created depicting olive trees.",Yes,No,Yes,No
+van_gogh/less_known/sorrowing_old_man.jpg,van_gogh,less_known,Vincent van Gogh,Sorrowing Old Man,"Certainly! 
+
+The painting you sent is ""Worn Out"" by **Vincent van Gogh**. 
+
+You can see his signature ""Vincent"" in the lower left corner of the image. It's a poignant and characteristic work from his time in Nuenen, Netherlands.","The painting in the image is **""Worn Out"" (or ""At Eternity's Gate"")** by Vincent van Gogh.
+
+It's a famous drawing depicting Dr. Paul Gachet, Van Gogh's physician, in a moment of deep contemplation and melancholy. The drawing was made in 1890, shortly before Van Gogh's death.
+
+You can see the signature ""Vincent"" in the lower left corner.",Yes,No,Yes,No
+van_gogh/less_known/skull_of_a_skeleton_with_burning_cigarette.jpg,van_gogh,less_known,Vincent van Gogh,Skull of a Skeleton with Burning Cigarette,"The painting you sent is ""Skull with a Burning Cigarette"" by Vincent van Gogh.
+
+It's a lesser-known work from his time in Paris, created in 1887. It's a striking and somewhat unsettling image, showcasing his developing style and interest in depicting mortality.","The painting you've shown is **""Skull with a Burning Cigarette""** by Vincent van Gogh.
+
+It's a lesser-known but fascinating work from 1887, created during his time in Paris. It's a study of a skull with a lit cigarette, and it's believed to be a commentary on mortality and the fleeting nature of life.",Yes,Yes,Yes,Yes
+william_turner/well_known/the_fighting_temeraire.jpg,william_turner,well_known,J. M. W. Turner,The Fighting Temeraire,"The painting you sent is ""Steamer in a Snowstorm"" by J.M.W. Turner. 
+
+It's one of his most famous works, known for its dramatic depiction of a ship battling a blizzard at sea.","The painting in the image is **""The Fighting Temeraire tugged to her last Berth to be broken up, 1838""** by J.M.W. Turner.
+
+It's one of his most famous works and is housed in the National Gallery in London. It depicts the HMS Temeraire, a veteran warship, being towed by a steam tugboat to its final destination for dismantling. The painting is known for its evocative depiction of the end of an era, the transition from sail to steam power, and the beauty of a dramatic sunset.",Yes,Yes,Yes,Yes
+william_turner/well_known/rain_steam_and_speed.jpg,william_turner,well_known,J. M. W. Turner,"Rain, Steam and Speed","The painting you sent is ""Rain, Steam and Speed – The Great Western Railway"" by **J.M.W. Turner**.
+
+It's one of his most famous works, and a prime example of his later, more abstract style. It depicts a train traveling along the Great Western Railway, but the focus is on the atmospheric effects of rain, steam, and the sense of speed rather than a precise representation of the train itself.","The painting in the image is **""Rain, Steam and Speed – The Great Western Railway""** by J.M.W. Turner.
+
+It was painted in 1844 and is a prime example of Turner's later, more abstract style. It depicts a train traveling along the Great Western Railway, but the focus is on the atmospheric effects of rain, steam, and the sense of speed rather than a precise representation of the train itself.",Yes,Yes,Yes,Yes
+william_turner/well_known/the_slave_ship.jpg,william_turner,well_known,J. M. W. Turner,The Slave Ship,"The painting you sent is ""Snow Storm: Steam-Boat off a Harbour's Mouth"" by **J.M.W. Turner**.
+
+It's one of his most famous works, known for its dramatic depiction of a storm at sea and its innovative use of color and light.","The painting in the image is **""Snow Storm: Steam-Boat off a Harbour's Mouth""** by J.M.W. Turner.
+
+It's a famous work by the British Romantic painter, known for his dramatic depictions of nature and the power of the elements.",Yes,No,Yes,No
+william_turner/well_known/snow_storm_steam_boat_off_a_harbour_s_mouth.jpg,william_turner,well_known,J. M. W. Turner,Snow Storm: Steam-Boat off a Harbour's Mouth,"The painting you sent is ""Steamer in a Snowstorm"" by J.M.W. Turner. 
+
+It's a famous work by the British Romantic painter Joseph Mallord William Turner, known for his dramatic depictions of nature, particularly storms and seascapes.","The painting you've sent is **""Steamer in a Snowstorm""** by J.M.W. Turner.
+
+It's one of his most famous works, painted in 1842. It depicts a steamer battling a fierce snowstorm off the coast of England. Turner was known for his dramatic depictions of nature and his innovative use of color and light.",Yes,Yes,Yes,Yes
+william_turner/well_known/norham_castle_sunrise.jpg,william_turner,well_known,J. M. W. Turner,"Norham Castle, Sunrise","The painting you sent is ""Norham Castle, Sunrise"" by **J.M.W. Turner**.
+
+It's a famous example of his atmospheric and evocative style, often referred to as ""sublime."" He was known for his use of light and color to convey mood and feeling rather than precise detail.","The painting in the image is **""Norham Castle, Sunrise""** by J.M.W. Turner.
+
+It's a famous example of Turner's atmospheric and evocative style, where the subject matter (Norham Castle) is almost lost within the swirling mists and light.",Yes,Yes,Yes,Yes
+william_turner/less_known/fishermen_at_sea.jpg,william_turner,less_known,J. M. W. Turner,Fishermen at Sea,"Certainly! The painting you sent is ""Moonlight on the Water"" by **Andries Both**.
+
+It's a beautiful example of his work, known for its atmospheric perspective and dramatic use of light and shadow. Both was a Dutch landscape painter of the 17th century.","The painting you sent is **""Moonlit Harbor""** by American artist Fitz Henry Lane, also known as ""Signboard Lane.""
+
+Here are some key details about the painting:
+
+*   **Artist:** Fitz Henry Lane (1804-1865)
+*   **Date:** 1850-1853
+*   **Medium:** Oil on canvas
+*   **Location:** Museum of Fine Arts, Boston
+
+Lane was known for his luminous seascapes, and this painting is a prime example of his style, capturing the ethereal quality of moonlight on the water.",No,No,No,No
+william_turner/less_known/calais_pier.jpg,william_turner,less_known,J. M. W. Turner,Calais Pier,"Certainly! The painting you've shown is **""The Passage of the First Fleet"" by Joseph Mallord William Turner**.
+
+It depicts the departure of the First Fleet of British ships bound for Australia in 1787. Turner was known for his dramatic depictions of nature, particularly seascapes and storms, and this painting is a prime example of his style.","The painting you sent is **""The Fighting Temeraire tugged to her last Berth to be broken up, 1838""** by J.M.W. Turner.
+
+Here's some information about it:
+
+*   **Artist:** Joseph Mallord William Turner (J.M.W. Turner)
+*   **Year:** 1838
+*   **Medium:** Oil on canvas
+*   **Location:** National Gallery, London
+*   **Subject:** It depicts the HMS Temeraire, a veteran warship, being towed to its final destination to be broken up.",Yes,No,Yes,No
+william_turner/less_known/peace_burial_at_sea.jpg,william_turner,less_known,J. M. W. Turner,Peace: Burial at Sea,"The painting you sent is ""The Fighting Temeraire tugged to her last berth to be broken up, 1838"" by **J.M.W. Turner**.
+
+It's one of his most famous works, known for its evocative depiction of the end of a warship's life and its use of light and color to convey emotion.","The painting you sent is **""The Fighting Temeraire tugged to her last Berth to be broken up, 1838""** by J.M.W. Turner.
+
+Here's some information about it:
+
+*   **Artist:** Joseph Mallord William Turner (J.M.W. Turner)
+*   **Year:** 1838
+*   **Medium:** Oil painting on canvas
+*   **Location:** National Gallery, London
+*   **Subject:** It depicts the HMS Temeraire, a veteran warship from the Battle of Trafalgar, being towed to Rotherhit",Yes,No,Yes,No
+william_turner/less_known/keelmen_heaving_in_coals_by_moonlight.jpg,william_turner,less_known,J. M. W. Turner,Keelmen Heaving in Coals by Moonlight,"The painting you sent is ""Steamer in a Snowstorm"" by J.M.W. Turner.
+
+Here are some key details about the painting:
+
+*   **Artist:** Joseph Mallord William Turner (J.M.W. Turner)
+*   **Year:** 1842
+*   **Style:** Romanticism
+*   **Medium:** Oil on canvas
+*   **Location:** Cloude Hill Collection, Tate Britain, London
+
+Turner was known for his dramatic depictions of nature, particularly seascapes and landscapes, often with a focus on light and atmosphere. This painting is a prime","The painting in the image is **""Steamer in a Snowstorm""** by J.M.W. Turner.
+
+It's one of his most famous works, known for its dramatic depiction of a steamship battling a blizzard at sea. It was painted around 1842.",Yes,No,Yes,No
+william_turner/less_known/ulysses_deriding_polyphemus.jpg,william_turner,less_known,J. M. W. Turner,Ulysses Deriding Polyphemus,"The painting you sent is ""The Battle of Trafalgar"" by **J.M.W. Turner**. 
+
+It's a famous work by the British Romantic painter, known for his dramatic depictions of light, weather, and the sea.","The painting you sent is **""The Fighting Temeraire tugged to her last Berth to be broken up, 1838""** by J.M.W. Turner.
+
+It's a very famous and iconic work! It depicts the HMS Temeraire, a veteran warship, being towed by a small steam tugboat to be scrapped. It's a poignant commentary on the end of an era and the transition from sail to steam power.",Yes,No,Yes,No

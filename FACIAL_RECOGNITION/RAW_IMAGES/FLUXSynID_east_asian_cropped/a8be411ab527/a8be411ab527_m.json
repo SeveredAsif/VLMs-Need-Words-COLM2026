@@ -1,0 +1,14 @@
+{
+    "attributes": {
+        "ages.txt": "30-39",
+        "genders.txt": "Male",
+        "facial_hair.txt": "Clean-shaven",
+        "nose_shape.txt": "Upturned",
+        "origins.txt": "East Asian",
+        "lip_shape.txt": "Round",
+        "eye_shape.txt": "Oval"
+    },
+    "prompt": "s7ll2f4h, Photograph of a man. The subject has a neutral face expression. The man is between 30-39 years old and is clean-shaven. He has an upturned nose and round lips. His origin is East Asian, and he possesses oval-shaped eyes. Photo captures the subject from the neck up with grey clothing slightly visible around the neck. White background.",
+    "seed": 5331939897609362897,
+    "guidance": 1.9
+}

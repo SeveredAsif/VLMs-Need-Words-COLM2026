@@ -1,0 +1,11 @@
+{
+    "attributes": {
+        "ages.txt": "30-39",
+        "genders.txt": "Male",
+        "origins.txt": "East Asian",
+        "lip_shape.txt": "Full"
+    },
+    "prompt": "s7ll2f4h, Photograph of a man. The subject has a neutral face expression. The subject is between the ages of 30-39 and has an East Asian origin. He possesses full lips. Photo captures the subject from the neck up with grey clothing slightly visible around the neck. White background.",
+    "seed": 11867748300522669866,
+    "guidance": 1.8
+}

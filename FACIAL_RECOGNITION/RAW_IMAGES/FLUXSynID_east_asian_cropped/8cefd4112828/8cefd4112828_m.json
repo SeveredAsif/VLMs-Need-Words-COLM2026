@@ -1,0 +1,16 @@
+{
+    "attributes": {
+        "ages.txt": "30-39",
+        "genders.txt": "Male",
+        "facial_hair.txt": "Clean-shaven",
+        "hair_styles.txt": "Wavy",
+        "face_shape.txt": "Oval",
+        "nose_shape.txt": "Long and straight",
+        "origins.txt": "East Asian",
+        "lip_shape.txt": "Upturned",
+        "eyewear.txt": "Clear non-reflective eyeglasses"
+    },
+    "prompt": "s7ll2f4h, Photograph of a man. The subject has a neutral face expression. He is in his late 30s, clean-shaven with wavy hair, an oval face shape, and long, straight nose. His origins are East Asian, he has upturned lips, and he wears clear, non-reflective eyeglasses. Photo captures the subject from the neck up with grey clothing slightly visible around the neck. White background.",
+    "seed": 94729096848267034,
+    "guidance": 2.4
+}

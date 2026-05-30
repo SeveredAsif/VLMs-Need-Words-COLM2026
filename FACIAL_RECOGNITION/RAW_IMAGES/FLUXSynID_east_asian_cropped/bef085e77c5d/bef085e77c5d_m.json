@@ -1,0 +1,14 @@
+{
+    "attributes": {
+        "ages.txt": "30-39",
+        "hair_colors.txt": "Black",
+        "genders.txt": "Male",
+        "face_shape.txt": "Round",
+        "nose_shape.txt": "Upturned",
+        "origins.txt": "East Asian",
+        "eye_shape.txt": "Almond"
+    },
+    "prompt": "s7ll2f4h, Photograph of a man. The subject has a neutral face expression. The man is between 30-39 years old and has black hair. He possesses a round face with an upturned nose and almond-shaped eyes, indicative of his East Asian origin. Photo captures the subject from the neck up with grey clothing slightly visible around the neck. White background.",
+    "seed": 1126709947895557173,
+    "guidance": 2.0
+}

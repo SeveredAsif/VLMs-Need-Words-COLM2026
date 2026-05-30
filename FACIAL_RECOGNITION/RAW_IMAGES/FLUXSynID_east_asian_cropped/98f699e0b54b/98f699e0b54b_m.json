@@ -1,0 +1,14 @@
+{
+    "attributes": {
+        "ages.txt": "30-39",
+        "hair_colors.txt": "Black",
+        "genders.txt": "Male",
+        "facial_hair.txt": "Clean-shaven",
+        "body_type.txt": "Average weight",
+        "face_shape.txt": "Round",
+        "origins.txt": "East Asian"
+    },
+    "prompt": "s7ll2f4h, Photograph of a man. The subject has a neutral face expression. He is between 30-39 years old with black hair and a clean-shaven face. His body type is average weight, and he has a round face with East Asian features. Photo captures the subject from the neck up with grey clothing slightly visible around the neck. White background.",
+    "seed": 1305681319167982214,
+    "guidance": 2.0
+}

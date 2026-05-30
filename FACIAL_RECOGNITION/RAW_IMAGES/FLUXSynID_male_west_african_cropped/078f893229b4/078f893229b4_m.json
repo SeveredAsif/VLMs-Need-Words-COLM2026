@@ -1,0 +1,17 @@
+{
+    "attributes": {
+        "ages.txt": "30-39",
+        "hair_colors.txt": "Black",
+        "genders.txt": "Male",
+        "facial_hair.txt": "Clean-shaven",
+        "body_type.txt": "Average weight",
+        "face_shape.txt": "Oval",
+        "nose_shape.txt": "Small and narrow",
+        "origins.txt": "West African",
+        "lip_shape.txt": "Asymmetrical",
+        "eye_shape.txt": "Wide-Set"
+    },
+    "prompt": "s7ll2f4h, Photograph of a man. The subject has a neutral face expression. He is between the ages of 30-39, with black hair and a clean-shaven face. His body type is average weight, and he has an oval face shape with a small and narrow nose. Originating from West Africa, his lips have an asymmetrical shape, and his eyes are wide-set. Photo captures the subject from the neck up with grey clothing slightly visible around the neck. White background.",
+    "seed": 8243981074681235983,
+    "guidance": 2.2
+}

@@ -1,0 +1,773 @@
+filename,painter_dir,bucket,painter_gt,painting_gt,painter_prediction,painting_prediction,painter_judge_response,painting_judge_response,painter_correct,painting_correct
+goya/well_known/the_third_of_may_1808.jpg,goya,well_known,Francisco Goya,The Third of May 1808,"The painting you've shown is **""The Third of May 1808""** by **Francisco Goya**. 
+
+It's one of his most famous and powerful works, depicting the execution of Spanish civilians by French soldiers during the Peninsular War. 
+
+Do you want to know more about the painting, its historical context, or Goya himself?","The painting you've shown is **""The Third of May 1808""** by Francisco Goya. 
+
+It's a powerful and iconic depiction of the execution of Spanish civilians by French soldiers during the Peninsular War. 
+
+Do you want to know more about the painting, such as its historical context, symbolism, or Goya's intentions?",Yes,Yes,Yes,Yes
+goya/well_known/saturn_devouring_his_son.jpg,goya,well_known,Francisco Goya,Saturn Devouring His Son,"The painting you've shown is ""Wailing Figure"" (also known as ""The Wailing Man"") by **Francisco Goya**. 
+
+It's part of his ""Saturn"" series, a set of paintings exploring themes of tyranny, despair, and the destructive nature of power. 
+
+Do you want to know more about this painting or Goya's work in general?","The painting you've shown is **Saturn Devouring His Son** by Francisco Goya. 
+
+It's a particularly disturbing and iconic work from his ""Black Paintings"" series, which he painted directly onto the walls of his home, Quinta del Sordo (Deaf Man's Villa), in Madrid. 
+
+The painting is cataloged as T 536 in the collection of the Museo del Prado in Madrid.
+
+Do you want to know more about the painting, its symbolism, or Goya's ""Black Paintings""?",Yes,Yes,Yes,Yes
+goya/well_known/the_clothed_maja.jpg,goya,well_known,Francisco Goya,The Clothed Maja,"The painting you've shown is ""La Colgada"" (The Hangings) by **Francisco Goya**. 
+
+It's one of his most famous and enigmatic works, painted in 1803. 
+
+Do you want to know anything more about the painting, such as its interpretation or historical context?","The painting you've shown is **""La Colgada"" (The Hangings)** by Francisco Goya. 
+
+It's one of his most famous and enigmatic works, depicting a woman reclining on a bed, seemingly in a state of languid repose. 
+
+Do you want to know more about the painting, such as its history, interpretation, or the symbolism within it?",Yes,No,Yes,No
+goya/well_known/the_sleep_of_reason_produces_monsters.jpg,goya,well_known,Francisco Goya,The Sleep of Reason Produces Monsters,"This painting was created by **Francisco Goya**. 
+
+It's part of his ""Black Paintings"" series, which he painted directly onto the walls of his home, Quinta del Sordo (Deaf Man's House), between 1819 and 1823. 
+
+The title of the painting is ""Il silenzio della farfano produce mostri"" (The silence of the butterfly produces monsters). 
+
+Let me know if you'd like to know more about this fascinating and unsettling series!","The image you sent is a print from Francisco Goya's series *Los Caprichos*. Specifically, it's **Plate 43, titled ""Il sueño de la farabola"" (The Dream of the Fable)**. 
+
+It's a highly symbolic and unsettling image, depicting a man asleep, surrounded by a chaotic scene of owls, bats, and other monstrous creatures, all seemingly emerging from his dream. 
+
+Do you want to know more about the symbolism or the context of this print within the *Los Caprichos* series?",Yes,Yes,Yes,Yes
+goya/less_known/the_straw_manikin.jpg,goya,less_known,Francisco Goya,The Straw Manikin,"The painting you've shown is ""The Physic Garcia"" (also known as ""The Jester"") by **Francisco Goya**. 
+
+It's one of his most famous and enigmatic works, and it's known for its unsettling and ambiguous imagery. 
+
+Do you want to know more about the painting, such as its interpretation or historical context?","The painting you've shown is **""The Physic Garcia""** by Francisco Goya. 
+
+It's a complex and darkly satirical work from 1819, depicting a bizarre scene of a man balancing on a woman's lap while others engage in a strange, almost ritualistic dance. 
+
+Do you want to know more about the painting's symbolism and interpretation?",Yes,No,Yes,No
+goya/less_known/the_parasol.jpg,goya,less_known,Francisco Goya,The Parasol,"The painting you've shown is ""Lady with a Parasol"" (Spanish: *Dama con Parasol*) by **Francisco de Goya**. 
+
+It was painted in 1800 and is considered one of Goya's early works, showcasing his emerging style of dramatic lighting and emotional intensity. 
+
+Do you want to know anything more about the painting, such as its history or symbolism?","The painting you've shown is **""The Parasol""** (Spanish: *El Parasol*) by **Francisco de Goya**. 
+
+It was painted in 1778 and is considered one of Goya's early works. 
+
+Do you want to know anything more about the painting, such as its history, symbolism, or artistic style?",Yes,Yes,Yes,Yes
+goya/less_known/the_milkmaid_of_bordeaux.jpg,goya,less_known,Francisco Goya,The Milkmaid of Bordeaux,"This painting was created by **Francisco de Goya**. 
+
+It's titled **""The Second Daughter""** (Spanish: *La Segunda Hija*). 
+
+Here are some key details about the painting:
+
+*   It's a portrait of Goya's second daughter, María Concepción.
+*   It was painted around 1805-1808 during a turbulent period in Goya's life, marked by illness and political upheaval.
+*   The painting is known for its expressive brushwork, dramatic lighting, and the melancholic mood it conveys.
+
+Do you want to","The painting you sent is **""The Woman in White""** by **Gustave Moreau**. 
+
+It was painted in 1876. 
+
+Do you want to know anything more about the painting, such as its history, symbolism, or artistic style?",Yes,No,Yes,No
+goya/less_known/yard_with_lunatics.jpg,goya,less_known,Francisco Goya,Yard with Lunatics,"The painting you've shown is **""The Third of May 1808""** by **Francisco Goya**. 
+
+It's one of his most famous and emotionally powerful works, depicting the execution of Spanish civilians by French soldiers during the Peninsular War. 
+
+Do you want to know more about the painting, its historical context, or Goya himself?","The painting you've shown is **""The Third of May 1808""** by Francisco Goya. 
+
+It's a powerful and deeply moving depiction of the execution of Spanish civilians by French soldiers during the Peninsular War. 
+
+Do you want to know more about the painting, its historical context, or Goya's artistic style?",Yes,No,Yes,No
+goya/less_known/the_bewitched_man.jpg,goya,less_known,Francisco Goya,The Bewitched Man,"This painting was created by **Francisco Goya**. 
+
+It's titled **""Saturn Devouring His Son""** (Spanish: *Saturno devorando a su hijo*). 
+
+It's one of his most famous and unsettling works, part of a series of etchings and paintings known as *Los Caprichos*. 
+
+Do you want to know more about the painting or Goya?","The painting you've shown is **""The Desperate Jew""** (Spanish: *El Judío Desesperado*) by Francisco Goya. 
+
+It's a particularly unsettling and controversial work from his ""Black Paintings"" series, created directly onto the walls of his home, Quinta del Sordo (Deaf Man's Villa), in the late 1810s and 1820s. 
+
+Do you want to know more about the painting, its interpretation, or Goya's ""Black Paintings""?",Yes,No,Yes,No
+monet/well_known/water_lilies.jpg,monet,well_known,Claude Monet,Water Lilies,"The painting you sent is by **Claude Monet**. 
+
+It's one of his famous ""Water Lilies"" series, specifically ""Nymphaea"" (Water Lilies). 
+
+Do you want to know anything more about this painting or Monet's work in general?","The painting is **""Water Lilies""** by Claude Monet. 
+
+Specifically, this is one of the many variations he painted as part of his ""Water Lilies"" series, often referred to as the ""Nymphéas"" series in French. 
+
+It's a very famous and iconic work by Monet.",Yes,Yes,Yes,Yes
+monet/well_known/woman_with_a_parasol.jpg,monet,well_known,Claude Monet,Woman with a Parasol,"The painting you sent is ""Woman with a Parasol – Madame Monet and Her Son"" by Claude Monet. 
+
+It's one of his most famous Impressionist works!","The painting is **""Woman with a Parasol – Madame Monet and Her Son""** by Claude Monet. 
+
+It was painted in 1875.",Yes,Yes,Yes,Yes
+monet/well_known/rouen_cathedral.jpg,monet,well_known,Claude Monet,Rouen Cathedral,"This painting was created by **Claude Monet**. 
+
+It's a study of the facade of Notre Dame Cathedral in Paris, painted in 1894. 
+
+Do you want to know anything more about this painting or Monet's work?","The painting is **""Westminster Cathedral""** by Claude Debuffre. 
+
+It's a prime example of Monet's Impressionistic style, particularly his use of broken color and blurred forms to capture the effect of light and atmosphere. 
+
+Let me know if you'd like to know more about the painting or Monet's work!",Yes,No,Yes,No
+monet/well_known/the_japanese_bridge.jpg,monet,well_known,Claude Monet,The Japanese Bridge,"This painting was created by **Claude Monet**. 
+
+It's a famous example of his ""Water Lilies"" series, specifically titled ""Bridge over a Pond of Water Lilies"" (Le Pont japonais sur le grand pavillon). 
+
+Do you want to know anything more about this painting or Monet's work?","The painting is **""Impression, soleil levant"" (Impression, Sunrise)** by Claude Monet. 
+
+It's a pivotal work in the Impressionist movement and is considered one of the paintings that gave the movement its name. 
+
+Let me know if you'd like to know more about it!",Yes,No,Yes,No
+monet/less_known/la_grenouill_re.jpg,monet,less_known,Claude Monet,La Grenouillère,"The painting you've shown is ""Boating"" (French: *Navigation*) by **Claude Monet**. 
+
+It was painted in 1873 and is a prime example of his Impressionist style, particularly his focus on capturing the fleeting effects of light and atmosphere. 
+
+Do you want to know anything more about this painting or Monet's work?","The painting you've shown is **""Boating"" (French: *Navigation*) by Claude Monet.**
+
+It was painted in 1877 and is a quintessential example of Impressionist style. 
+
+Do you want to know anything more about the painting, such as its context, techniques, or significance?",Yes,No,Yes,No
+monet/less_known/the_magpie.jpg,monet,less_known,Claude Monet,The Magpie,"The painting you've shown is ""Snowy Road"" (La Route enneigée) by **Claude Monet**. 
+
+It was painted in 1874. 
+
+Do you want to know anything more about this painting or Monet's work?","The painting you've shown is **""Snowy Road""** by Claude Monet. 
+
+It was painted in 1874. 
+
+Do you want to know anything more about the painting, such as its style, or its context within Monet's work?",Yes,No,Yes,No
+monet/less_known/camille_on_her_deathbed.jpg,monet,less_known,Claude Monet,Camille on Her Deathbed,"Based on the style and the signature visible in the bottom right corner, this painting was created by **Claude Monet**. 
+
+It's a study of a boat, likely from his series of studies of boats and water. 
+
+Do you want to know anything more about this painting or Claude Monet's work?","Based on the image, this painting is **""The Storm""** by Claude Monet. 
+
+It was painted in 1874. 
+
+Do you want to know anything more about the painting, such as its context within Monet's work or its style?",Yes,No,Yes,No
+monet/less_known/the_red_boats_argenteuil.jpg,monet,less_known,Claude Monet,"The Red Boats, Argenteuil","The painting you sent was created by **Claude Monet**. 
+
+It's titled ""The Seine at Argenteuil"" and was painted in 1875. 
+
+Do you want to know anything more about the painting or Monet's work?","The painting is titled **""Boating""** by Claude Monet. 
+
+It was painted in 1875. 
+
+You can see the signature ""Claude Monet 75"" in the lower left corner of the image.",Yes,No,Yes,No
+monet/less_known/grainstacks_at_the_end_of_summer.jpg,monet,less_known,Claude Monet,Grainstacks at the End of Summer,"This painting was created by **Claude Monet**. 
+
+It's titled ""Stacks of Hay"" (La Haye) and dates from 1891. 
+
+Do you want to know anything more about the painting or Monet's work?","The painting is titled **""Strawstacks at Sunset""** by Claude Monet. 
+
+It was painted in 1891.",Yes,No,Yes,No
+Paul_Cézanne/well_known/the_card_players.jpg,Paul_Cézanne,well_known,Paul Cézanne,The Card Players,"The painting you've shown is ""The Card Players"" by Paul Cézanne. 
+
+It's one of his most famous works and a key example of his exploration of form and perspective. 
+
+Do you want to know anything more about the painting, such as its history, symbolism, or Cézanne's artistic style?","The painting you've shown is **""The Card Players""** by Paul Cézanne. 
+
+It's one of his most famous works and exists in two versions – one in the Musée d'Orsay in Paris and another in the Detroit Institute of Arts. 
+
+Do you want to know anything more about the painting, such as its history, symbolism, or Cézanne's artistic style?",Yes,Yes,Yes,Yes
+Paul_Cézanne/well_known/mont_sainte_victoire.jpg,Paul_Cézanne,well_known,Paul Cézanne,Mont Sainte-Victoire,"This painting was created by **Vincent van Gogh**. 
+
+It's titled ""View of Auvers-sur-Oise"" and dates from 1890. 
+
+Do you want to know anything more about the painting or Van Gogh's work?","The painting you've shown is **""The Banks of the Seine at Chatou""** by Vincent van Gogh. 
+
+It was painted in 1887 during his time in France. 
+
+Do you want to know anything more about this painting, such as its context, style, or significance?",No,No,No,No
+Paul_Cézanne/well_known/the_large_bathers.jpg,Paul_Cézanne,well_known,Paul Cézanne,The Large Bathers,"This painting was created by **Paul Cézanne**. 
+
+It's titled ""The Large Bathers"" (Les Grandes Baigneuses). 
+
+Do you want to know anything more about the painting or Cézanne's work?","The painting you've shown is **""The Bathers""** by Paul Cézanne. 
+
+Specifically, this is the version from 1897, often referred to as ""The Bathers at Issigeos."" 
+
+Do you want to know anything more about this painting, such as its history, style, or significance?",Yes,Yes,Yes,Yes
+Paul_Cézanne/well_known/still_life_with_apples.jpg,Paul_Cézanne,well_known,Paul Cézanne,Still Life with Apples,"This painting was created by **Paul Cézanne**. 
+
+It's titled ""Still Life with Apples and Pears"" (also known as ""Fruits in a Vase""). 
+
+Do you want to know anything more about this painting or Cézanne's work?","The painting you've shown is **Still Life with Apples and Pitcher** by **Paul Cézanne**. 
+
+It was painted in 1912-1913, during his later period, and is a prime example of his exploration of form and color.",Yes,No,Yes,No
+Paul_Cézanne/well_known/the_basket_of_apples.jpg,Paul_Cézanne,well_known,Paul Cézanne,The Basket of Apples,"The painting you sent was created by **Paul Cézanne**. 
+
+It's a classic example of his still life work, particularly his exploration of form and color. 
+
+Do you want to know anything more about this painting or Cézanne's work in general?","The painting is titled **""Basket of Apples""** by Paul Cézanne. 
+
+It was painted in 1893. 
+
+Do you want to know anything more about this painting or Cézanne's work?",Yes,Yes,Yes,Yes
+Paul_Cézanne/less_known/boy_in_a_red_vest.jpg,Paul_Cézanne,less_known,Paul Cézanne,Boy in a Red Vest,"The painting you sent is ""Boy in a Red Vest"" by Paul Cézanne. 
+
+It's a significant work in his development of his style, showcasing his exploration of form and color. 
+
+Do you want to know more about the painting or Cézanne?","The painting you've shown is **""Boy in a Red Vest""** by Paul Cézanne. 
+
+It's one of his many studies of young boys, and a particularly well-known example of his style.",Yes,Yes,Yes,Yes
+Paul_Cézanne/less_known/the_murder.jpg,Paul_Cézanne,less_known,Paul Cézanne,The Murder,"This painting is ""The Two Fräuleins"" by **Gustave Courbet**. 
+
+It's a particularly unsettling and dramatic work from his ""Salon"" series, which were intended to be shocking and confrontational responses to the academic art of the time. 
+
+Let me know if you'd like to know more about it!","The painting you've shown is **""The Two Fräuleins""** by Francisco Goya. 
+
+It's a particularly unsettling and dramatic work from his ""Black Paintings"" series, created directly onto the walls of his home, Quinta del Sordo (Deaf Man's Villa), in the years leading up to his death. 
+
+Let me know if you'd like to know more about this fascinating and disturbing piece!",No,No,No,No
+Paul_Cézanne/less_known/the_house_of_the_hanged_man.jpg,Paul_Cézanne,less_known,Paul Cézanne,The House of the Hanged Man,"The painting you've shown is ""View of Auvers"" by Paul Cézanne. 
+
+It was painted in 1890 during his time at the end of his life in Auvers-sur-Oise, France.
+
+Do you want to know anything more about this painting or Cézanne's work?","The painting you've shown is **""The Houses at Louveciennes""** by Paul Cézanne. 
+
+It was painted in 1886. 
+
+Do you want to know anything more about this painting, such as its context, style, or significance?",Yes,No,Yes,No
+Paul_Cézanne/less_known/pyramid_of_skulls.jpg,Paul_Cézanne,less_known,Paul Cézanne,Pyramid of Skulls,"The painting you've shown is ""Skulls"" (also known as ""Three Skulls"") by **Max Ernst**. 
+
+It was painted in 1921. 
+
+Do you want to know anything more about this painting or Max Ernst?","The painting you've shown is **""Skulls""** by **Max Ernst**. 
+
+It was painted in 1921. 
+
+Do you want to know anything more about the painting, such as its context, symbolism, or Ernst's artistic style?",No,No,No,No
+Paul_Gauguin/well_known/where_do_we_come_from_what_are_we_where_are_we_going.jpg,Paul_Gauguin,well_known,Paul Gauguin,Where Do We Come From? What Are We? Where Are We Going?,"The painting you've shown is **""Women of Arles""** by **Vincent van Gogh**. 
+
+It was painted in 1890 during his time living in Arles, France. 
+
+Do you want to know anything more about this painting or Van Gogh's work in general?","The painting you've shown is **""Women of Arles""** by Vincent van Gogh. 
+
+It was painted in 1890 during his time in Arles, France, where he was hoping to establish an artist's colony with Paul Gauguin. 
+
+Do you want to know anything more about the painting, such as its symbolism, context, or Van Gogh's intentions behind it?",No,No,No,No
+Paul_Gauguin/well_known/vision_after_the_sermon.jpg,Paul_Gauguin,well_known,Paul Gauguin,Vision After the Sermon,"This painting was created by **Gustave Moreau**. 
+
+It's titled ""The Angel and the Holy Woman"" (L'Ange et la Sainte Femme). 
+
+Do you want to know anything more about the painting, such as its symbolism or artistic style?","The painting you've shown is **""The Angelus""** by Paul Gauguin. 
+
+It's one of his most famous works, painted in 1898. 
+
+Do you want to know more about it, such as its symbolism or the context in which it was created?",No,No,No,No
+Paul_Gauguin/well_known/the_yellow_christ.jpg,Paul_Gauguin,well_known,Paul Gauguin,The Yellow Christ,"The painting you sent is ""Crucifixion"" by **Paul Gauguin**. 
+
+It was painted in 1898. 
+
+Do you want to know anything more about this painting, such as its symbolism or its place in Gauguin's work?","The painting you've shown is **Crucifixion** by Vincent van Gogh. 
+
+It was painted in 1890. 
+
+Do you want to know anything more about it, such as its history, symbolism, or Van Gogh's intentions behind it?",Yes,Yes,Yes,Yes
+Paul_Gauguin/well_known/tahitian_women_on_the_beach.jpg,Paul_Gauguin,well_known,Paul Gauguin,Tahitian Women on the Beach,"The painting you sent is ""Two Tahitian Women"" by **Paul Gauguin**. 
+
+It was painted in 1892 during his time in Tahiti. 
+
+Do you want to know anything more about this painting or Gauguin's work?","The painting you've shown is **""Two Tahitian Women""** by Paul Gauguin. 
+
+It was painted in 1892 during his time in Tahiti. 
+
+Do you want to know anything more about the painting, such as its context, symbolism, or Gauguin's style?",Yes,Yes,Yes,Yes
+Paul_Gauguin/well_known/spirit_of_the_dead_watching.jpg,Paul_Gauguin,well_known,Paul Gauguin,Spirit of the Dead Watching,"The painting you've shown is ""Manao Tupahā"" (also known as ""The Sick Child"") by Paul Gauguin. 
+
+It was painted in 1892 during his time in Tahiti. 
+
+Do you want to know anything more about this painting or Gauguin's work?","The painting you've shown is **""Nain""** (also known as ""The Sleeping Nana"") by Paul Gauguin. 
+
+It was painted in 1892 during Gauguin's time in Tahiti. 
+
+Do you want to know anything more about the painting, such as its context, symbolism, or Gauguin's intentions behind it?",Yes,No,Yes,No
+Paul_Gauguin/less_known/the_loss_of_virginity.jpg,Paul_Gauguin,less_known,Paul Gauguin,The Loss of Virginity,"The painting you've shown is ""The Sleeping Beast"" by **Othon Dostoyevsky**. 
+
+It's a striking and unusual work, blending elements of landscape and figurative art. 
+
+Do you want to know anything more about the painting, such as its history, symbolism, or the artist himself?","The painting you've shown is **""The Sleeping Beast""** by Arnold Böcklin. 
+
+It's a very famous and evocative work, known for its dreamlike and slightly unsettling atmosphere. 
+
+Do you want to know more about the painting, such as its history, symbolism, or interpretation?",No,No,No,No
+Paul_Gauguin/less_known/the_swineherd_brittany.jpg,Paul_Gauguin,less_known,Paul Gauguin,"The Swineherd, Brittany","The painting you sent was created by **Paul Gauguin**. 
+
+It's titled ""The Shepherd Boy"" (Le Garçon Berger) and dates from 1888. 
+
+Do you want to know anything more about the painting, such as its style, context, or symbolism?","The painting you've shown is **""The Shepherd Boy""** by Paul Gauguin. 
+
+It was painted in 1888. 
+
+Do you want to know anything more about the painting, such as its context, symbolism, or Gauguin's style?",Yes,No,Yes,No
+Paul_Gauguin/less_known/the_little_one_is_dreaming.jpg,Paul_Gauguin,less_known,Paul Gauguin,The Little One Is Dreaming,"The painting you've shown is ""Le Sommeil"" (Sleep) by **Gustave Moreau**. 
+
+It's a particularly evocative and dreamlike work, characteristic of Moreau's style. 
+
+Do you want to know anything more about the painting, such as its symbolism or its historical context?","The painting you've shown is **""Le Sommeil"" (Sleep)** by Gustave Moreau. 
+
+It's a very evocative and complex work, known for its dreamlike quality and symbolic elements. 
+
+Do you want to know more about the painting, such as its symbolism, or perhaps its history?",No,No,No,No
+Paul_Gauguin/less_known/the_ham.jpg,Paul_Gauguin,less_known,Paul Gauguin,The Ham,"This painting was created by **Paul Cézanne**. 
+
+It's titled ""Still Life with Ham and a Glass"" (La Jambe de Porc et un Verre). 
+
+Do you want to know anything more about the painting or Cézanne's work?","The painting you've shown is **""Still Life with Ham and Glass""** by Henri Matisse. 
+
+It was painted in 1910. 
+
+Do you want to know anything more about this painting, such as its style, or its context within Matisse's work?",No,Yes,No,Yes
+Paul_Gauguin/less_known/self_portrait_with_halo.jpg,Paul_Gauguin,less_known,Paul Gauguin,Self-Portrait with Halo,"This painting was created by **Paul Gauguin**. 
+
+It's titled ""Self-Portrait with Halo and Fruit"" and was painted in 1888. 
+
+Do you want to know anything more about this painting or Gauguin's work?","The painting you've shown is **""The Fruit Dish and the Sleeping Gypsy""** by Henri Matisse. 
+
+It was painted in 1899. 
+
+Do you want to know more about this fascinating and complex work of art?",Yes,No,Yes,No
+picasso/well_known/guernica.jpg,picasso,well_known,Pablo Picasso,Guernica,"The painting you've shown is **Guernica** by **Pablo Picasso**. 
+
+It's one of his most famous and powerful works, created in 1937 in response to the bombing of Guernica during the Spanish Civil War. 
+
+Do you want to know more about the painting, its symbolism, or its history?","The painting you've shown is **Guernica** by Pablo Picasso. 
+
+It's a powerful and iconic anti-war statement created in response to the bombing of Guernica, a Basque town in Spain, during the Spanish Civil War. 
+
+Do you want to know more about the painting, such as its symbolism, history, or artistic techniques?",Yes,Yes,Yes,Yes
+picasso/well_known/les_demoiselles_d_avignon.jpg,picasso,well_known,Pablo Picasso,Les Demoiselles d'Avignon,"The painting you've shown is ""Three Women"" (also known as ""The Women"") by **Pablo Picasso**. 
+
+It was painted in 1921 and is a prime example of his Cubist style. 
+
+Do you want to know more about the painting, such as its context, symbolism, or analysis?","The painting you've shown is **""Three Women""** by Pablo Picasso. 
+
+It was painted in 1921. 
+
+Do you want to know anything more about it, such as its style, or its historical context?",Yes,No,Yes,No
+picasso/well_known/the_old_guitarist.jpg,picasso,well_known,Pablo Picasso,The Old Guitarist,"The painting you've shown is ""The Old Guitarist"" by **Pablo Picasso**. 
+
+It was painted in 1903 and is a significant work from his Blue Period. 
+
+Do you want to know more about the painting, its context, or Picasso's Blue Period?","The painting you've shown is **""The Old Guitarist""** by Pablo Picasso. 
+
+It was painted in 1903 and is a significant work from his Blue Period. 
+
+Do you want to know more about the painting, such as its context, symbolism, or artistic style?",Yes,Yes,Yes,Yes
+picasso/well_known/girl_before_a_mirror.jpg,picasso,well_known,Pablo Picasso,Girl before a Mirror,"This painting was created by **Pablo Picasso**. 
+
+It's titled ""Two Women Facing Each Other"" (also known as ""Woman with a Mirror""). It was painted in 1932.
+
+Do you want to know anything more about the painting, such as its symbolism or context?","The painting you've shown is **""Two Women""** by Pablo Picasso. 
+
+It was painted in 1932. 
+
+Do you want to know anything more about it, such as its context, symbolism, or Picasso's intentions behind the piece?",Yes,No,Yes,No
+picasso/well_known/three_musicians.jpg,picasso,well_known,Pablo Picasso,Three Musicians,"This painting was created by **Georges Braque**. 
+
+It's titled ""Violin and Guitar"" (Violin et Guitare) and is a prime example of his work in the Cubist style. 
+
+Do you want to know more about the painting or Braque's work?","The painting you've shown is **Guitar, Violin, and Sheet Music** by Georges Braque. 
+
+It was painted in 1913 and is a prime example of Braque's Synthetic Cubism style. 
+
+Do you want to know more about the painting, such as its historical context or artistic techniques?",No,No,No,No
+picasso/less_known/science_and_charity.jpg,picasso,less_known,Pablo Picasso,Science and Charity,"The painting you've shown is ""The Dying Girl"" by **John Singer Sargent**. 
+
+It was painted in 1882 and depicts a poignant scene of a father and son tending to a sick daughter. 
+
+Do you want to know more about the painting, its context, or Sargent's work in general?","The painting you've shown is **""The Dying Girl""** by Edvard Munch. 
+
+It was painted in 1884. 
+
+It's a deeply emotional and evocative work, known for its depiction of grief and the fragility of life. 
+
+Do you want to know more about the painting, such as its context, symbolism, or Munch's intentions behind it?",No,No,No,No
+picasso/less_known/portrait_of_gertrude_stein.jpg,picasso,less_known,Pablo Picasso,Portrait of Gertrude Stein,"The painting you sent is ""Portrait of Dora Maar"" by Pablo Picasso. 
+
+It was painted in 1935 and is a significant work from Picasso's Blue Period, though it has a distinctive, darker, and more expressive style than his earlier Blue Period works. 
+
+Do you want to know more about the painting or Picasso's relationship with Dora Maar?","The painting you've shown is **""Portrait of Dora Maar""** by Pablo Picasso. 
+
+It was painted in 1935. It's a significant work from Picasso's Blue Period and a powerful portrait of his muse and lover, Dora Maar.
+
+Do you want to know more about the painting, such as its context within Picasso's life or its artistic style?",Yes,No,Yes,No
+picasso/less_known/ma_jolie.jpg,picasso,less_known,Pablo Picasso,Ma Jolie,"Based on the image, this appears to be a photograph of a sheet of white paper, likely a vintage or aged piece of paper. 
+
+**It's impossible to determine which painter created the *painting* because there is no painting.** The image is simply a photograph of a blank sheet of paper. 
+
+If you're interested in the history of paper or the aesthetic of aged paper, I can provide information on those topics.","Based on the image, this appears to be **""White Space"" by Agnes Martin.**
+
+It's a very characteristic work of hers, known for its minimalist approach and subtle variations in tone and texture on a white canvas. 
+
+Do you want to know more about Agnes Martin or this particular piece?",No,No,No,No
+rembrant/well_known/the_night_watch.jpg,rembrant,well_known,Rembrandt,The Night Watch,"The painting you sent is a print by **Francisco de Goya**. 
+
+It's titled ""The Old Couple"" (Spanish: *El Viejo y la Niña*). It was created in 1810-1814 as part of his *Los Caprichos* series, a set of prints that satirized Spanish society and customs. 
+
+Do you want to know more about the print, Goya, or the context of *Los Caprichos*?","The image you sent is a print titled **""The Old Man and the Donkey""** by **Francisco de Goya**. 
+
+It's part of his series *Los Caprichos*, a set of 81 prints that satirize Spanish society and customs. This particular print is a powerful and unsettling depiction of poverty and hardship. 
+
+Do you want to know more about the print, Goya, or the *Los Caprichos* series?",No,No,No,No
+rembrant/well_known/the_anatomy_lesson_of_dr_nicolaes_tulp.jpg,rembrant,well_known,Rembrandt,The Anatomy Lesson of Dr. Nicolaes Tulp,"This painting is ""The Anatomy Lesson of Dr. Nicolaes Tulp"" by **Rembrandt van Rijn**. 
+
+It was painted in 1632 and is considered one of his most famous works. 
+
+Do you want to know more about the painting, such as its historical context or the details of the scene?","The painting you've shown is **The Anatomy Lesson of Dr. Nicolaes Tulp** by Rembrandt van Rijn. 
+
+It was painted in 1632 and is a significant work in his career, showcasing his mastery of light and shadow (chiaroscuro) and his ability to capture realistic human emotion and detail. 
+
+Do you want to know more about the painting, such as its historical context, the figures depicted, or Rembrandt's techniques?",Yes,Yes,Yes,Yes
+rembrant/well_known/the_return_of_the_prodigal_son.jpg,rembrant,well_known,Rembrandt,The Return of the Prodigal Son,"Based on the image, this drawing was created by **Rembrandt van Rijn**. 
+
+You can see the signature ""Rembrandt 1638"" in the lower right corner of the image, confirming the artist. 
+
+The drawing depicts a scene of a man and a woman embracing, likely a moment of grief or comfort. It's a characteristic style of Rembrandt's work, known for its dramatic lighting, expressive figures, and detailed rendering of textures.","Based on the image, this is a drawing by Rembrandt titled **""The Return of the Prodigal Son""**. 
+
+It's a preparatory study for the famous painting on canvas, created around 1669. This drawing shows the central scene of the biblical story, with the father embracing his repentant son. 
+
+You can see the inscription ""Rembrandt 1663"" in the lower right corner of the image, confirming it's a study for the later painting.",Yes,Yes,Yes,Yes
+rembrant/well_known/self_portrait_with_two_circles.png,rembrant,well_known,Rembrandt,Self-Portrait with Two Circles,"Based on the image, this is **Rembrandt van Rijn's ""Self-Portrait with Two Circles"" (also known as ""Self-Portrait with a Viewer"")**. 
+
+Here's how I identified it:
+
+*   **The Style:** The painting's style, with its dramatic lighting, focus on the subject's face, and use of chiaroscuro (contrast between light and dark) are all hallmarks of Rembrandt's work.
+*   **The Subject:** It's a self-portrait, and Rembrandt was famous for his self-portraits.
+*   **The Composition:** The","Based on the image, this is **Rembrandt van Rijn's *Self-Portrait with Two Circles***. 
+
+Here's what leads to that identification:
+
+*   **The Style:** The painting is unmistakably in the style of Rembrandt, with his characteristic use of chiaroscuro (strong contrasts between light and dark) and a focus on the subject's face and expression.
+*   **The Composition:** The two circles are a key element of this particular self-portrait.
+*   **The Frame:** The ornate, gilded frame is consistent with the style of frames used during Rembrandt's time.",Yes,Yes,Yes,Yes
+rembrant/well_known/the_jewish_bride.jpg,rembrant,well_known,Rembrandt,The Jewish Bride,"The painting you've shown is ""The Jewish Bride"" by Rembrandt van Rijn. 
+
+It's a very famous and iconic work by him! 
+
+Do you want to know more about the painting, its history, or Rembrandt himself?","The painting you've shown is **""The Jewish Bride""** by Rembrandt van Rijn. 
+
+It's one of his most famous and enigmatic works, and its subject and meaning have been debated for centuries. 
+
+Do you want to know more about the painting, such as its history, interpretation, or the symbolism within it?",Yes,Yes,Yes,Yes
+rembrant/less_known/the_polish_rider.jpg,rembrant,less_known,Rembrandt,The Polish Rider,"The painting you've shown is ""The Young Archer"" by Rembrandt van Rijn. 
+
+It's a very iconic and recognizable work by him! 
+
+Do you want to know anything more about the painting, such as its history, symbolism, or artistic techniques?","The painting you've shown is **""The Horseman""** by Rembrandt van Rijn. 
+
+It's a very famous and iconic work by the artist. 
+
+Do you want to know anything more about it, such as its history, symbolism, or artistic techniques?",Yes,No,Yes,No
+rembrant/less_known/the_mill.jpg,rembrant,less_known,Rembrandt,The Mill,"The painting in the image is by **Rembrandt van Rijn**. 
+
+It's a drypoint etching titled ""Mill in the Dunes"" (De molen in de duinen), created in 1641. 
+
+Let me know if you'd like to know more about the artwork!","Based on the image, this is **""Windmill at Kinderdijk""** by Rembrandt van Rijn. 
+
+It's a very famous and iconic etching by Rembrandt, created in 1641. 
+
+Do you want to know more about the artwork, such as its history, technique, or significance?",Yes,Yes,Yes,Yes
+rembrant/less_known/bathsheba_at_her_bath.jpg,rembrant,less_known,Rembrandt,Bathsheba at Her Bath,"The painting you've shown is **""Bathsheba at Her Bath""** by **Rembrandt van Rijn**. 
+
+It's one of his most famous and psychologically complex works, depicting the biblical Bathsheba as she is being bathed by her servant after David had slept with her. 
+
+Do you want to know more about the painting, such as its historical context, symbolism, or Rembrandt's technique?","The painting you've shown is **""Bathsheba""** by Rembrandt van Rijn. 
+
+It's a very famous and complex work, depicting the biblical Bathsheba being attended to after her encounter with King David. 
+
+Do you want to know more about the painting, such as its history, symbolism, or Rembrandt's technique?",Yes,No,Yes,No
+rembrant/less_known/a_woman_bathing_in_a_stream.jpg,rembrant,less_known,Rembrandt,A Woman Bathing in a Stream,"Based on the style and subject matter, this drawing is most likely by **Rembrandt van Rijn**. 
+
+Here's why:
+
+*   **Line Style:** The loose, expressive lines, the emphasis on gesture and movement, and the use of hatching and cross-hatching are all hallmarks of Rembrandt's drawing style.
+*   **Subject Matter:** The depiction of a figure in a contemplative pose, often with a melancholic or introspective mood, is a common theme in Rembrandt's work.
+*   **Sketchbook Drawings:** Rembrandt was a prolific drawer, and many of his drawings were created as studies","Based on the image, this is a drawing by **Rembrandt van Rijn**. 
+
+It's a preparatory study for his painting **""The Return of the Prodigal Son""** (circa 1669). 
+
+The drawing depicts the younger son in the scene, lying on a bed and receiving the father's forgiveness. 
+
+Do you want to know more about the painting or the drawing itself?",Yes,No,Yes,No
+rembrant/less_known/aristotle_with_a_bust_of_homer.jpg,rembrant,less_known,Rembrandt,Aristotle with a Bust of Homer,"The painting you've shown is **""The Return of the Prodigal Son"" by Rembrandt van Rijn.** 
+
+It's a deeply emotional and dramatic work, known for its masterful use of light and shadow (chiaroscuro) and its portrayal of human emotion. 
+
+Do you want to know more about the painting, its history, or Rembrandt himself?","The painting you've shown is **""The Return of the Prodigal Son""** by Rembrandt van Rijn. 
+
+It's a deeply emotional and complex work depicting the biblical story of the prodigal son's return to his father's house. 
+
+Do you want to know more about the painting, such as its history, symbolism, or artistic techniques?",Yes,No,Yes,No
+seurat/well_known/a_sunday_afternoon_on_the_island_of_la_grande_jatte.jpg,seurat,well_known,Georges Seurat,A Sunday Afternoon on the Island of La Grande Jatte,"This painting was created by **Pierre-Auguste Renoir**. 
+
+It's titled ""La Grenouillère"" (The Pond) and was painted in 1889. 
+
+Do you want to know anything more about the painting, such as its context or artistic style?","The painting you've shown is **""The Garden at Eragny""** by Pierre-Auguste Renoir. 
+
+It was painted in 1886 and is a quintessential example of Impressionist style, capturing a fleeting moment of leisure in a sun-drenched garden.",No,No,No,No
+seurat/well_known/bathers_at_asni_res.jpg,seurat,well_known,Georges Seurat,Bathers at Asnières,"The painting you sent is ""Bathers at La Grenouillère"" by **Pierre-Auguste Renoir**. 
+
+It's a quintessential example of Impressionist painting, capturing a summer scene at a popular bathing spot on the Seine River.","The painting is **""La Grenouillère""** (The Pond) by Pierre-Auguste Renoir. 
+
+It was painted in 1869. 
+
+Do you want to know anything more about the painting, such as its history, symbolism, or artistic style?",No,No,No,No
+seurat/well_known/the_circus.jpg,seurat,well_known,Georges Seurat,The Circus,"The painting you've shown is ""The Circus"" (also known as ""The Circus Performance"") by **Henri de Toulouse-Lautrec**. 
+
+It's one of his most famous works, and a prime example of his Pointillist style. 
+
+Do you want to know anything more about the painting or Toulouse-Lautrec?","The painting in the image is **""The Circus""** by Henri de Toulouse-Lautrec. 
+
+It's one of his most famous works and a prime example of his Pointillist style. 
+
+Do you want to know anything more about the painting, such as its history, techniques, or significance?",No,Yes,No,Yes
+seurat/well_known/the_models.jpg,seurat,well_known,Georges Seurat,The Models,"This painting was created by **Georges Seurat**. 
+
+It's titled ""Bathers at Asnières"" (1884). 
+
+It's a prime example of his Pointillist technique. 
+
+Do you want to know more about the painting or Seurat's work?","The painting you've shown is **""Bathers at Asnières""** by Paul Gauguin. 
+
+It's a key example of his Pointillist style, particularly in its use of small, distinct dots of color. 
+
+Do you want to know more about the painting, its history, or Gauguin's style?",Yes,No,Yes,No
+seurat/well_known/the_channel_of_gravelines.jpg,seurat,well_known,Georges Seurat,The Channel of Gravelines,"The painting you've shown is ""Harbor at Collioure"" by **Paul Cézanne**. 
+
+It's a prime example of his Pointillist style, which he developed later in his career. 
+
+Do you want to know anything more about this painting or Cézanne's work?","The painting you've shown is **""Harbor at Collioure""** by Paul Cézanne. 
+
+It was painted in 1885 and is a prime example of his Pointillist technique. 
+
+Do you want to know anything more about this painting or Cézanne's work?",No,No,No,No
+seurat/less_known/young_woman_powdering_herself.jpg,seurat,less_known,Georges Seurat,Young Woman Powdering Herself,"Based on the image, this painting was created by **Gustave Courtauld**. 
+
+Specifically, it's ""Woman Powdering Herself,"" painted around 1889-1890. It's part of the Courtauld Institute Galleries collection.","Based on the image and the text provided, the name of the painting is **Woman Powdering Herself**. 
+
+It was created by **Paul Gauguin** around 1889-1890. 
+
+Here's the information from the image:
+
+*   **Artist:** Paul Gauguin
+*   **Title:** Woman Powdering Herself
+*   **Date:** 1889-1890
+*   **Location:** Courtauld Institute Galleries (Home House Trustees)",No,Yes,No,Yes
+seurat/less_known/le_chahut.jpg,seurat,less_known,Georges Seurat,Le Chahut,"The painting you've shown is ""Le Chahut"" (The Charleston) by **Oskar Kokoschka**. 
+
+It was created in 1889-1890 and is currently held at the Kröller-Müller Museum in Otterlo, Netherlands. 
+
+Let me know if you'd like to know more about the painting or Kokoschka!","Based on the image and the text provided, the name of the painting is **""Le Chahut""** (The Dance). 
+
+It was created by Edvard Munch in 1889 and is housed in the Kröller-Müller Museum in Otterlo, Netherlands.",No,Yes,No,Yes
+seurat/less_known/the_bridge_at_courbevoie.jpg,seurat,less_known,Georges Seurat,The Bridge at Courbevoie,"The painting you've shown is ""Pierrot"" (1887) by **Paul Gauguin**. 
+
+It's a prime example of his Pointillist style, using small, distinct dots of color to create an image. 
+
+Do you want to know anything more about the painting or Gauguin's work?","The painting you've shown is **""Impression, soleil levant"" (Impression, Sunrise)** by Claude Monet. 
+
+It's a pivotal work of Impressionism and is famous for giving the movement its name! 
+
+Do you want to know more about the painting or Monet?",No,No,No,No
+seurat/less_known/the_eiffel_tower.jpg,seurat,less_known,Georges Seurat,The Eiffel Tower,"This painting was created by **Piet Mondrian**. 
+
+It's titled ""La Tour Eiffel"" (The Eiffel Tower) and dates from 1907. It's a significant early example of his development towards his later, more abstract style, using a pointillist technique to represent the iconic Parisian landmark. 
+
+Do you want to know more about this painting or Mondrian's work?","The painting you've shown is **""The Eiffel Tower""** by Georges Seurat. 
+
+It's a prime example of Seurat's Pointillist technique. 
+
+Do you want to know more about the painting or Georges Seurat?",No,Yes,No,Yes
+seurat/less_known/port_en_bessin_entrance_to_the_harbor.jpg,seurat,less_known,Georges Seurat,"Port-en-Bessin, Entrance to the Harbor","The painting you've shown is ""Sailboats at Porquerolles"" by Georges Seurat. 
+
+It's a prime example of his Pointillist technique. 
+
+Do you want to know anything more about the painting or Georges Seurat?","The painting you've shown is **""Sailboats at Porquerolles""** by Georges Seurat. 
+
+It's a prime example of his Pointillist technique. 
+
+Do you want to know anything more about the painting, such as its history, technique, or significance?",Yes,No,Yes,No
+van_gogh/well_known/the_starry_night.jpg,van_gogh,well_known,Vincent van Gogh,The Starry Night,"The painting you've shown is **""The Starry Night"" by Vincent van Gogh.** 
+
+It's one of his most famous works, created in 1889 while he was a patient at the Saint-Paul-de-Mausole asylum in Saint-Rémy, France. 
+
+Do you want to know more about the painting, its history, or Van Gogh himself?","The painting you've shown is **""The Starry Night Over the Rhône""** by Vincent van Gogh. 
+
+It was painted in Arles, France, in 1888. It's a beautiful and evocative depiction of the Rhône river at night, with the lights of Arles reflected in the water and the stars shining above.",Yes,No,Yes,No
+van_gogh/well_known/sunflowers.jpg,van_gogh,well_known,Vincent van Gogh,Sunflowers,"The painting you sent is ""Sunflowers"" by **Vincent van Gogh**. 
+
+It's one of his most famous works, and he painted several versions of sunflowers.","The painting is **Sunflowers** by Vincent van Gogh. 
+
+Specifically, this image is one of a series of sunflower paintings he created in his room at the Yellow House in Arles, France, in the summer of 1888. 
+
+Do you want to know anything more about this painting, such as its history, techniques, or significance?",Yes,Yes,Yes,Yes
+van_gogh/well_known/irises.jpg,van_gogh,well_known,Vincent van Gogh,Irises,"The painting you sent is ""Irises"" by Vincent van Gogh. 
+
+It was painted in 1889 during his time at the asylum in Saint-Rémy. 
+
+Do you want to know anything more about this painting or Van Gogh?","The painting is called **Irises** by Vincent van Gogh. 
+
+It was painted in June 1889 during his stay at the asylum in Saint-Rémy.",Yes,Yes,Yes,Yes
+van_gogh/well_known/the_bedroom.jpg,van_gogh,well_known,Vincent van Gogh,The Bedroom,"The painting in the image is by **Vincent van Gogh**. 
+
+It's a sketch of his bedroom in Arles, France, created in 1888. 
+
+The text at the bottom, ""A teintes plates, mais glorieusement brutes en pleine pâte, les murs,"" translates to ""In flat tints, but gloriously crude in full paste, the walls."" This is a characteristic of Van Gogh's style – a focus on texture and raw emotion in his work.","The painting you've shown is **""Interior with a Table""** (also known as ""Interior with a Table and a Chair"") by Vincent van Gogh. 
+
+It was created in 1888 during his time in Arles, France. 
+
+It's a very significant work in his oeuvre, as it was drawn directly onto the back of a printed sheet of text from a French dictionary. 
+
+Let me know if you'd like to know more about it!",Yes,No,Yes,No
+van_gogh/well_known/caf_terrace_at_night.jpg,van_gogh,well_known,Vincent van Gogh,Café Terrace at Night,"Based on the style and characteristics of the drawing, this artwork was created by **Vincent van Gogh**. 
+
+Specifically, it's a drawing inspired by his series of paintings of Arles in southern France, particularly ""Café Terrace at Night"" (1888). 
+
+The thick, expressive lines, the focus on light and shadow, and the overall atmosphere of a bustling outdoor café are all hallmarks of Van Gogh's work.","Based on the style and subject matter, this drawing is most likely a sketch by **Vincent van Gogh**. 
+
+It's a study of a street scene in Arles, France, which he frequently depicted. Specifically, it's a view of **Place du Forum** in Arles. 
+
+It's often referred to as **""Café Terrace at Arles""** or **""Café Terrace""**. 
+
+Do you want to know more about this particular sketch or Van Gogh's work in general?",Yes,Yes,Yes,Yes
+van_gogh/less_known/wheat_field_with_crows.jpg,van_gogh,less_known,Vincent van Gogh,Wheat Field with Crows,"The painting you've shown is ""Wheatfield with Cypresses"" by Vincent van Gogh. 
+
+It was painted in 1889 during his time at the Saint-Paul-de-Mausole asylum in Saint-Rémy, France.
+
+Do you want to know anything more about this painting or Van Gogh's work in general?","The painting you've shown is **Wheatfield with Cypresses** by Vincent van Gogh. 
+
+It was painted in 1889. 
+
+Do you want to know anything more about this painting, such as its history, symbolism, or Van Gogh's process in creating it?",Yes,No,Yes,No
+van_gogh/less_known/the_potato_eaters.jpg,van_gogh,less_known,Vincent van Gogh,The Potato Eaters,"This painting is ""The Potato Eaters"" by Vincent van Gogh. 
+
+It was painted in 1885 and depicts a peasant family sharing a simple meal of potatoes. 
+
+Do you want to know more about the painting, such as its context, symbolism, or Van Gogh's intentions behind it?","The painting you've shown is **""The Potato Eaters""** by Vincent van Gogh. 
+
+It was painted in 1885 and depicts a peasant family sharing a simple meal of potatoes. 
+
+Do you want to know more about the painting, such as its context, symbolism, or Van Gogh's intentions behind it?",Yes,Yes,Yes,Yes
+van_gogh/less_known/tree_roots.jpg,van_gogh,less_known,Vincent van Gogh,Tree Roots,"The painting you sent is ""Road with Cypress and Olive Trees"" by Vincent van Gogh. 
+
+It was painted in 1889 during his time at Saint-Rémy in Provence, France. 
+
+Do you want to know more about the painting or Van Gogh's work in general?","The painting you've shown is **""Road with Cypress and Olive Trees""** by Vincent van Gogh. 
+
+It was painted in 1889 during his time at Saint-Rémy in France. 
+
+Do you want to know anything more about this painting, such as its context, symbolism, or Van Gogh's process in creating it?",Yes,No,Yes,No
+van_gogh/less_known/sorrowing_old_man.jpg,van_gogh,less_known,Vincent van Gogh,Sorrowing Old Man,"Based on the image and the signature ""Vincent"" in the lower left corner, this drawing was created by **Vincent van Gogh**. 
+
+It's a drawing of a peasant, likely based on a man he knew in Arles, France. It's a poignant and expressive work that captures a sense of weariness and despair.","Based on the signature at the bottom right corner, the painting is titled **""The Old Man""** by Vincent van Gogh. 
+
+It was created in 1888. 
+
+Do you want to know anything more about this artwork, such as its context, style, or meaning?",Yes,No,Yes,No
+van_gogh/less_known/skull_of_a_skeleton_with_burning_cigarette.jpg,van_gogh,less_known,Vincent van Gogh,Skull of a Skeleton with Burning Cigarette,"This painting was created by **Vincent van Gogh**. 
+
+It's titled ""Skull with Pipe"" and is part of his series of skull studies. 
+
+Do you want to know anything more about this painting or Van Gogh's work in general?","The painting you've shown is **""Skull with Cigarette""** by Vincent van Gogh. 
+
+It was painted in 1887 and is a poignant and iconic work in his oeuvre. 
+
+Do you want to know anything more about the painting, such as its context, symbolism, or artistic techniques?",Yes,No,Yes,No
+william_turner/well_known/the_fighting_temeraire.jpg,william_turner,well_known,J. M. W. Turner,The Fighting Temeraire,"The painting you've shown is **""The Fighting Temeraire tugged to her Last Berth""** by **J.M.W. Turner**. 
+
+It's one of his most famous works, depicting the HMS Temeraire, a veteran ship of the Battle of Trafalgar, being towed to its final berth by a steam tug. 
+
+Do you want to know more about the painting, its history, or Turner's style?","The painting you've shown is **""The Fighting Temeraire tugged to her Last Berth""** by J.M.W. Turner. 
+
+It's a very famous and iconic work, depicting the HMS Temeraire, a veteran ship of the Battle of Trafalgar, being towed to its final berth by a steam tug. 
+
+Do you want to know more about the painting, such as its historical context, symbolism, or Turner's artistic style?",Yes,Yes,Yes,Yes
+william_turner/well_known/rain_steam_and_speed.jpg,william_turner,well_known,J. M. W. Turner,"Rain, Steam and Speed","The painting you've shown is **""Rain, Steam and Speed – The Great Western Railway""** by **J.M.W. Turner**. 
+
+It's one of his most famous and iconic works, capturing the dramatic and awe-inspiring arrival of the steam train in 1844.
+
+Do you want to know anything more about the painting, such as its historical context, Turner's artistic style, or its significance?","The painting you've shown is **""Rain, Steam and Speed – The Great Western Railway""** by J.M.W. Turner. 
+
+It's one of Turner's most famous works and a powerful depiction of the impact of the Industrial Revolution on the landscape. 
+
+Do you want to know anything more about the painting, such as its history, symbolism, or Turner's artistic style?",Yes,Yes,Yes,Yes
+william_turner/well_known/the_slave_ship.jpg,william_turner,well_known,J. M. W. Turner,The Slave Ship,"The painting you've shown is **""The Shipwreck of the Medusa""** by **J.M.W. Turner**. 
+
+It's one of his most famous and dramatic works, depicting the aftermath of the 1816 wreck of the French frigate *Méduse* off the coast of West Africa. 
+
+Do you want to know more about the painting or Turner's work in general?","The painting you've shown is **""The Shipwreck of the Medusa""** by J.M.W. Turner. 
+
+It's a powerful and dramatic depiction of the 1816 wreck of the French frigate *Méduse* off the coast of West Africa. 
+
+Do you want to know more about the painting, its historical context, or Turner's style?",Yes,No,Yes,No
+william_turner/well_known/snow_storm_steam_boat_off_a_harbour_s_mouth.jpg,william_turner,well_known,J. M. W. Turner,Snow Storm: Steam-Boat off a Harbour's Mouth,"The painting you've shown is **""The Slave Ship"" (also known as ""Slavers Approaching the Coast of Africa"") by J.M.W. Turner.**
+
+It's a powerful and emotionally charged work depicting the horrors of the transatlantic slave trade. 
+
+Do you want to know more about the painting, its history, or Turner's work in general?","The painting you've shown is **""The Slave Ship""** (also known as ""Slavers Approaching the Coast of Africa"") by J.M.W. Turner. 
+
+It's a powerful and emotionally charged work depicting the horrors of the transatlantic slave trade. 
+
+Do you want to know more about the painting, its history, or its significance?",Yes,No,Yes,No
+william_turner/well_known/norham_castle_sunrise.jpg,william_turner,well_known,J. M. W. Turner,"Norham Castle, Sunrise","The painting you've shown is **""The Sun of Bohemia""** by **J.M.W. Turner**. 
+
+It's one of his most famous and evocative works, known for its atmospheric effects and hazy, dreamlike quality. 
+
+Do you want to know anything more about this painting or Turner's work in general?","The painting you've shown is **""The Sun of Bohemia""** by J.M.W. Turner. 
+
+It's one of Turner's most famous and evocative works, known for its atmospheric effects and hazy, dreamlike quality. 
+
+Do you want to know anything more about the painting, such as its history, interpretation, or artistic techniques?",Yes,No,Yes,No
+william_turner/less_known/fishermen_at_sea.jpg,william_turner,less_known,J. M. W. Turner,Fishermen at Sea,"This painting is ""The Moonlight Boat"" (Dutch: *De Maanlicht Boot*) by **Jacob van Ruisdael**. 
+
+It was painted around 1670-1672. 
+
+Do you want to know anything more about the painting or the artist?","The painting you've shown is **""The Boatmen""** by J.M.W. Turner. 
+
+It was painted in 1833 and is a dramatic depiction of a moonlit night scene with boats struggling against a stormy sea. 
+
+Do you want to know anything more about the painting, such as its history, symbolism, or Turner's artistic style?",No,No,No,No
+william_turner/less_known/calais_pier.jpg,william_turner,less_known,J. M. W. Turner,Calais Pier,"The painting you've shown is **""The Fighting Temeraire tugged to her Last Berth""** by **J.M.W. Turner**. 
+
+It's one of his most famous and emotionally resonant works, depicting the HMS Temeraire, a veteran ship of the Battle of Trafalgar, being towed to its final berth by a steam tug. 
+
+Do you want to know more about the painting, its symbolism, or Turner's work in general?","The painting you've shown is **""The Fighting Temeraire Tugged to Her Last Berth""** by J.M.W. Turner. 
+
+It's a very famous and evocative work, depicting the final journey of the HMS Temeraire, a veteran ship from the Battle of Trafalgar, being towed to its decommissioning station by a tugboat. 
+
+Do you want to know more about the painting, such as its history, symbolism, or Turner's artistic style?",Yes,No,Yes,No
+william_turner/less_known/peace_burial_at_sea.jpg,william_turner,less_known,J. M. W. Turner,Peace: Burial at Sea,"The painting you've shown is **""The Wreck of the Ship *Rosalind*""** by **J.M.W. Turner**. 
+
+It's one of Turner's most famous and dramatic works, depicting the sinking of the ship *Rosalind* in a violent storm off the coast of Newfoundland in 1842. 
+
+Do you want to know more about the painting, Turner, or perhaps another artwork?","The painting you've shown is **""The Wreck of the Ship *Rosalind*""** by J.M.W. Turner. 
+
+It was painted in 1842 and depicts the sinking of the *Rosalind*, a British merchant ship, during a storm off the coast of Newfoundland. 
+
+Do you want to know more about the painting, its history, or Turner's style?",Yes,No,Yes,No
+william_turner/less_known/keelmen_heaving_in_coals_by_moonlight.jpg,william_turner,less_known,J. M. W. Turner,Keelmen Heaving in Coals by Moonlight,"The painting you've shown is **""The Naval Battle of Trafalgar""** by **J.M.W. Turner**. 
+
+It's a powerful and dramatic depiction of the Battle of Trafalgar in 1805, capturing the chaos and intensity of the naval engagement. 
+
+Do you want to know more about the painting, Turner, or the Battle of Trafalgar?","The painting you've shown is **""Typhoeus""** by J.M.W. Turner. 
+
+It was painted in 1839 and depicts a dramatic storm at sea with ships caught in the tempest. 
+
+Do you want to know anything more about this painting, such as its history, artistic style, or Turner's intentions?",Yes,No,Yes,No
+william_turner/less_known/ulysses_deriding_polyphemus.jpg,william_turner,less_known,J. M. W. Turner,Ulysses Deriding Polyphemus,"The painting you've shown is **""The Fighting Temeraire tugged to her Last Berth""** by **J.M.W. Turner**. 
+
+It's one of his most famous works, depicting the HMS Temeraire, a veteran warship of the Battle of Trafalgar, being towed to its final berth by a steam tug. 
+
+Do you want to know more about the painting, its history, or Turner's work in general?","The painting you've shown is **""The Fighting Temeraire tugged to her Last Berth""** by J.M.W. Turner. 
+
+It's a very famous and evocative work, depicting the HMS Temeraire, a veteran warship of the English fleet, being towed to its final berth by a steam tugboat. It's a poignant image representing the end of an era in naval power and the rise of steam technology.
+
+Do you want to know more about the painting, such as its historical context or Turner's artistic style?",Yes,No,Yes,No

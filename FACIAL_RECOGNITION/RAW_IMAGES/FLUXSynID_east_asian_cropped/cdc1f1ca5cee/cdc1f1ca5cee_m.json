@@ -1,0 +1,18 @@
+{
+    "attributes": {
+        "ages.txt": "30-39",
+        "genders.txt": "Male",
+        "facial_hair.txt": "Clean-shaven",
+        "hair_styles.txt": "Wavy",
+        "body_type.txt": "Overweight",
+        "face_shape.txt": "Oval",
+        "skin_type.txt": "Smooth and clear",
+        "nose_shape.txt": "Long and straight",
+        "origins.txt": "East Asian",
+        "lip_shape.txt": "Thin",
+        "eye_shape.txt": "Almond"
+    },
+    "prompt": "s7ll2f4h, Photograph of a man. The subject has a neutral face expression. He is between 30-39 years old, clean-shaven with wavy hair, and has an overweight body type. His oval face features smooth and clear skin, a long and straight nose, and thin lips. He has almond-shaped eyes typical of East Asian origin. Photo captures the subject from the neck up with grey clothing slightly visible around the neck. White background.",
+    "seed": 8869175383223707369,
+    "guidance": 2.5
+}
