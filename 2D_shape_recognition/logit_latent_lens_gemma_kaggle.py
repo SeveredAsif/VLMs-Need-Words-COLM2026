@@ -82,16 +82,17 @@ args = SimpleNamespace(
     ignore_options=True,
     corpus=None,                            # None = auto-locate bundled concepts.txt inside installed latentlens package
     max_index_sentences=3000,               # subsample concepts.txt for a fast index build
-    index_cache_dir="/kaggle/working/latentlens_index",
+    index_cache_dir="/home/user8/VLMs-Need-Words-COLM2026/latentlens_index",
     latentlens_top_k=5,
     index_batch_size=32,
+    output_root="/home/user8/VLMs-Need-Words-COLM2026/2D_shape_recognition/logit_latent_results",
 )
 
 IGNORE_COLORS = args.ignore_colors
 IGNORE_OPTIONS = args.ignore_options
 DO_PAN_AND_SCAN = args.ps
 
-OUTPUT_FILE_NAME = f"/kaggle/working/logit_latent_results/dataset{args.dataset_name}_model{args.model_path.replace('/', '_')}"
+OUTPUT_FILE_NAME = f"{args.output_root}/dataset{args.dataset_name}_model{args.model_path.replace('/', '_')}"
 os.makedirs(os.path.dirname(OUTPUT_FILE_NAME), exist_ok=True)
 
 
@@ -570,7 +571,7 @@ from nltk.stem import PorterStemmer
 LENS = "logit"          # "logit" or "latent"
 DATASET_NAME = "basic_shapes_TEST"
 MODEL_PATH = "google/gemma-3-12b-it"
-RESULTS_DIR = "/kaggle/working/logit_latent_results"
+RESULTS_DIR = "/home/user8/VLMs-Need-Words-COLM2026/2D_shape_recognition/logit_latent_results"
 
 data_idx = 36
 option_idx = 0          # which candidate position to trace: 0=A, 1=B, 2=C, 3=D
