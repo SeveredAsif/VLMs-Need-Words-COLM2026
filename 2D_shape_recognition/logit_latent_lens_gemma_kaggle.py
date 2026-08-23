@@ -53,6 +53,7 @@ import json
 import math
 import pickle
 import random
+import re
 from collections import defaultdict
 from types import SimpleNamespace
 
@@ -80,16 +81,20 @@ args = SimpleNamespace(
     sample_size=-1,                         # -1 = full dataset
     ignore_colors=True,
     ignore_options=True,
+    ignore_special=True,   # drop <bos>/<eos>/... and pure-punctuation tokens from the Jaccard metric
+    latent_skip_special=True,  # in get_latent_tokens, skip past <bos>-like neighbors to the next rank
     corpus=None,                            # None = auto-locate bundled concepts.txt inside installed latentlens package
     max_index_sentences=3000,               # subsample concepts.txt for a fast index build
     index_cache_dir="/home/user8/VLMs-Need-Words-COLM2026/latentlens_index",
-    latentlens_top_k=5,
+    latentlens_top_k=20,  # bumped up from 5 -- gives get_latent_tokens more candidates to skip
+                           # past <bos>/punctuation before falling back to it (see IGNORE_SPECIAL)
     index_batch_size=32,
     output_root="/home/user8/VLMs-Need-Words-COLM2026/2D_shape_recognition/logit_latent_results",
 )
 
 IGNORE_COLORS = args.ignore_colors
 IGNORE_OPTIONS = args.ignore_options
+IGNORE_SPECIAL = args.ignore_special
 DO_PAN_AND_SCAN = args.ps
 
 OUTPUT_FILE_NAME = f"{args.output_root}/dataset{args.dataset_name}_model{args.model_path.replace('/', '_')}"
@@ -349,17 +354,32 @@ torch.cuda.empty_cache()
 
 def get_latent_tokens(region_features, layer):
     """Nearest-neighbor lookup of region_features (at this layer) against the
-    LatentLens corpus index. Returns a list of (top1_label, top1_similarity),
-    one per patch token in the region -- same shape as get_decoded_tokens."""
+    LatentLens corpus index. Returns a list of (label, similarity), one per
+    patch token in the region -- same shape as get_decoded_tokens.
+
+    The corpus index contains one <bos> vector per corpus sentence (3000 of
+    them), and <bos> representations cluster tightly in most middle/late
+    layers -- so the literal top-1 neighbor is <bos> for the overwhelming
+    majority of patches there, which carries no content information. Instead
+    of always taking rank-1, walk down the top-k neighbors and take the first
+    one that isn't a special/control token or pure punctuation; only fall back
+    to the literal top-1 (even if that's <bos>) if every candidate in top-k is
+    special/boilerplate."""
     query = region_features.to(latentlens_index.device)
     neighbor_lists = latentlens_index.search(query, top_k=args.latentlens_top_k, layers=[layer])
 
     token_values = []
     for patch_idx in range(region_features.shape[0]):
         neighbors = neighbor_lists[patch_idx]
-        top1 = neighbors[0]
-        label = (top1.token_str or "").strip() or (top1.caption or "").strip()
-        token_values.append((label, float(top1.similarity)))
+        chosen = neighbors[0]
+        if args.latent_skip_special:
+            for n in neighbors:
+                label = (n.token_str or "").strip() or (n.caption or "").strip()
+                if not is_special_or_boilerplate(label):
+                    chosen = n
+                    break
+        label = (chosen.token_str or "").strip() or (chosen.caption or "").strip()
+        token_values.append((label, float(chosen.similarity)))
     return token_values
 
 
@@ -386,6 +406,21 @@ def is_color(name):
         return False
 
 
+def is_special_or_boilerplate(t_stripped):
+    """True for special/control tokens (<bos>, <eos>, <pad>, <unk>, ...) and for
+    pure-punctuation tokens (e.g. "'", "."). These dominate the LatentLens
+    nearest-neighbor readout at many layers (e.g. <bos> matching almost every
+    patch) and would otherwise make the Jaccard-distinctiveness metric look
+    artificially high/low for reasons unrelated to shape distinguishability."""
+    if not t_stripped:
+        return True
+    if re.fullmatch(r"<[^>]*>", t_stripped):
+        return True
+    if not any(ch.isalnum() for ch in t_stripped):
+        return True
+    return False
+
+
 def filter_tokens(tokens):
     result = []
     for t in tokens:
@@ -393,6 +428,8 @@ def filter_tokens(tokens):
         if IGNORE_COLORS and is_color(t_stripped.lower()):
             continue
         if IGNORE_OPTIONS and t_stripped in {'A', 'B', 'C', 'D'}:
+            continue
+        if IGNORE_SPECIAL and is_special_or_boilerplate(t_stripped):
             continue
         result.append(t)
     return result
