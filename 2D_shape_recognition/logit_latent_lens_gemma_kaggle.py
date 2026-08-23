@@ -72,7 +72,12 @@ import latentlens
 args = SimpleNamespace(
     dataset_name="basic_shapes_TEST",       # folder name under DATASET_ROOT (matches VisionLanguageDataset's `dataset` arg)
     dataset_root="/home/user8/VLMs-Need-Words-COLM2026/2D_shape_recognition",
-    model_path="google/gemma-3-12b-it",
+    model_path="google/gemma-3-12b-it",     # passed to from_pretrained -- on Kaggle with a "Model" input this
+                                             # will instead be a long local mount path; that's fine for loading,
+                                             # but see model_tag below for why it must NOT be used in filenames
+    model_tag="gemma-3-12b-it",              # short, stable name used ONLY for output filenames (see OUTPUT_FILE_NAME
+                                             # below and Cell 2's MODEL_TAG) -- keep this the same across Cell 1/Cell 2
+                                             # runs regardless of what args.model_path happens to be on this platform
     device_map="auto",                      # T4 x2 -- 12B model needs both GPUs
     dtype="bfloat16",                       # float16 overflows Gemma's later-layer activations -> NaN
     attn_implementation="sdpa",             # "flash_attention_2" only if you've installed it on Kaggle
@@ -84,8 +89,11 @@ args = SimpleNamespace(
     ignore_special=True,   # drop <bos>/<eos>/... and pure-punctuation tokens from the Jaccard metric
     latent_skip_special=True,  # in get_latent_tokens, skip past <bos>-like neighbors to the next rank
     corpus=None,                            # None = auto-locate bundled concepts.txt inside installed latentlens package
+    add_shape_corpus=True,                  # force-include generated shape/color sentences (see generate_shape_corpus) --
+                                             # concepts.txt alone has ~0 real coverage of words like "hexagon"/"pentagon"
     max_index_sentences=3000,               # subsample concepts.txt for a fast index build
-    index_cache_dir="/home/user8/VLMs-Need-Words-COLM2026/latentlens_index",
+    index_cache_dir="/home/user8/VLMs-Need-Words-COLM2026/latentlens_index_v2",  # _v2: old cache was built
+                                             # without the shape/color corpus and would be silently reused otherwise
     latentlens_top_k=20,  # bumped up from 5 -- gives get_latent_tokens more candidates to skip
                            # past <bos>/punctuation before falling back to it (see IGNORE_SPECIAL)
     index_batch_size=32,
@@ -97,7 +105,7 @@ IGNORE_OPTIONS = args.ignore_options
 IGNORE_SPECIAL = args.ignore_special
 DO_PAN_AND_SCAN = args.ps
 
-OUTPUT_FILE_NAME = f"{args.output_root}/dataset{args.dataset_name}_model{args.model_path.replace('/', '_')}"
+OUTPUT_FILE_NAME = f"{args.output_root}/dataset{args.dataset_name}_model{args.model_tag}"
 os.makedirs(os.path.dirname(OUTPUT_FILE_NAME), exist_ok=True)
 
 
@@ -320,19 +328,94 @@ def find_bundled_corpus():
     raise FileNotFoundError("Could not locate concepts.txt inside the latentlens package; pass args.corpus explicitly.")
 
 
+SHAPE_CORPUS_COLORS = ["black", "white", "red", "blue", "green", "yellow",
+                        "orange", "purple", "pink", "brown", "grey", "cyan"]
+SHAPE_CORPUS_TEMPLATES = [
+    "This is a picture of a {color} {shape}.",
+    "The image shows a {color} {shape} shape.",
+    "A {color} {shape} is drawn on the page.",
+    "Look at the {color} {shape} in the corner.",
+    "There is a {shape} colored {color} here.",
+    "The {shape} in the picture appears in {color}.",
+    "Someone drew a small {color} {shape} on the sheet.",
+    "The shape is a {shape}, and its color is {color}.",
+]
+
+
+def generate_shape_corpus(base_shapes):
+    """Guaranteed-coverage sentences for this dataset's own shape vocabulary
+    (e.g. "hexagon", "pentagon"), since the bundled general-knowledge corpus
+    has zero or near-zero real coverage of geometric shape words -- see the
+    coverage check this feeds into. Multiple templates/colors per shape so the
+    nearest-neighbor search still has some contextual variety to choose from,
+    not just one canonical sentence per word."""
+    lines = []
+    for shape in base_shapes:
+        for color in SHAPE_CORPUS_COLORS:
+            for template in SHAPE_CORPUS_TEMPLATES:
+                lines.append(template.format(color=color, shape=shape))
+    return lines
+
+
+def load_indexed_corpus_lines():
+    """Reproduces exactly the same corpus mix that build_or_load_latentlens_index
+    feeds into the index -- so coverage can be checked even when the index was
+    loaded from cache, and without needing the model/GPU at all.
+
+    The final corpus = ALL of the generated shape/color sentences (forced in,
+    never subsampled away) + a seed=0 random sample of the bundled general
+    corpus filling out the remaining budget up to args.max_index_sentences.
+    Forcing the shape sentences in is necessary: with plain random sampling
+    down to 3000 lines out of 117k, a rare word like "hexagon" would almost
+    certainly get sampled out entirely even if a handful of instances existed."""
+    corpus_path = args.corpus or find_bundled_corpus()
+    with open(corpus_path, "r", encoding="utf-8") as f:
+        general_lines = [line.strip() for line in f if line.strip()]
+    full_size = len(general_lines)
+
+    base_shapes = sorted({st.split("_")[0] for item in test_dataset.data
+                           for st in item.get("shape_types", [])})
+    shape_lines = generate_shape_corpus(base_shapes) if args.add_shape_corpus else []
+
+    if args.max_index_sentences:
+        budget = max(0, args.max_index_sentences - len(shape_lines))
+        general_sample = (random.Random(0).sample(general_lines, budget)
+                           if budget < len(general_lines) else list(general_lines))
+    else:
+        general_sample = general_lines
+
+    corpus_lines = general_sample + shape_lines
+    return corpus_lines, full_size, corpus_path
+
+
+def check_corpus_coverage(corpus_lines, watchlist):
+    """Prints how many (and which) of the indexed sentences contain each
+    watchlist word, as a whole word (not substring -- "star" matching inside
+    "starting" would be a false positive). If a word has zero hits, LatentLens
+    can NEVER return it as a neighbor -- not "unlikely", literally excluded
+    from the search space, since the index only ever contains tokens that
+    appear somewhere in this corpus."""
+    print(f"\nCorpus coverage check ({len(corpus_lines)} indexed sentences):")
+    missing = []
+    for word in watchlist:
+        pattern = re.compile(rf"\b{re.escape(word)}\b", re.IGNORECASE)
+        hits = [line for line in corpus_lines if pattern.search(line)]
+        print(f"  {word!r:12s} -> {len(hits)} sentence(s)" + (f"   e.g. {hits[0][:80]!r}" if hits else ""))
+        if not hits:
+            missing.append(word)
+    if missing:
+        print(f"  WARNING: these words CANNOT appear as latent-lens neighbors at all: {missing}")
+    return missing
+
+
 def build_or_load_latentlens_index(model, tokenizer, layers):
     metadata_path = os.path.join(args.index_cache_dir, "metadata.json")
     if os.path.exists(metadata_path):
         print(f"Loading cached LatentLens index from {args.index_cache_dir}")
-        return latentlens.ContextualIndex.load(args.index_cache_dir)
+        return latentlens.ContextualIndex.from_directory(args.index_cache_dir)
 
-    corpus_path = args.corpus or find_bundled_corpus()
-    print(f"Building LatentLens index from corpus: {corpus_path}")
-    with open(corpus_path, "r", encoding="utf-8") as f:
-        corpus_lines = [line.strip() for line in f if line.strip()]
-
-    if args.max_index_sentences and len(corpus_lines) > args.max_index_sentences:
-        corpus_lines = random.Random(0).sample(corpus_lines, args.max_index_sentences)
+    corpus_lines, full_size, corpus_path = load_indexed_corpus_lines()
+    print(f"Building LatentLens index from corpus: {corpus_path} ({full_size} lines total)")
     print(f"Indexing {len(corpus_lines)} corpus sentences across {len(layers)} layers...")
 
     index = latentlens.build_index(
@@ -350,6 +433,15 @@ def build_or_load_latentlens_index(model, tokenizer, layers):
 
 latentlens_index = build_or_load_latentlens_index(model, processor.tokenizer, layers=list(range(N_LAYERS)))
 torch.cuda.empty_cache()
+
+# Sanity check: can the indexed corpus even produce this dataset's shape/color
+# words as neighbors at all? Built from the dataset's own shape_types (e.g.
+# "diamond_black" -> "diamond", "black"), so this adapts to whichever dataset
+# folder args.dataset_name points at.
+_watchlist = sorted({part for item in test_dataset.data
+                      for st in item.get("shape_types", [])
+                      for part in st.split("_") if part})
+check_corpus_coverage(load_indexed_corpus_lines()[0], _watchlist)
 
 
 def get_latent_tokens(region_features, layer):
@@ -607,14 +699,15 @@ from nltk.stem import PorterStemmer
 
 LENS = "logit"          # "logit" or "latent"
 DATASET_NAME = "basic_shapes_TEST"
-MODEL_PATH = "google/gemma-3-12b-it"
+MODEL_TAG = "gemma-3-12b-it"    # must match args.model_tag from Cell 1 exactly -- NOT args.model_path
+                                # (on Kaggle, model_path is a long local mount path, not this clean tag)
 RESULTS_DIR = "/home/user8/VLMs-Need-Words-COLM2026/2D_shape_recognition/logit_latent_results"
 
 data_idx = 36
 option_idx = 0          # which candidate position to trace: 0=A, 1=B, 2=C, 3=D
 SKIP_LAYERS = 0
 
-file_path = f"{RESULTS_DIR}/dataset{DATASET_NAME}_model{MODEL_PATH.replace('/', '_')}_{LENS}_all_data.pkl"
+file_path = f"{RESULTS_DIR}/dataset{DATASET_NAME}_model{MODEL_TAG}_{LENS}_all_data.pkl"
 with open(file_path, "rb") as f:
     target_data = pickle.load(f)
 
