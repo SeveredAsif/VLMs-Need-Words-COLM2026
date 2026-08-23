@@ -1,22 +1,25 @@
 ###CELL 2
 # ----------------------------------------------------------------------------
-# Per-patch trajectory plots (reproduces logit_lens_traj.ipynb), generalized to
-# work for either lens via the LENS toggle below. Paste into its own cell and
-# run after Cell 1 (no GPU needed -- it only reads back the saved pickles).
+# Per-patch trajectory plots (reproduces logit_lens_traj.ipynb). Runs for BOTH
+# lenses in one execution (LENSES_TO_RUN below) so you don't have to manually
+# flip LENS and rerun the cell a second time. Paste into its own cell and run
+# after Cell 1 (no GPU needed -- it only reads back the saved pickles).
 # ----------------------------------------------------------------------------
 import os
 import json
 import math
 import pickle
 import textwrap
+import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from PIL import Image
 from nltk.stem import PorterStemmer
 
-LENS = "logit"          # "logit" or "latent"
+LENSES_TO_RUN = ["logit", "latent"]   # runs both, back to back, in this one cell execution
 DATASET_NAME = "basic_shapes_TEST"
-MODEL_PATH = "google/gemma-3-12b-it"
+MODEL_TAG = "gemma-3-12b-it"    # must match args.model_tag from Cell 1 exactly -- NOT args.model_path
+                                # (on Kaggle, model_path is a long local mount path, not this clean tag)
 RESULTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logit_latent_results")
 
 # Local clone of the dataset -- only used to look up which image-grid cell each
@@ -30,22 +33,25 @@ option_idx = 0          # which candidate position to trace: 0=A, 1=B, 2=C, 3=D
 OPTION_LETTERS = ["A", "B", "C", "D"]
 SKIP_LAYERS = 0
 
-file_path = f"{RESULTS_DIR}/dataset{DATASET_NAME}_model{MODEL_PATH.replace('/', '_')}_{LENS}_all_data.pkl"
-with open(file_path, "rb") as f:
-    target_data = pickle.load(f)
+# Logit-lens values are already softmax probabilities over the vocab. LatentLens
+# values are raw cosine similarities (roughly [-1, 1], usually compressed into a
+# narrow band like 0.75-0.95 in practice) -- not on a comparable scale, so a
+# similarity of 0.3 does NOT mean the same thing as a logit-lens probability of
+# 0.3. To compare fairly, softmax-normalize the similarities ACROSS THE LAYER
+# AXIS, independently per patch/option (NOT across patches, and NOT across the
+# top-k neighbor candidates -- only the top-1 value survived into the saved
+# pickle, so a "softmax over candidates" would need Task A's raw-feature
+# caching to also store the full top-k list per layer; that's a possible
+# future addition, not implemented here).
+SOFTMAX_TEMPERATURE = 0.1   # tune this: raw similarities are narrowly distributed, so T=1.0 produces an
+                            # almost-flat softmax that hides structure -- start around 0.05-0.2
 
-# target_data[data_idx] is a list over layers; each layer entry is a list of 4
-# option entries (one per A/B/C/D bbox); each of those is a list of (label, value)
-# tuples, one per image-patch token that falls inside that option's bounding box.
-# For LENS="logit", value = top-1 vocabulary probability. For LENS="latent",
-# value = top-1 cosine similarity to the nearest LatentLens corpus neighbor.
-lens_data = [layer_data[option_idx] for layer_data in target_data[data_idx]]
 
-VALUE_LABEL = "Confidence Score" if LENS == "logit" else "Cosine Similarity"
-TITLE_SUFFIX = "Logit Lens" if LENS == "logit" else "Latent Lens"
-
-save_dir = f"{DATASET_NAME}_{LENS}_lens_plots_item{data_idx}_option{option_idx}"
-os.makedirs(save_dir, exist_ok=True)
+def softmax_1d(x, temperature=1.0):
+    x = np.array(x, dtype=np.float64) / temperature
+    x = x - x.max()  # numerical stability
+    exp_x = np.exp(x)
+    return exp_x / exp_x.sum()
 
 
 # ============================== "Patch N" -> image-grid position =============
@@ -166,11 +172,9 @@ def describe_patches(dataset_name, dataset_root, data_idx, option_idx, do_pan_an
         return None
 
 
+# Lens-independent (same bbox/geometry for both logit and latent), so computed
+# once here rather than inside the per-lens loop below.
 patch_descriptions = describe_patches(DATASET_NAME, DATASET_ROOT_LOCAL, data_idx, option_idx, DO_PAN_AND_SCAN)
-if patch_descriptions is not None and len(patch_descriptions) != len(lens_data[0]):
-    print("[warning: recomputed patch count doesn't match saved data -- "
-          "DO_PAN_AND_SCAN above may not match how Cell 1 was actually run]")
-    patch_descriptions = None
 
 
 def consecutive_run_lengths(stems):
@@ -188,17 +192,6 @@ def consecutive_run_lengths(stems):
     return run_len
 
 
-# Latent-lens labels can be whole corpus sentences (not single words), so they
-# need a smaller font, a wider figure, and wrapped/truncated annotation text to
-# stay readable -- logit-lens labels are always single vocabulary tokens.
-IS_SENTENCE_LENS = (LENS == "latent")
-
-FONTSIZE = 24 if not IS_SENTENCE_LENS else 13
-TITLE_FONTSIZE = FONTSIZE + 6
-LABEL_FONTSIZE = FONTSIZE + (0 if not IS_SENTENCE_LENS else 6)
-TICK_FONTSIZE = FONTSIZE + (0 if not IS_SENTENCE_LENS else 6)
-ANNOT_FONTSIZE = FONTSIZE
-LEGEND_FONTSIZE = FONTSIZE
 ANNOT_WRAP_WIDTH = 26       # chars per line inside an annotation bubble
 ANNOT_MAX_CHARS = 110       # truncate very long corpus sentences beyond this
 
@@ -209,11 +202,11 @@ def stem(word):
     return _stemmer.stem(word.lower()) if word else ""
 
 
-def annotation_text(word):
+def annotation_text(word, is_sentence_lens):
     """Display text for an annotation bubble: word/token as-is for logit lens;
     wrapped + truncated for latent lens, since a label there can be a full
     corpus sentence instead of a single word."""
-    if not IS_SENTENCE_LENS:
+    if not is_sentence_lens:
         return word
     text = word if len(word) <= ANNOT_MAX_CHARS else word[:ANNOT_MAX_CHARS - 3] + "..."
     return textwrap.fill(text, width=ANNOT_WRAP_WIDTH)
@@ -225,135 +218,200 @@ warnings.filterwarnings("ignore", message=r"Matplotlib currently does not suppor
 
 to_show = []  # optionally fill in patch indices you want printed for inspection
 
-for target_token_idx in range(len(lens_data[0])):
-    layers, words, values = [], [], []
+for LENS in LENSES_TO_RUN:
+    print(f"\n=== Generating {LENS}-lens trajectory plots ===")
 
-    for_print = ""
-    for layer in range(len(lens_data)):
-        if layer < SKIP_LAYERS:
-            continue
-        word, value = lens_data[layer][target_token_idx]
-        layers.append(layer)
-        words.append(word)
-        values.append(value)
-        for_print += f"{word} ({value:.2f}), "
+    # Latent-lens labels can be whole corpus sentences (not single words), so
+    # they need a smaller font, a wider figure, and wrapped/truncated
+    # annotation text to stay readable -- logit-lens labels are always single
+    # vocabulary tokens.
+    IS_SENTENCE_LENS = (LENS == "latent")
+    FONTSIZE = 24 if not IS_SENTENCE_LENS else 13
+    TITLE_FONTSIZE = FONTSIZE + 6
+    LABEL_FONTSIZE = FONTSIZE + (0 if not IS_SENTENCE_LENS else 6)
+    TICK_FONTSIZE = FONTSIZE + (0 if not IS_SENTENCE_LENS else 6)
+    ANNOT_FONTSIZE = FONTSIZE
+    LEGEND_FONTSIZE = FONTSIZE
 
-    # Grouping key for the color bands / legend: stemming works well for single
-    # vocabulary words (logit lens). For latent-lens sentences, stemming a whole
-    # sentence buys nothing -- group by the exact label instead, so a band only
-    # forms where the lens returned the literal same neighbor across layers.
-    stems = [stem(w) for w in words] if not IS_SENTENCE_LENS else list(words)
+    file_path = f"{RESULTS_DIR}/dataset{DATASET_NAME}_model{MODEL_TAG}_{LENS}_all_data.pkl"
+    with open(file_path, "rb") as f:
+        target_data = pickle.load(f)
 
-    if target_token_idx in to_show:
-        print(f"Patch {target_token_idx} words: {for_print}")
-        print()
+    # target_data[data_idx] is a list over layers; each layer entry is a list of 4
+    # option entries (one per A/B/C/D bbox); each of those is a list of (label, value)
+    # tuples, one per image-patch token that falls inside that option's bounding box.
+    # For LENS="logit", value = top-1 vocabulary probability. For LENS="latent",
+    # value = top-1 cosine similarity to the nearest LatentLens corpus neighbor.
+    lens_data = [layer_data[option_idx] for layer_data in target_data[data_idx]]
 
-    run_lengths = consecutive_run_lengths(stems)
+    VALUE_LABEL = "Confidence Score" if LENS == "logit" else "Cosine Similarity"
+    TITLE_SUFFIX = "Logit Lens" if LENS == "logit" else "Latent Lens"
 
-    annotate_indices = set()
-    i = 0
-    while i < len(stems):
-        j = i + 1
-        while j < len(stems) and stems[j] == stems[i]:
-            j += 1
-        span_len = j - i
-        if span_len == 1:
-            annotate_indices.add(i)
+    save_dir = f"{DATASET_NAME}_{LENS}_lens_plots_item{data_idx}_option{option_idx}"
+    os.makedirs(save_dir, exist_ok=True)
+
+    lens_patch_descriptions = patch_descriptions
+    if lens_patch_descriptions is not None and len(lens_patch_descriptions) != len(lens_data[0]):
+        print(f"[warning: recomputed patch count doesn't match saved {LENS} data -- "
+              "DO_PAN_AND_SCAN above may not match how Cell 1 was actually run]")
+        lens_patch_descriptions = None
+
+    for target_token_idx in range(len(lens_data[0])):
+        layers, words, values = [], [], []
+
+        for_print = ""
+        for layer in range(len(lens_data)):
+            if layer < SKIP_LAYERS:
+                continue
+            word, value = lens_data[layer][target_token_idx]
+            layers.append(layer)
+            words.append(word)
+            values.append(value)
+            for_print += f"{word} ({value:.2f}), "
+
+        # Grouping key for the color bands / legend: stemming works well for single
+        # vocabulary words (logit lens). For latent-lens sentences, stemming a whole
+        # sentence buys nothing -- group by the exact label instead, so a band only
+        # forms where the lens returned the literal same neighbor across layers.
+        stems = [stem(w) for w in words] if not IS_SENTENCE_LENS else list(words)
+
+        if target_token_idx in to_show:
+            print(f"Patch {target_token_idx} words: {for_print}")
+            print()
+
+        run_lengths = consecutive_run_lengths(stems)
+
+        annotate_indices = set()
+        i = 0
+        while i < len(stems):
+            j = i + 1
+            while j < len(stems) and stems[j] == stems[i]:
+                j += 1
+            span_len = j - i
+            if span_len == 1:
+                annotate_indices.add(i)
+            else:
+                for idx in range(i, j, 4):
+                    annotate_indices.add(idx)
+            i = j
+
+        GREY = "#CCCCCC"
+        BG_COLORS = ["#F08080", "#87CEEB", "#F5DEB3", "#90EE90", "#DDA0DD", "#FFB347"]
+        POINT_COLORS = ["#E05555", "#5B8DB8", "#6DAE81", "#9B72AA", "#D4A843", "#4DBECC"]
+
+        qualified_stems = list(dict.fromkeys(s for s, r in zip(stems, run_lengths) if r >= 2))
+        qualified_words = list(dict.fromkeys(w for w, r in zip(words, run_lengths) if r >= 2))
+        stem_color = {s: BG_COLORS[i % len(BG_COLORS)] for i, s in enumerate(qualified_stems)}
+        word_color = {w: POINT_COLORS[i % len(POINT_COLORS)] for i, w in enumerate(qualified_words)}
+
+        def get_stem_color(i): return stem_color.get(stems[i], GREY)
+        def get_word_color(i): return word_color.get(words[i], GREY)
+
+        softmax_values = softmax_1d(values, temperature=SOFTMAX_TEMPERATURE)
+        print(f"Patch {target_token_idx} ({LENS} lens): softmax range = "
+              f"[{softmax_values.min():.4f}, {softmax_values.max():.4f}] (T={SOFTMAX_TEMPERATURE})")
+
+        fig, (ax, ax2) = plt.subplots(
+            2, 1, figsize=(16, 9) if not IS_SENTENCE_LENS else (22, 12),
+            sharex=True, gridspec_kw={"height_ratios": [3, 1.3]},
+        )
+
+        i = 0
+        while i < len(stems):
+            j = i + 1
+            while j < len(stems) and stems[j] == stems[i]:
+                j += 1
+            x0 = layers[i] - (0.5 if i == 0 else (layers[i] - layers[i - 1]) / 2)
+            x1 = layers[j - 1] + (0.5 if j == len(layers) else (layers[j] - layers[j - 1]) / 2)
+            color = get_stem_color(i)
+            ax.axvspan(x0, x1, alpha=0.25, color=color, linewidth=0, zorder=0)
+            i = j
+
+        ax.plot(layers, values, color="#888888", linewidth=1.8, zorder=2)
+
+        v_loc = 60 if not IS_SENTENCE_LENS else 90
+        for idx, (layer, word, value) in enumerate(zip(layers, words, values)):
+            ax.plot(layer, value, "o", markersize=16, color=get_word_color(idx),
+                    markeredgecolor="white", markeredgewidth=1.8, zorder=3)
+            if idx in annotate_indices:
+                ax.annotate(
+                    annotation_text(word, IS_SENTENCE_LENS), xy=(layer, value), xytext=(0, v_loc),
+                    textcoords="offset points",
+                    ha="center", va="bottom" if idx % 2 == 0 else "top",
+                    fontsize=ANNOT_FONTSIZE,
+                    bbox=dict(boxstyle="round,pad=0.35", facecolor=get_stem_color(idx),
+                              edgecolor="#999999", alpha=0.9, linewidth=0.8),
+                    arrowprops=dict(arrowstyle="-|>", color="#777777", lw=0.9),
+                    zorder=4,
+                )
+                v_loc = -v_loc
+
+        def legend_label(s):
+            return s if len(s) <= 55 else s[:52] + "..."
+
+        ax.legend(
+            handles=[mpatches.Patch(facecolor=stem_color[s], alpha=0.6, label=legend_label(s)) for s in qualified_stems],
+            fontsize=LEGEND_FONTSIZE,
+            loc="upper left" if not IS_SENTENCE_LENS else "lower left",
+        )
+
+        # "Patch N" = the Nth image-patch token (in raster/top-left-to-bottom-right
+        # order) that falls inside option {LETTER}'s bounding box in the TARGET
+        # image -- NOT a position in the reference image, and not a token index in
+        # the model's full input sequence. A bbox usually spans several such grid
+        # cells (see subtitle below), so there is one trajectory plot per cell.
+        option_letter = OPTION_LETTERS[option_idx] if option_idx < len(OPTION_LETTERS) else str(option_idx)
+        if lens_patch_descriptions is not None:
+            where = lens_patch_descriptions[target_token_idx]
+            subtitle = f"image-grid cell: {where} of option {option_letter}'s box in the target image"
         else:
-            for idx in range(i, j, 4):
-                annotate_indices.add(idx)
-        i = j
+            subtitle = (f"{target_token_idx}-th image-grid cell (raster order) inside option "
+                        f"{option_letter}'s box in the target image")
 
-    GREY = "#CCCCCC"
-    BG_COLORS = ["#F08080", "#87CEEB", "#F5DEB3", "#90EE90", "#DDA0DD", "#FFB347"]
-    POINT_COLORS = ["#E05555", "#5B8DB8", "#6DAE81", "#9B72AA", "#D4A843", "#4DBECC"]
+        ax.set(
+            ylabel=VALUE_LABEL,  # xlabel omitted here -- shared x-axis, "Layer" label lives on ax2 below
+            xlim=(layers[0] - 0.8, layers[-1] + 0.8),
+            ylim=(-0.08, 1.25),
+        )
+        ax.set_title(f"Patch {target_token_idx} -- {TITLE_SUFFIX} Across Layers\n({subtitle})",
+                     fontsize=TITLE_FONTSIZE)
 
-    qualified_stems = list(dict.fromkeys(s for s, r in zip(stems, run_lengths) if r >= 2))
-    qualified_words = list(dict.fromkeys(w for w, r in zip(words, run_lengths) if r >= 2))
-    stem_color = {s: BG_COLORS[i % len(BG_COLORS)] for i, s in enumerate(qualified_stems)}
-    word_color = {w: POINT_COLORS[i % len(POINT_COLORS)] for i, w in enumerate(qualified_words)}
+        ax.tick_params(axis="both", labelsize=TICK_FONTSIZE)
+        ax.title.set_size(TITLE_FONTSIZE)
+        ax.xaxis.label.set_size(LABEL_FONTSIZE)
+        ax.yaxis.label.set_size(LABEL_FONTSIZE)
 
-    def get_stem_color(i): return stem_color.get(stems[i], GREY)
-    def get_word_color(i): return word_color.get(words[i], GREY)
+        if len(layers) > 0:
+            xticks = [layers[i] for i in range(0, len(layers), 5)]
+            if layers[-1] not in xticks:
+                xticks.append(layers[-1])
+            ax.set_xticks(xticks)
 
-    fig, ax = plt.subplots(figsize=(16, 7) if not IS_SENTENCE_LENS else (22, 10))
+        ax.grid(alpha=0.25, linestyle="--")
+        ax.spines[["top", "right"]].set_visible(False)
+        ax.set_ylim(-0.5, 1.50)
 
-    i = 0
-    while i < len(stems):
-        j = i + 1
-        while j < len(stems) and stems[j] == stems[i]:
-            j += 1
-        x0 = layers[i] - (0.5 if i == 0 else (layers[i] - layers[i - 1]) / 2)
-        x1 = layers[j - 1] + (0.5 if j == len(layers) else (layers[j] - layers[j - 1]) / 2)
-        color = get_stem_color(i)
-        ax.axvspan(x0, x1, alpha=0.25, color=color, linewidth=0, zorder=0)
-        i = j
+        # Second panel: same trajectory, softmax-normalized across the layer axis so
+        # it's on a true [0, 1] probability scale -- directly comparable to logit
+        # lens's already-probabilistic values, unlike the raw panel above (cosine
+        # similarities for latent lens are not probabilities and aren't comparable
+        # 1:1 with logit-lens probabilities on the same numeric scale).
+        ax2.plot(layers, softmax_values, color="#444444", linewidth=1.8, marker="o",
+                 markersize=6, zorder=2)
+        for idx, (layer, sm_val) in enumerate(zip(layers, softmax_values)):
+            ax2.plot(layer, sm_val, "o", markersize=8, color=get_word_color(idx),
+                      markeredgecolor="white", markeredgewidth=1.2, zorder=3)
+        ax2.set_ylim(0, 1)
+        ax2.set_xlabel("Layer", fontsize=LABEL_FONTSIZE)
+        ax2.set_ylabel(f"Softmax Probability\n(T={SOFTMAX_TEMPERATURE})", fontsize=max(LABEL_FONTSIZE - 6, 9))
+        ax2.tick_params(axis="both", labelsize=max(TICK_FONTSIZE - 6, 9))
+        ax2.grid(alpha=0.25, linestyle="--")
+        ax2.spines[["top", "right"]].set_visible(False)
 
-    ax.plot(layers, values, color="#888888", linewidth=1.8, zorder=2)
+        plt.tight_layout()
+        plt.savefig(f"{save_dir}/patch{target_token_idx}.pdf", dpi=100, bbox_inches="tight")
+        plt.close()
 
-    v_loc = 60 if not IS_SENTENCE_LENS else 90
-    for idx, (layer, word, value) in enumerate(zip(layers, words, values)):
-        ax.plot(layer, value, "o", markersize=16, color=get_word_color(idx),
-                markeredgecolor="white", markeredgewidth=1.8, zorder=3)
-        if idx in annotate_indices:
-            ax.annotate(
-                annotation_text(word), xy=(layer, value), xytext=(0, v_loc), textcoords="offset points",
-                ha="center", va="bottom" if idx % 2 == 0 else "top",
-                fontsize=ANNOT_FONTSIZE,
-                bbox=dict(boxstyle="round,pad=0.35", facecolor=get_stem_color(idx),
-                          edgecolor="#999999", alpha=0.9, linewidth=0.8),
-                arrowprops=dict(arrowstyle="-|>", color="#777777", lw=0.9),
-                zorder=4,
-            )
-            v_loc = -v_loc
+    print(f"Saved {LENS}-lens trajectory plots to {save_dir}/")
 
-    def legend_label(s):
-        return s if len(s) <= 55 else s[:52] + "..."
-
-    ax.legend(
-        handles=[mpatches.Patch(facecolor=stem_color[s], alpha=0.6, label=legend_label(s)) for s in qualified_stems],
-        fontsize=LEGEND_FONTSIZE,
-        loc="upper left" if not IS_SENTENCE_LENS else "lower left",
-    )
-
-    # "Patch N" = the Nth image-patch token (in raster/top-left-to-bottom-right
-    # order) that falls inside option {LETTER}'s bounding box in the TARGET
-    # image -- NOT a position in the reference image, and not a token index in
-    # the model's full input sequence. A bbox usually spans several such grid
-    # cells (see subtitle below), so there is one trajectory plot per cell.
-    option_letter = OPTION_LETTERS[option_idx] if option_idx < len(OPTION_LETTERS) else str(option_idx)
-    if patch_descriptions is not None:
-        where = patch_descriptions[target_token_idx]
-        subtitle = f"image-grid cell: {where} of option {option_letter}'s box in the target image"
-    else:
-        subtitle = (f"{target_token_idx}-th image-grid cell (raster order) inside option "
-                    f"{option_letter}'s box in the target image")
-
-    ax.set(
-        xlabel="Layer",
-        ylabel=VALUE_LABEL,
-        xlim=(layers[0] - 0.8, layers[-1] + 0.8),
-        ylim=(-0.08, 1.25),
-    )
-    ax.set_title(f"Patch {target_token_idx} -- {TITLE_SUFFIX} Across Layers\n({subtitle})",
-                 fontsize=TITLE_FONTSIZE)
-
-    ax.tick_params(axis="both", labelsize=TICK_FONTSIZE)
-    ax.title.set_size(TITLE_FONTSIZE)
-    ax.xaxis.label.set_size(LABEL_FONTSIZE)
-    ax.yaxis.label.set_size(LABEL_FONTSIZE)
-
-    if len(layers) > 0:
-        xticks = [layers[i] for i in range(0, len(layers), 5)]
-        if layers[-1] not in xticks:
-            xticks.append(layers[-1])
-        ax.set_xticks(xticks)
-
-    ax.grid(alpha=0.25, linestyle="--")
-    ax.spines[["top", "right"]].set_visible(False)
-    plt.ylim(-0.5, 1.50)
-    plt.tight_layout()
-    plt.savefig(f"{save_dir}/patch{target_token_idx}.pdf", dpi=100, bbox_inches="tight")
-    plt.close()
-
-print(f"Saved {LENS}-lens trajectory plots to {save_dir}/")
+print("\nDone -- both logit and latent trajectory plots generated in this one run.")
