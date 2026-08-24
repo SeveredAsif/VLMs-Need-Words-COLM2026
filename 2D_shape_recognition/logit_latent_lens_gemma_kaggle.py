@@ -444,10 +444,31 @@ _watchlist = sorted({part for item in test_dataset.data
 check_corpus_coverage(load_indexed_corpus_lines()[0], _watchlist)
 
 
+def dedupe_neighbors_by_label(neighbors):
+    """Collapse repeated identical labels (e.g. the corpus index returning the
+    same <bos> from several near-duplicate sentences) down to their single
+    highest-similarity occurrence, before any candidate-wise softmax is taken
+    over this list. Without this, a cluster of near-identical <bos> hits would
+    eat multiple slots in the top-k and artificially dilute/suppress the
+    winning candidate's softmax share for reasons unrelated to genuine
+    competition from other content. Returns a list of (label, similarity)
+    sorted by similarity descending."""
+    best = {}
+    for n in neighbors:
+        label = (n.token_str or "").strip() or (n.caption or "").strip()
+        sim = float(n.similarity)
+        if label not in best or sim > best[label]:
+            best[label] = sim
+    return sorted(best.items(), key=lambda kv: kv[1], reverse=True)
+
+
 def get_latent_tokens(region_features, layer):
     """Nearest-neighbor lookup of region_features (at this layer) against the
-    LatentLens corpus index. Returns a list of (label, similarity), one per
-    patch token in the region -- same shape as get_decoded_tokens.
+    LatentLens corpus index. Returns a list of (label, similarity, topk_candidates),
+    one per patch token in the region -- topk_candidates is the deduped, full
+    top-`args.latentlens_top_k` (label, similarity) list, needed downstream for
+    candidate-wise softmax (Cell 2) so "how confidently is this patch matched
+    vs. the rest of what was retrieved" can be answered, not just the winner.
 
     The corpus index contains one <bos> vector per corpus sentence (3000 of
     them), and <bos> representations cluster tightly in most middle/late
@@ -471,7 +492,8 @@ def get_latent_tokens(region_features, layer):
                     chosen = n
                     break
         label = (chosen.token_str or "").strip() or (chosen.caption or "").strip()
-        token_values.append((label, float(chosen.similarity)))
+        topk_candidates = dedupe_neighbors_by_label(neighbors)
+        token_values.append((label, float(chosen.similarity), topk_candidates))
     return token_values
 
 
@@ -544,6 +566,10 @@ def get_logit_and_latent_metrics(model, target_dataset, num_samples=-1, batch_si
 
     per_layer_jac_logit = defaultdict(list)
     per_layer_jac_latent = defaultdict(list)
+    per_layer_nonempty_fraction = defaultdict(list)  # Fix 3: what fraction of the 4 options' filtered
+                                                      # latent-lens label sets were non-empty, so a
+                                                      # near-zero Jaccard can be told apart from an
+                                                      # empty-set artifact (see jaccard_similarity above)
     all_data_logit = []
     all_data_latent = []
 
@@ -618,59 +644,102 @@ def get_logit_and_latent_metrics(model, target_dataset, num_samples=-1, batch_si
                     jaccard_similarity(filtered_latent[i], filtered_latent[j])
                     for i in range(4) for j in range(i + 1, 4)
                 )
+                non_empty_count = sum(1 for f in filtered_latent if len(f) > 0)
+                per_layer_nonempty_fraction[layer].append(non_empty_count / 4)
 
         all_data_logit.extend(batch_sample_logit)
         all_data_latent.extend(batch_sample_latent)
 
-    return per_layer_jac_logit, per_layer_jac_latent, all_data_logit, all_data_latent
+    return per_layer_jac_logit, per_layer_jac_latent, per_layer_nonempty_fraction, all_data_logit, all_data_latent
 
 
-per_layer_jac_logit, per_layer_jac_latent, all_data_logit, all_data_latent = get_logit_and_latent_metrics(
+per_layer_jac_logit, per_layer_jac_latent, per_layer_nonempty_fraction, all_data_logit, all_data_latent = get_logit_and_latent_metrics(
     model, test_dataset, num_samples=args.sample_size, batch_size=args.batch_size
 )
 
 layers_sorted = sorted(per_layer_jac_logit)
 logit_means = [np.mean(per_layer_jac_logit[layer]) for layer in layers_sorted]
 latent_means = [np.mean(per_layer_jac_latent[layer]) for layer in layers_sorted]
+nonempty_means = [np.mean(per_layer_nonempty_fraction[layer]) for layer in layers_sorted]
 
 print("\nMean Jaccard similarity per layer (logit lens vs. latent lens):")
-print(f"{'Layer':>6} | {'logit lens':>12} | {'latent lens':>12}")
-for layer, lg, lt in zip(layers_sorted, logit_means, latent_means):
-    print(f"{layer:>6} | {lg:>12.4f} | {lt:>12.4f}")
+print(f"{'Layer':>6} | {'logit lens':>12} | {'latent lens':>12} | {'latent non-empty %':>19}")
+for layer, lg, lt, ne in zip(layers_sorted, logit_means, latent_means, nonempty_means):
+    print(f"{layer:>6} | {lg:>12.4f} | {lt:>12.4f} | {ne:>18.1%}")
+
+# Fix 3 diagnostic: jaccard_similarity([], []) == 0.0 (see the union==0 branch above),
+# the SAME value as "perfectly distinguishable" -- so if most patches at a layer get
+# filtered down to an empty label set (e.g. everything decoded to <bos>/punctuation),
+# the resulting near-zero Jaccard curve is indistinguishable from genuine
+# distinguishability just by looking at the plot. Cross-check against the fraction of
+# non-empty label sets before trusting a low-Jaccard region.
+EMPTY_ARTIFACT_NONEMPTY_THRESHOLD = 0.3   # below this, "most sets were empty" for that layer
+JACCARD_LOW_THRESHOLD = 0.1               # below this, the Jaccard curve reads as "highly distinguishable"
+cratered_layers = [layer for layer, ne in zip(layers_sorted, nonempty_means) if ne < EMPTY_ARTIFACT_NONEMPTY_THRESHOLD]
+low_jaccard_layers = [layer for layer, lt in zip(layers_sorted, latent_means) if lt < JACCARD_LOW_THRESHOLD]
+overlap = sorted(set(cratered_layers) & set(low_jaccard_layers))
+if overlap:
+    print(f"\nWARNING: layers {min(overlap)}-{max(overlap)} have <{EMPTY_ARTIFACT_NONEMPTY_THRESHOLD:.0%} "
+          f"non-empty label sets AND latent-lens Jaccard < {JACCARD_LOW_THRESHOLD} -- low Jaccard in this "
+          f"range is likely an empty-set artifact, not genuine distinguishability.")
 
 
-def plot_jaccard(layers, scores, label, color, filename):
-    plt.figure()
-    plt.plot(layers, scores, color=color)
-    plt.xlabel("Layer")
-    plt.ylabel("Mean Jaccard Similarity")
-    plt.xlim(0, N_LAYERS)
-    plt.ylim(0, 1)
+def plot_jaccard(layers, scores, label, color, filename, nonempty_fraction=None):
+    fig, ax1 = plt.subplots()
+    ax1.plot(layers, scores, color=color)
+    ax1.set_xlabel("Layer")
+    ax1.set_ylabel("Mean Jaccard Similarity")
+    ax1.set_xlim(0, N_LAYERS)
+    ax1.set_ylim(0, 1)
     max_score = max(scores)
     max_score_layer = layers[scores.index(max_score)] if isinstance(scores, list) else layers[int(np.argmax(scores))]
-    plt.axhline(y=max_score, alpha=0.5, color='red', linestyle='--',
+    ax1.axhline(y=max_score, alpha=0.5, color='red', linestyle='--',
                 label=f'Max Jaccard: {max_score:.4f} at Layer {max_score_layer}')
+    lines, line_labels = ax1.get_legend_handles_labels()
+    if nonempty_fraction is not None:
+        ax2 = ax1.twinx()
+        ax2.plot(layers, nonempty_fraction, color="grey", linestyle="--", alpha=0.7,
+                  label="Non-empty label-set fraction")
+        ax2.set_ylabel("Non-empty label-set fraction", color="grey")
+        ax2.set_ylim(0, 1)
+        ax2.tick_params(axis='y', colors='grey')
+        l2, lab2 = ax2.get_legend_handles_labels()
+        lines += l2
+        line_labels += lab2
+    ax1.legend(lines, line_labels, fontsize=8)
     plt.title(f"{label} -- lower = more distinguishable shapes")
-    plt.legend()
     plt.savefig(filename)
     plt.close()
 
 
 plot_jaccard(layers_sorted, list(logit_means), "Logit Lens", "tab:blue", f"{OUTPUT_FILE_NAME}_logit_jaccard.png")
-plot_jaccard(layers_sorted, list(latent_means), "Latent Lens", "tab:orange", f"{OUTPUT_FILE_NAME}_latent_jaccard.png")
+plot_jaccard(layers_sorted, list(latent_means), "Latent Lens", "tab:orange", f"{OUTPUT_FILE_NAME}_latent_jaccard.png",
+             nonempty_fraction=nonempty_means)
 
-# comparison plot: both lenses' Jaccard-distinctiveness curves on one axis
-plt.figure(figsize=(9, 5))
-plt.plot(layers_sorted, logit_means, label="Logit Lens", color="tab:blue")
-plt.plot(layers_sorted, latent_means, label="Latent Lens", color="tab:orange")
-plt.xlabel("Layer")
-plt.ylabel("Mean Jaccard Similarity (lower = more distinguishable)")
-plt.xlim(0, N_LAYERS)
-plt.ylim(0, 1)
+# comparison plot: both lenses' Jaccard-distinctiveness curves on one axis, plus the
+# latent-lens non-empty-fraction diagnostic on a twin axis (Fix 3)
+fig, ax1 = plt.subplots(figsize=(9, 5))
+ax1.plot(layers_sorted, logit_means, label="Logit Lens", color="tab:blue")
+ax1.plot(layers_sorted, latent_means, label="Latent Lens", color="tab:orange")
+ax1.set_xlabel("Layer")
+ax1.set_ylabel("Mean Jaccard Similarity (lower = more distinguishable)")
+ax1.set_xlim(0, N_LAYERS)
+ax1.set_ylim(0, 1)
+ax2 = ax1.twinx()
+ax2.plot(layers_sorted, nonempty_means, color="grey", linestyle="--", alpha=0.7,
+         label="Non-empty label-set fraction (latent)")
+ax2.set_ylabel("Non-empty label-set fraction", color="grey")
+ax2.set_ylim(0, 1)
+ax2.tick_params(axis='y', colors='grey')
+l1, lab1 = ax1.get_legend_handles_labels()
+l2, lab2 = ax2.get_legend_handles_labels()
+ax1.legend(l1 + l2, lab1 + lab2, fontsize=8, loc="best")
 plt.title("Logit Lens vs. Latent Lens -- per-layer comparison")
-plt.legend()
 plt.savefig(f"{OUTPUT_FILE_NAME}_comparison.png")
 plt.close()
+
+with open(f"{OUTPUT_FILE_NAME}_nonempty_fraction.pkl", "wb") as f:
+    pickle.dump(nonempty_means, f)
 
 with open(f"{OUTPUT_FILE_NAME}_logit_all_data.pkl", "wb") as f:
     pickle.dump(all_data_logit, f)
@@ -755,6 +824,8 @@ def find_target_rank(neighbors, target_word):
 jaccard_grid = defaultdict(list)                  # (N, M) -> jaccard scores across samples/option-pairs
 target_conf_grid = defaultdict(list)              # (N, M) -> similarities, only where target word was found in top-k
 target_found_grid = defaultdict(lambda: [0, 0])   # (N, M) -> [found_count, total_count]
+nonempty_grid = defaultdict(list)                 # Fix 3: (N, M) -> fraction of the 4 options' filtered
+                                                   # label sets that were non-empty, per sample
 
 region_features_cache = {}   # (sample_idx, image_layer, option_idx) -> float16 np.ndarray [num_patches, hidden_dim]
 estimated_bytes = 0
@@ -830,6 +901,8 @@ for inputs, meta_batch in tqdm(crosslayer_loader, desc="Cross-layer grid"):
                     jaccard_similarity(filtered[i], filtered[j])
                     for i in range(4) for j in range(i + 1, 4)
                 )
+                non_empty_count = sum(1 for f in filtered if len(f) > 0)
+                nonempty_grid[(N, M)].append(non_empty_count / 4)
 
     sample_offset += B
 
@@ -848,6 +921,9 @@ if CROSSLAYER_SAVE_REGION_FEATURES:
 jaccard_mean_grid = np.full((len(IMAGE_LAYERS_TO_TEST), len(TEXT_LAYERS_TO_TEST)), np.nan)
 target_conf_mean_grid = np.full((len(IMAGE_LAYERS_TO_TEST), len(TEXT_LAYERS_TO_TEST)), np.nan)
 target_found_rate_grid = np.full((len(IMAGE_LAYERS_TO_TEST), len(TEXT_LAYERS_TO_TEST)), np.nan)
+target_found_count_grid = np.full((len(IMAGE_LAYERS_TO_TEST), len(TEXT_LAYERS_TO_TEST)), np.nan)
+target_total_count_grid = np.full((len(IMAGE_LAYERS_TO_TEST), len(TEXT_LAYERS_TO_TEST)), np.nan)
+nonempty_mean_grid = np.full((len(IMAGE_LAYERS_TO_TEST), len(TEXT_LAYERS_TO_TEST)), np.nan)
 
 for i, N in enumerate(IMAGE_LAYERS_TO_TEST):
     for j, M in enumerate(TEXT_LAYERS_TO_TEST):
@@ -858,8 +934,13 @@ for i, N in enumerate(IMAGE_LAYERS_TO_TEST):
         if confs:
             target_conf_mean_grid[i, j] = np.mean(confs)
         found, total = target_found_grid.get((N, M), [0, 0])
+        target_found_count_grid[i, j] = found
+        target_total_count_grid[i, j] = total
         if total:
             target_found_rate_grid[i, j] = found / total
+        nonempty_scores = nonempty_grid.get((N, M), [])
+        if nonempty_scores:
+            nonempty_mean_grid[i, j] = np.mean(nonempty_scores)
 
 crosslayer_grid_data = {
     "image_layers": IMAGE_LAYERS_TO_TEST,
@@ -867,6 +948,9 @@ crosslayer_grid_data = {
     "jaccard_mean_grid": jaccard_mean_grid,
     "target_conf_mean_grid": target_conf_mean_grid,
     "target_found_rate_grid": target_found_rate_grid,
+    "target_found_count_grid": target_found_count_grid,
+    "target_total_count_grid": target_total_count_grid,
+    "nonempty_mean_grid": nonempty_mean_grid,
     "num_samples": CROSSLAYER_NUM_SAMPLES,
 }
 with open(f"{OUTPUT_FILE_NAME}_crosslayer_grid.pkl", "wb") as f:
@@ -876,7 +960,8 @@ print(f"Saved cross-layer grid data to {OUTPUT_FILE_NAME}_crosslayer_grid.pkl "
 
 
 # ------------------------------ heatmaps + line plot --------------------------
-def plot_crosslayer_heatmap(grid, image_layers, text_layers, title, cbar_label, filename, cmap="viridis"):
+def plot_crosslayer_heatmap(grid, image_layers, text_layers, title, cbar_label, filename, cmap="viridis",
+                             annotate_grid=None):
     plt.figure(figsize=(8, 7))
     im = plt.imshow(grid, origin="lower", aspect="auto", cmap=cmap,
                      extent=[text_layers[0] - 0.5, text_layers[-1] + 0.5,
@@ -888,6 +973,15 @@ def plot_crosslayer_heatmap(grid, image_layers, text_layers, title, cbar_label, 
     lo = min(image_layers[0], text_layers[0])
     hi = max(image_layers[-1], text_layers[-1])
     plt.plot([lo, hi], [lo, hi], color="red", linestyle="--", alpha=0.6, label="N = M (diagonal)")
+    if annotate_grid is not None:
+        # Fix 2, item 2: overlay found-rate (n=found/total) on each cell so a cell
+        # resting on e.g. 1/80 hits doesn't visually read as confidently as one on 79/80.
+        for i, N in enumerate(image_layers):
+            for j, M in enumerate(text_layers):
+                txt = annotate_grid[i][j]
+                if txt:
+                    plt.text(M, N, txt, ha="center", va="center", fontsize=6, color="white",
+                             bbox=dict(boxstyle="round,pad=0.15", facecolor="black", alpha=0.35, linewidth=0))
     plt.legend(loc="upper left", fontsize=8)
     plt.savefig(filename, dpi=120, bbox_inches="tight")
     plt.close()
@@ -898,16 +992,85 @@ plot_crosslayer_heatmap(
     "Cross-layer Jaccard distinctiveness (lower = more distinguishable shapes)",
     "Mean Jaccard similarity", f"{OUTPUT_FILE_NAME}_crosslayer_jaccard_heatmap.png", cmap="viridis_r",
 )
+
+# Fix 2, item 2: found-rate annotation ("n=found/total") on top of the confidence heatmap
+foundrate_annot = [
+    [f"n={int(target_found_count_grid[i, j])}/{int(target_total_count_grid[i, j])}"
+     if not np.isnan(target_total_count_grid[i, j]) and target_total_count_grid[i, j] > 0 else ""
+     for j in range(len(TEXT_LAYERS_TO_TEST))]
+    for i in range(len(IMAGE_LAYERS_TO_TEST))
+]
 plot_crosslayer_heatmap(
     target_conf_mean_grid, IMAGE_LAYERS_TO_TEST, TEXT_LAYERS_TO_TEST,
-    "Cross-layer target-label confidence (mean similarity, when target word found in top-k)",
+    "Cross-layer target-label confidence (mean similarity, when target word found in top-k)\n"
+    "cell label = found-rate as n=found/total -- LOW n means this cell's color is a low-n fluke",
     "Mean similarity", f"{OUTPUT_FILE_NAME}_crosslayer_targetconf_heatmap.png", cmap="viridis",
+    annotate_grid=foundrate_annot,
 )
 
+# Fix 2, item 1: found-rate as its own heatmap, distinct colormap from the other two so it's
+# never visually confused with the confidence or Jaccard heatmaps.
+plot_crosslayer_heatmap(
+    target_found_rate_grid, IMAGE_LAYERS_TO_TEST, TEXT_LAYERS_TO_TEST,
+    "Cross-layer target found-rate (fraction of patch-checks where target word appeared in top-k)",
+    "Found rate", f"{OUTPUT_FILE_NAME}_crosslayer_foundrate_heatmap.png", cmap="magma",
+)
+
+# Fix 3, item 3: non-empty label-set fraction heatmap, for cell-by-cell comparison against
+# the Jaccard heatmap above (a cell can look "distinguishable" via low Jaccard purely because
+# most of its label sets were empty after filter_tokens -- see the same-layer warning in Cell 1).
+plot_crosslayer_heatmap(
+    nonempty_mean_grid, IMAGE_LAYERS_TO_TEST, TEXT_LAYERS_TO_TEST,
+    "Cross-layer non-empty label-set fraction (compare cell-by-cell against the Jaccard heatmap)",
+    "Non-empty fraction", f"{OUTPUT_FILE_NAME}_crosslayer_nonempty_heatmap.png", cmap="magma",
+)
+
+# Fix 2, item 3: only trust an (N, M) cell for best-M* selection if the target word was
+# actually found often enough there -- otherwise argmax can lock onto a single lucky hit.
+FOUND_RATE_MIN_THRESHOLD = 0.2
 best_M_per_N = []
+excluded_N_rows = []
 for i, N in enumerate(IMAGE_LAYERS_TO_TEST):
-    row = target_conf_mean_grid[i, :]
-    best_M_per_N.append(np.nan if np.all(np.isnan(row)) else TEXT_LAYERS_TO_TEST[int(np.nanargmax(row))])
+    conf_row = target_conf_mean_grid[i, :]
+    rate_row = target_found_rate_grid[i, :]
+    mask = np.nan_to_num(rate_row, nan=0.0) >= FOUND_RATE_MIN_THRESHOLD
+
+    if not np.all(np.isnan(conf_row)):
+        unfiltered_best_j = int(np.nanargmax(conf_row))
+        if not mask[unfiltered_best_j]:
+            excluded_N_rows.append(
+                (N, f"unfiltered best M={TEXT_LAYERS_TO_TEST[unfiltered_best_j]} excluded "
+                    f"(found-rate {rate_row[unfiltered_best_j]:.2f} < {FOUND_RATE_MIN_THRESHOLD})")
+            )
+
+    masked_conf = np.where(mask, conf_row, np.nan)
+    if np.all(np.isnan(masked_conf)):
+        best_M_per_N.append(np.nan)
+        if not any(N == n for n, _ in excluded_N_rows):
+            excluded_N_rows.append((N, "no M passed the found-rate threshold at all"))
+    else:
+        best_M_per_N.append(TEXT_LAYERS_TO_TEST[int(np.nanargmax(masked_conf))])
+
+if excluded_N_rows:
+    print(f"\nWARNING: best-M-per-N line plot applied a minimum found-rate threshold of "
+          f"{FOUND_RATE_MIN_THRESHOLD} -- these N rows had their unfiltered best-M excluded as a "
+          f"likely low-n fluke:")
+    for N, reason in excluded_N_rows:
+        print(f"  N={N}: {reason}")
+
+# Fix 2, item 4: per-row top-3 M by confidence, with found-rate alongside, to manually check
+# whether the diagonal pattern in the line plot below survives once found-rate is accounted for.
+print("\nTop-3 text layers M by confidence per image layer N (confidence, found-rate):")
+for i, N in enumerate(IMAGE_LAYERS_TO_TEST):
+    conf_row = target_conf_mean_grid[i, :]
+    rate_row = target_found_rate_grid[i, :]
+    valid_js = [j for j in range(len(TEXT_LAYERS_TO_TEST)) if not np.isnan(conf_row[j])]
+    top3 = sorted(valid_js, key=lambda j: conf_row[j], reverse=True)[:3]
+    if top3:
+        parts = [f"M={TEXT_LAYERS_TO_TEST[j]} (conf={conf_row[j]:.3f}, found_rate={rate_row[j]:.2f})" for j in top3]
+        print(f"  N={N:>3}: " + "; ".join(parts))
+    else:
+        print(f"  N={N:>3}: (no valid M)")
 
 plt.figure(figsize=(7, 6))
 plt.plot(IMAGE_LAYERS_TO_TEST, best_M_per_N, marker="o", color="tab:purple", label="M* (best-matching text layer)")
@@ -916,12 +1079,14 @@ plt.plot([IMAGE_LAYERS_TO_TEST[0], IMAGE_LAYERS_TO_TEST[-1]],
          color="red", linestyle="--", alpha=0.6, label="M* = N (diagonal)")
 plt.xlabel("Image layer N")
 plt.ylabel("Best-matching text layer M*")
-plt.title("Best text layer per image layer -- diagonal supports 'processed like text early'")
+plt.title(f"Best text layer per image layer (found-rate >= {FOUND_RATE_MIN_THRESHOLD} only) --\n"
+          f"diagonal supports 'processed like text early'")
 plt.legend()
 plt.savefig(f"{OUTPUT_FILE_NAME}_crosslayer_bestM_line.png", dpi=120, bbox_inches="tight")
 plt.close()
 
-print("Saved cross-layer heatmaps (_crosslayer_jaccard_heatmap.png, _crosslayer_targetconf_heatmap.png) "
+print("\nSaved cross-layer heatmaps (_crosslayer_jaccard_heatmap.png, _crosslayer_targetconf_heatmap.png, "
+      "_crosslayer_foundrate_heatmap.png, _crosslayer_nonempty_heatmap.png) "
       "and the M* vs. N line plot (_crosslayer_bestM_line.png).")
 
 
@@ -1185,16 +1350,22 @@ for LENS in LENSES_TO_RUN:
         lens_patch_descriptions = None
 
     for target_token_idx in range(len(lens_data[0])):
-        layers, words, values = [], [], []
+        layers, words, values, topk_lists = [], [], [], []
 
         for_print = ""
         for layer in range(len(lens_data)):
             if layer < SKIP_LAYERS:
                 continue
-            word, value = lens_data[layer][target_token_idx]
+            entry = lens_data[layer][target_token_idx]
+            if IS_SENTENCE_LENS:
+                word, value, topk_candidates = entry
+            else:
+                word, value = entry
+                topk_candidates = None
             layers.append(layer)
             words.append(word)
             values.append(value)
+            topk_lists.append(topk_candidates)
             for_print += f"{word} ({value:.2f}), "
 
         # Grouping key for the color bands / legend: stemming works well for single
@@ -1239,10 +1410,45 @@ for LENS in LENSES_TO_RUN:
         print(f"Patch {target_token_idx} ({LENS} lens): softmax range = "
               f"[{softmax_values.min():.4f}, {softmax_values.max():.4f}] (T={SOFTMAX_TEMPERATURE})")
 
-        fig, (ax, ax2) = plt.subplots(
-            2, 1, figsize=(16, 9) if not IS_SENTENCE_LENS else (22, 12),
-            sharex=True, gridspec_kw={"height_ratios": [3, 1.3]},
-        )
+        # Fix 1: "how confidently is this candidate matched vs. the rest of what was
+        # retrieved" -- softmax ACROSS the top-k candidates at a fixed layer (not across
+        # layers, like softmax_values above). Only meaningful for latent lens: logit lens's
+        # plotted value is already a softmax-over-the-full-vocabulary probability, so it is
+        # already "candidate-wise" by construction.
+        candidate_win_probs, candidate_runnerups = [], []
+        if IS_SENTENCE_LENS:
+            for layer_idx, topk_candidates in enumerate(topk_lists):
+                if not topk_candidates:
+                    candidate_win_probs.append(np.nan)
+                    candidate_runnerups.append([])
+                    continue
+                cand_labels = [lbl for lbl, _ in topk_candidates]
+                cand_sims = [s for _, s in topk_candidates]
+                cand_probs = softmax_1d(cand_sims, temperature=SOFTMAX_TEMPERATURE)
+                winner_word = words[layer_idx]
+                try:
+                    widx = cand_labels.index(winner_word)
+                except ValueError:
+                    # displayed word isn't in the deduped top-k for some reason -- fall back
+                    # to whichever candidate actually has the highest candidate-softmax share
+                    widx = int(np.argmax(cand_probs))
+                candidate_win_probs.append(cand_probs[widx])
+                order = np.argsort(cand_probs)[::-1]
+                runnerups = [(cand_labels[j], cand_probs[j]) for j in order if j != widx][:3]
+                candidate_runnerups.append(runnerups)
+
+        n_panels = 3 if IS_SENTENCE_LENS else 2
+        if IS_SENTENCE_LENS:
+            fig, (ax, ax2, ax3) = plt.subplots(
+                n_panels, 1, figsize=(22, 15), sharex=True,
+                gridspec_kw={"height_ratios": [3, 1.3, 1.3]},
+            )
+        else:
+            fig, (ax, ax2) = plt.subplots(
+                n_panels, 1, figsize=(16, 9), sharex=True,
+                gridspec_kw={"height_ratios": [3, 1.3]},
+            )
+            ax3 = None
 
         i = 0
         while i < len(stems):
@@ -1319,22 +1525,62 @@ for LENS in LENSES_TO_RUN:
         ax.spines[["top", "right"]].set_visible(False)
         ax.set_ylim(-0.5, 1.50)
 
-        # Second panel: same trajectory, softmax-normalized across the layer axis so
-        # it's on a true [0, 1] probability scale -- directly comparable to logit
-        # lens's already-probabilistic values, unlike the raw panel above (cosine
-        # similarities for latent lens are not probabilities and aren't comparable
-        # 1:1 with logit-lens probabilities on the same numeric scale).
+        # Second panel: same trajectory, softmax-normalized ACROSS THE LAYER AXIS (this
+        # patch's own trajectory) so it's on a true [0, 1] probability scale -- directly
+        # comparable to logit lens's already-probabilistic values, unlike the raw panel
+        # above (cosine similarities for latent lens are not probabilities and aren't
+        # comparable 1:1 with logit-lens probabilities on the same numeric scale). This
+        # answers "how does this layer's pick compare to the same patch's picks at OTHER
+        # LAYERS" -- NOT how it compares to competing candidates at the same layer (that's
+        # the third panel below).
         ax2.plot(layers, softmax_values, color="#444444", linewidth=1.8, marker="o",
                  markersize=6, zorder=2)
         for idx, (layer, sm_val) in enumerate(zip(layers, softmax_values)):
             ax2.plot(layer, sm_val, "o", markersize=8, color=get_word_color(idx),
                       markeredgecolor="white", markeredgewidth=1.2, zorder=3)
         ax2.set_ylim(0, 1)
-        ax2.set_xlabel("Layer", fontsize=LABEL_FONTSIZE)
         ax2.set_ylabel(f"Softmax Probability\n(T={SOFTMAX_TEMPERATURE})", fontsize=max(LABEL_FONTSIZE - 6, 9))
+        ax2.set_title("Softmax across layers (this patch's own trajectory)",
+                       fontsize=max(ANNOT_FONTSIZE - 2, 10))
         ax2.tick_params(axis="both", labelsize=max(TICK_FONTSIZE - 6, 9))
         ax2.grid(alpha=0.25, linestyle="--")
         ax2.spines[["top", "right"]].set_visible(False)
+        if ax3 is None:
+            ax2.set_xlabel("Layer", fontsize=LABEL_FONTSIZE)
+
+        # Third panel (latent lens only): softmax ACROSS CANDIDATES -- at each layer,
+        # how much did the winning label beat the other top-k retrieved candidates at
+        # THAT SAME layer. Annotates the top 2-3 runner-up candidates so the gap between
+        # winner and runner-up is visible directly, not just implied by a single number.
+        if ax3 is not None:
+            ax3.plot(layers, candidate_win_probs, color="#2E7D32", linewidth=1.8, marker="o",
+                     markersize=6, zorder=2)
+            for idx, (layer, cp) in enumerate(zip(layers, candidate_win_probs)):
+                if np.isnan(cp):
+                    continue
+                ax3.plot(layer, cp, "o", markersize=8, color=get_word_color(idx),
+                          markeredgecolor="white", markeredgewidth=1.2, zorder=3)
+                if idx in annotate_indices and candidate_runnerups[idx]:
+                    def _short(lbl, n=18):
+                        return lbl if len(lbl) <= n else lbl[:n - 3] + "..."
+                    runner_text = "\n".join(f"{_short(lbl)} = {p:.2f}" for lbl, p in candidate_runnerups[idx])
+                    ax3.annotate(
+                        runner_text, xy=(layer, cp), xytext=(0, 34 if idx % 2 == 0 else -34),
+                        textcoords="offset points", ha="center",
+                        va="bottom" if idx % 2 == 0 else "top",
+                        fontsize=max(ANNOT_FONTSIZE - 5, 7),
+                        bbox=dict(boxstyle="round,pad=0.3", facecolor="#EEEEEE",
+                                  edgecolor="#999999", alpha=0.85, linewidth=0.7),
+                        zorder=4,
+                    )
+            ax3.set_ylim(0, 1)
+            ax3.set_xlabel("Layer", fontsize=LABEL_FONTSIZE)
+            ax3.set_ylabel(f"Softmax Probability\n(T={SOFTMAX_TEMPERATURE})", fontsize=max(LABEL_FONTSIZE - 6, 9))
+            ax3.set_title("Softmax across candidates (this layer's top-k) -- runner-ups annotated",
+                           fontsize=max(ANNOT_FONTSIZE - 2, 10))
+            ax3.tick_params(axis="both", labelsize=max(TICK_FONTSIZE - 6, 9))
+            ax3.grid(alpha=0.25, linestyle="--")
+            ax3.spines[["top", "right"]].set_visible(False)
 
         plt.tight_layout()
         plt.savefig(f"{save_dir}/patch{target_token_idx}.pdf", dpi=100, bbox_inches="tight")

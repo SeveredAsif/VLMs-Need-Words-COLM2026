@@ -257,16 +257,22 @@ for LENS in LENSES_TO_RUN:
         lens_patch_descriptions = None
 
     for target_token_idx in range(len(lens_data[0])):
-        layers, words, values = [], [], []
+        layers, words, values, topk_lists = [], [], [], []
 
         for_print = ""
         for layer in range(len(lens_data)):
             if layer < SKIP_LAYERS:
                 continue
-            word, value = lens_data[layer][target_token_idx]
+            entry = lens_data[layer][target_token_idx]
+            if IS_SENTENCE_LENS:
+                word, value, topk_candidates = entry
+            else:
+                word, value = entry
+                topk_candidates = None
             layers.append(layer)
             words.append(word)
             values.append(value)
+            topk_lists.append(topk_candidates)
             for_print += f"{word} ({value:.2f}), "
 
         # Grouping key for the color bands / legend: stemming works well for single
@@ -311,10 +317,45 @@ for LENS in LENSES_TO_RUN:
         print(f"Patch {target_token_idx} ({LENS} lens): softmax range = "
               f"[{softmax_values.min():.4f}, {softmax_values.max():.4f}] (T={SOFTMAX_TEMPERATURE})")
 
-        fig, (ax, ax2) = plt.subplots(
-            2, 1, figsize=(16, 9) if not IS_SENTENCE_LENS else (22, 12),
-            sharex=True, gridspec_kw={"height_ratios": [3, 1.3]},
-        )
+        # Fix 1: "how confidently is this candidate matched vs. the rest of what was
+        # retrieved" -- softmax ACROSS the top-k candidates at a fixed layer (not across
+        # layers, like softmax_values above). Only meaningful for latent lens: logit lens's
+        # plotted value is already a softmax-over-the-full-vocabulary probability, so it is
+        # already "candidate-wise" by construction.
+        candidate_win_probs, candidate_runnerups = [], []
+        if IS_SENTENCE_LENS:
+            for layer_idx, topk_candidates in enumerate(topk_lists):
+                if not topk_candidates:
+                    candidate_win_probs.append(np.nan)
+                    candidate_runnerups.append([])
+                    continue
+                cand_labels = [lbl for lbl, _ in topk_candidates]
+                cand_sims = [s for _, s in topk_candidates]
+                cand_probs = softmax_1d(cand_sims, temperature=SOFTMAX_TEMPERATURE)
+                winner_word = words[layer_idx]
+                try:
+                    widx = cand_labels.index(winner_word)
+                except ValueError:
+                    # displayed word isn't in the deduped top-k for some reason -- fall back
+                    # to whichever candidate actually has the highest candidate-softmax share
+                    widx = int(np.argmax(cand_probs))
+                candidate_win_probs.append(cand_probs[widx])
+                order = np.argsort(cand_probs)[::-1]
+                runnerups = [(cand_labels[j], cand_probs[j]) for j in order if j != widx][:3]
+                candidate_runnerups.append(runnerups)
+
+        n_panels = 3 if IS_SENTENCE_LENS else 2
+        if IS_SENTENCE_LENS:
+            fig, (ax, ax2, ax3) = plt.subplots(
+                n_panels, 1, figsize=(22, 15), sharex=True,
+                gridspec_kw={"height_ratios": [3, 1.3, 1.3]},
+            )
+        else:
+            fig, (ax, ax2) = plt.subplots(
+                n_panels, 1, figsize=(16, 9), sharex=True,
+                gridspec_kw={"height_ratios": [3, 1.3]},
+            )
+            ax3 = None
 
         i = 0
         while i < len(stems):
@@ -391,22 +432,62 @@ for LENS in LENSES_TO_RUN:
         ax.spines[["top", "right"]].set_visible(False)
         ax.set_ylim(-0.5, 1.50)
 
-        # Second panel: same trajectory, softmax-normalized across the layer axis so
-        # it's on a true [0, 1] probability scale -- directly comparable to logit
-        # lens's already-probabilistic values, unlike the raw panel above (cosine
-        # similarities for latent lens are not probabilities and aren't comparable
-        # 1:1 with logit-lens probabilities on the same numeric scale).
+        # Second panel: same trajectory, softmax-normalized ACROSS THE LAYER AXIS (this
+        # patch's own trajectory) so it's on a true [0, 1] probability scale -- directly
+        # comparable to logit lens's already-probabilistic values, unlike the raw panel
+        # above (cosine similarities for latent lens are not probabilities and aren't
+        # comparable 1:1 with logit-lens probabilities on the same numeric scale). This
+        # answers "how does this layer's pick compare to the same patch's picks at OTHER
+        # LAYERS" -- NOT how it compares to competing candidates at the same layer (that's
+        # the third panel below).
         ax2.plot(layers, softmax_values, color="#444444", linewidth=1.8, marker="o",
                  markersize=6, zorder=2)
         for idx, (layer, sm_val) in enumerate(zip(layers, softmax_values)):
             ax2.plot(layer, sm_val, "o", markersize=8, color=get_word_color(idx),
                       markeredgecolor="white", markeredgewidth=1.2, zorder=3)
         ax2.set_ylim(0, 1)
-        ax2.set_xlabel("Layer", fontsize=LABEL_FONTSIZE)
         ax2.set_ylabel(f"Softmax Probability\n(T={SOFTMAX_TEMPERATURE})", fontsize=max(LABEL_FONTSIZE - 6, 9))
+        ax2.set_title("Softmax across layers (this patch's own trajectory)",
+                       fontsize=max(ANNOT_FONTSIZE - 2, 10))
         ax2.tick_params(axis="both", labelsize=max(TICK_FONTSIZE - 6, 9))
         ax2.grid(alpha=0.25, linestyle="--")
         ax2.spines[["top", "right"]].set_visible(False)
+        if ax3 is None:
+            ax2.set_xlabel("Layer", fontsize=LABEL_FONTSIZE)
+
+        # Third panel (latent lens only): softmax ACROSS CANDIDATES -- at each layer,
+        # how much did the winning label beat the other top-k retrieved candidates at
+        # THAT SAME layer. Annotates the top 2-3 runner-up candidates so the gap between
+        # winner and runner-up is visible directly, not just implied by a single number.
+        if ax3 is not None:
+            ax3.plot(layers, candidate_win_probs, color="#2E7D32", linewidth=1.8, marker="o",
+                     markersize=6, zorder=2)
+            for idx, (layer, cp) in enumerate(zip(layers, candidate_win_probs)):
+                if np.isnan(cp):
+                    continue
+                ax3.plot(layer, cp, "o", markersize=8, color=get_word_color(idx),
+                          markeredgecolor="white", markeredgewidth=1.2, zorder=3)
+                if idx in annotate_indices and candidate_runnerups[idx]:
+                    def _short(lbl, n=18):
+                        return lbl if len(lbl) <= n else lbl[:n - 3] + "..."
+                    runner_text = "\n".join(f"{_short(lbl)} = {p:.2f}" for lbl, p in candidate_runnerups[idx])
+                    ax3.annotate(
+                        runner_text, xy=(layer, cp), xytext=(0, 34 if idx % 2 == 0 else -34),
+                        textcoords="offset points", ha="center",
+                        va="bottom" if idx % 2 == 0 else "top",
+                        fontsize=max(ANNOT_FONTSIZE - 5, 7),
+                        bbox=dict(boxstyle="round,pad=0.3", facecolor="#EEEEEE",
+                                  edgecolor="#999999", alpha=0.85, linewidth=0.7),
+                        zorder=4,
+                    )
+            ax3.set_ylim(0, 1)
+            ax3.set_xlabel("Layer", fontsize=LABEL_FONTSIZE)
+            ax3.set_ylabel(f"Softmax Probability\n(T={SOFTMAX_TEMPERATURE})", fontsize=max(LABEL_FONTSIZE - 6, 9))
+            ax3.set_title("Softmax across candidates (this layer's top-k) -- runner-ups annotated",
+                           fontsize=max(ANNOT_FONTSIZE - 2, 10))
+            ax3.tick_params(axis="both", labelsize=max(TICK_FONTSIZE - 6, 9))
+            ax3.grid(alpha=0.25, linestyle="--")
+            ax3.spines[["top", "right"]].set_visible(False)
 
         plt.tight_layout()
         plt.savefig(f"{save_dir}/patch{target_token_idx}.pdf", dpi=100, bbox_inches="tight")
